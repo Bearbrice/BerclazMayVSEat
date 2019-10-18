@@ -8,6 +8,7 @@ namespace BerclazMay_VSEat
         {
             Console.WriteLine("Hello World!");
             Console.WriteLine("SLT AUREL");
+            Console.WriteLine("SLT BercLaz");
         }
     }
 }
