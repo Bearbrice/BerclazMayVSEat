@@ -12,6 +12,9 @@ namespace BerclazMay_VSEat
             Console.WriteLine("Valide ptn de merde");
             Console.WriteLine("HIRONDELLE NOM DE TCHOU");
             Console.WriteLine("Sam l'hirondelle");
+
+
+            Console.WriteLine("On nique le projet ou pas mec ?");
         }
     }
 }
