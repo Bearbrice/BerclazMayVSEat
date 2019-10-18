@@ -11,6 +11,7 @@ namespace BerclazMay_VSEat
             Console.WriteLine("SLT BercLaz");
             Console.WriteLine("Valide ptn de merde");
             Console.WriteLine("HIRONDELLE NOM DE TCHOU");
+            Console.WriteLine("Sam l'hirondelle");
         }
     }
 }
