@@ -13,6 +13,9 @@ namespace BerclazMay_VSEat
             Console.WriteLine("HIRONDELLE NOM DE TCHOU");
             Console.WriteLine("Sam l'hirondelle");
 
+
+            Console.WriteLine("On nique le projet ou pas mec ?");
+
             Console.WriteLine("Test synchronisation 8");
         }
     }
