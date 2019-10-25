@@ -14,9 +14,9 @@ namespace DTO
         public bool fk_idCity { get; set; }
        
 
-        /*public override string ToString()
+        public override string ToString()
         {
-           // return $"{IdHotel}|{Name}|{Description}|{Location}|{Category.ToString()}|{HasWifi.ToString()}|{Phone}|{Email}|{Website}";
-        }*/
+           return $"{idCustomer}|{full_name}|{created_at}|{telephone}|{login}|{password}|{fk_idCity}";
+        }
     }
 }
