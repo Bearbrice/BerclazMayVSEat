@@ -9,7 +9,7 @@ namespace DAL
 {
     public class CityDB : ICityDB
     {
-        public IConfiguration Configuration { get;  }
+        public IConfiguration Configuration { get; }
 
         public CityDB(IConfiguration configuration)
         {
@@ -117,6 +117,60 @@ namespace DAL
             }
 
             return city;
+        }
+
+        public int UpdateCity(City city)
+        {
+            int result = 0;
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+                    string query = "UPDATE City SET code=@code, name=@name WHERE idCity=@id";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", city.idCity);
+                    cmd.Parameters.AddWithValue("@code", city.code);
+                    cmd.Parameters.AddWithValue("@name", city.name);
+
+                    cn.Open();
+
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return result;
+        }
+
+        public int DeleteCity(int id)
+        {
+            int result = 0;
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+                    string query = "DELETE FROM City WHERE idCity=@id";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cn.Open();
+
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return result;
         }
     }
 }
