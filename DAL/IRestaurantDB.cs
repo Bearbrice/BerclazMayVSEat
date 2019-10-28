@@ -12,7 +12,7 @@ namespace DAL
 
         List<Restaurant> GetRestaurants();
 
-        Restaurant GetResaurant(int id);
+        Restaurant GetRestaurant(int id);
 
         Restaurant AddRestaurant(Restaurant restaurant);
 
