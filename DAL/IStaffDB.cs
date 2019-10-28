@@ -10,6 +10,16 @@ namespace DAL
     {
         IConfiguration Configuration { get; }
 
-        
+        List<Staff> GetStaffs();
+
+        Staff GetStaff(int id);
+
+        Staff AddStaff(Staff staff);
+
+        int UpdateStaff(Staff staff);
+
+        int DeleteStaff(int id);
+
+
     }
 }
