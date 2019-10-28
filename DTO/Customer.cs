@@ -7,9 +7,9 @@ namespace DTO
     {
         public int idCustomer { get; set; }
         public string full_name { get; set; }
-        public string created_at { get; set; }
+        public DateTime created_at { get; set; }
         public string telephone { get; set; }
-        public int login { get; set; }
+        public string login { get; set; }
         public string password { get; set; }
         public int fk_idCity { get; set; }
        

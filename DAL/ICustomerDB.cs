@@ -1,10 +1,23 @@
-﻿using System;
+﻿using DTO;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DAL
 {
-    interface ICustomerDB
+    public interface ICustomerDB
     {
+        IConfiguration Configuration { get; }
+
+        List<Customer> GetCustomers();
+
+        Customer GetCustomer(int id);
+
+        Customer AddCustomer(Customer customer);
+
+        int UpdateCustomer(Customer customer);
+
+        int DeleteCustomer(int id);
     }
 }

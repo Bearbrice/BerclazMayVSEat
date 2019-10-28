@@ -1,10 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DTO;
+using DAL;
 
 namespace BLL
 {
-    interface ICustomerManager
+    public interface ICustomerManager
     {
+        ICustomerManager CustomerDB { get; }
+
+        List<Customer> GetCustomers();
+
+        Customer GetCustomer(int id);
+
+        Customer AddCustomer(Customer customer);
+
+        int UpdateCustomer(Customer customer);
+
+        int DeleteCustomer(int id);
     }
 }
