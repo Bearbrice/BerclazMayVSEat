@@ -81,7 +81,7 @@ namespace DAL
                     {
                         if (dr.Read())
                         {
-                            Dish dish = new Dish();
+                            dish = new Dish();
 
                             dish.idDish = (int)dr["idDish"];
                             dish.name = (string)dr["name"];
