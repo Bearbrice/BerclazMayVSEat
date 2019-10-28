@@ -10,8 +10,8 @@ namespace DTO
         public string created_at { get; set; }
         public string telephone { get; set; }
         public int login { get; set; }
-        public bool password { get; set; }
-        public bool fk_idCity { get; set; }
+        public string password { get; set; }
+        public int fk_idCity { get; set; }
        
 
         public override string ToString()
