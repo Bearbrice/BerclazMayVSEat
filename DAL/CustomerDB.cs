@@ -18,6 +18,8 @@ namespace DAL
         public List<Customer> GetCustomers()
         {
             List<Customer> results = null;
+
+            //rechercher problème ici
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
