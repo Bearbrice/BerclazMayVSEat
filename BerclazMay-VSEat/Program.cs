@@ -17,7 +17,7 @@ namespace BerclazMay_VSEat
         static void Main(string[] args)
         {
             /* 
-             * -- CUSTOMER TEST --
+             * -- CUSTOMER TEST ----
              */
             var customersDBManager = new CustomerManager(Configuration);
 
