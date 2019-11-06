@@ -26,7 +26,7 @@ namespace BLL
             return DishDB.GetDish(id);
         }
 
-        public Dish AddHotel(Dish dish)
+        public Dish AddDish(Dish dish)
         {
             return DishDB.AddDish(dish);
         }

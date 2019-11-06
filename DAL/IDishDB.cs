@@ -14,9 +14,9 @@ namespace DAL
 
         Dish GetDish(int id);
 
-        Dish AddDish(Dish hotel);
+        Dish AddDish(Dish dish);
 
-        int UpdateDish(Dish hotel);
+        int UpdateDish(Dish dish);
 
         int DeleteDish(int id);
     }
