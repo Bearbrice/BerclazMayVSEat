@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "BerclazMay-VS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{119321C6-089F-4786-B80C-BABB9C958D16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{F416EFF5-F657-497F-829A-C7FDB1AB20C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{F416EFF5-F657-497F-829A-C7FDB1AB20C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{33C8D9E6-3238-4D84-A58E-CBFF1F8C3EFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{33C8D9E6-3238-4D84-A58E-CBFF1F8C3EFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{56FB8FF8-0A42-4CFE-B919-D164DBE8D33F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{33C8D9E6-3238-4D84-A58E-CBFF1F8C3EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33C8D9E6-3238-4D84-A58E-CBFF1F8C3EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33C8D9E6-3238-4D84-A58E-CBFF1F8C3EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56FB8FF8-0A42-4CFE-B919-D164DBE8D33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56FB8FF8-0A42-4CFE-B919-D164DBE8D33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56FB8FF8-0A42-4CFE-B919-D164DBE8D33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56FB8FF8-0A42-4CFE-B919-D164DBE8D33F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
