@@ -43,11 +43,11 @@
                 @Html.DisplayFor(modelItem => item.fk_idCity)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.idRestaurant }) |
-                @Html.ActionLink("Details", "Details", new { id=item.idRestaurant }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.idRestaurant })
+                <!--@Html.ActionLink("Edit", "Edit", new { id = item.idRestaurant }) -->
+                @Html.ActionLink("Details", "Details", new { id = item.idRestaurant })
+                <!--@Html.ActionLink("Delete", "Delete", new { id = item.idRestaurant })-->
             </td>
-        </tr>
-}
-    </tbody>
-</table>
+            </tr>
+    }
+        </tbody>
+    </table>

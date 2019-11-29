@@ -15,7 +15,7 @@ namespace WebApplication.Models
 
         public override string ToString()
         {
-           return $"{idOrder}|{status}|{created_at}|{finished_at}|{fk_idStaff}|{fk_idCustomer}";
+           return $"{idOrder}|{status}|{scheduled_at}|{finished_at}|{fk_idStaff}|{fk_idCustomer}";
         }
     }
 }
