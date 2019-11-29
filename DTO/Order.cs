@@ -7,7 +7,7 @@ namespace DTO
     {
         public int idOrder { get; set; }
         public string status { get; set; }
-        public DateTime created_at { get; set; }
+        public DateTime scheduled_at { get; set; }
         public DateTime finished_at { get; set; }
         public int fk_idStaff { get; set; }
         public int fk_idCustomer { get; set; }
@@ -15,7 +15,7 @@ namespace DTO
 
         public override string ToString()
         {
-           return $"{idOrder}|{status}|{created_at}|{finished_at}|{fk_idStaff}|{fk_idCustomer}";
+           return $"{idOrder}|{status}|{scheduled_at}|{finished_at}|{fk_idStaff}|{fk_idCustomer}";
         }
     }
 }

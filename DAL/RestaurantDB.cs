@@ -42,7 +42,7 @@ namespace DAL
                             restaurant.idRestaurant = (int)dr["idRestaurant"];
                             restaurant.merchant_name = (string)dr["merchant_name"];
                             restaurant.created_at = (DateTime)dr["created_at"];
-                            restaurant.fk_idCity = (int)dr["created_at"];
+                            restaurant.fk_idCity = (int)dr["fk_idCity"];
 
                             results.Add(restaurant);
                         }
@@ -66,7 +66,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM Restaurant WHERE idCity = @id";
+                    string query = "SELECT * FROM Restaurant WHERE fk_idCity = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -81,7 +81,7 @@ namespace DAL
                             restaurant.idRestaurant = (int)dr["idRestaurant"];
                             restaurant.merchant_name = (string)dr["merchant_name"];
                             restaurant.created_at = (DateTime)dr["created_at"];
-                            restaurant.fk_idCity = (int)dr["created_at"];
+                            restaurant.fk_idCity = (int)dr["fk_idCity"];
 
                         }
                     }

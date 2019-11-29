@@ -1,0 +1,42 @@
+﻿@model DTO.Restaurant
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Restaurant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idRestaurant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.idRestaurant)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.merchant_name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.merchant_name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_idCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fk_idCity)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idRestaurant }) |
+    <a asp-action="getRestaurants">Back to List</a>
+</div>

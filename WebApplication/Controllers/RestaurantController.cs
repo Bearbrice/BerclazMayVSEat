@@ -4,21 +4,39 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BLL;
+using Microsoft.Extensions.Configuration;
 
 namespace WebApplication.Controllers
 {
     public class RestaurantController : Controller
     {
+        private IConfiguration Configuration { get; }
+        public RestaurantController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // GET: Restaurant
         public ActionResult Index()
         {
             return View();
         }
 
+        // GET : Restaurant
+        public ActionResult getRestaurants()
+        {
+            RestaurantManager rMan = new RestaurantManager(Configuration);
+            var restaurantList = rMan.GetRestaurants();
+            return View(restaurantList);
+        }
+
         // GET: Restaurant/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            RestaurantManager rMan = new RestaurantManager(Configuration);
+            var restaurant = rMan.GetRestaurant(id);
+            return View(restaurant);
         }
 
         // GET: Restaurant/Create

@@ -40,7 +40,7 @@ namespace DAL
 
                             order.idOrder = (int)dr["idOrder"];
                             order.status = (string)dr["status"];
-                            order.created_at = (DateTime)dr["created_at"];
+                            order.scheduled_at = (DateTime)dr["scheduled_at"];
                             order.finished_at = (DateTime)dr["finished_at"];
                             order.fk_idStaff = (int)dr["fk_idStaff"];
                             order.fk_idCustomer = (int)dr["fk_idCustomer"];
@@ -82,7 +82,7 @@ namespace DAL
 
                             order.idOrder = (int)dr["idOrder"];
                             order.status = (string)dr["status"];
-                            order.created_at = (DateTime)dr["created_at"];
+                            order.scheduled_at = (DateTime)dr["scheduled_at"];
                             order.finished_at = (DateTime)dr["finished_at"];
                             order.fk_idStaff = (int)dr["fk_idStaff"];
                             order.fk_idCustomer = (int)dr["fk_idCustomer"];
@@ -111,7 +111,7 @@ namespace DAL
                     string query = "Insert into Order(status, created_at, finished_at, fk_idStaff, fk_idCustomer) values(@status, @created_at, @finished_at, @fk_idStaff, @fk_idCustomer); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@status", order.status);
-                    cmd.Parameters.AddWithValue("@created_at", order.created_at);
+                    cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
                     cmd.Parameters.AddWithValue("@finished_at", order.finished_at);
                     cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
                     cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
@@ -141,7 +141,7 @@ namespace DAL
                     string query = "UPDATE Order SET status=@status, created_at=@created_at, finished_at=@finished_at, fk_idStaff=@fk_idStaff, fk_idCustomer=@fk_idCustomer WHERE idOrder=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@status", order.status);
-                    cmd.Parameters.AddWithValue("@created_at", order.created_at);
+                    cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
                     cmd.Parameters.AddWithValue("@finished_at", order.finished_at);
                     cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
                     cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
