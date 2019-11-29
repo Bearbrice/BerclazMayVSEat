@@ -40,7 +40,7 @@ namespace DAL
                             Login login = new Login();
 
                             login.idLogin = (int)dr["idLogin"];
-                            login.login = (string)dr["login"];
+                            login.user = (string)dr["user"];
                             login.password = (string)dr["password"];
                             login.fk_customerId = (int)dr["fk_customerId"];
                             login.fk_staffId = (int)dr["fk_staffId"];
@@ -80,7 +80,7 @@ namespace DAL
                             login = new Login();
 
                             login.idLogin = (int)dr["idLogin"];
-                            login.login = (string)dr["login"];
+                            login.user = (string)dr["user"];
                             login.password = (string)dr["password"];
                             login.fk_customerId = (int)dr["fk_customerId"];
                             login.fk_staffId = (int)dr["fk_staffId"];
@@ -105,9 +105,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO Login(login, password, fk_customerId, fk_staffId) values(@login, @password, @fk_customerId, @fk_staffId); SELECT SCOPE_IDENTITY()";
+                    string query = "INSERT INTO Login(user, password, fk_customerId, fk_staffId) values(@user, @password, @fk_customerId, @fk_staffId); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@login", login.login);
+                    cmd.Parameters.AddWithValue("@login", login.user);
                     cmd.Parameters.AddWithValue("@password", login.password);
                     cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
                     cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
@@ -134,10 +134,10 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "UPDATE Login SET login=@login, password=@password, fk_customerId=@fk_customerId, fk_staffId=@fk_staffId WHERE idLogin=@id";
+                    string query = "UPDATE Login SET login=@user, password=@password, fk_customerId=@fk_customerId, fk_staffId=@fk_staffId WHERE idLogin=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@id", login.idLogin);
-                    cmd.Parameters.AddWithValue("@login", login.login);
+                    cmd.Parameters.AddWithValue("@user", login.login);
                     cmd.Parameters.AddWithValue("@password", login.password);
                     cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
                     cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
