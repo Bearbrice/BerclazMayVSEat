@@ -16,7 +16,7 @@ namespace DTO
 
         public override string ToString()
         {
-            return $"{idLogin}|{login}|{password}|{fk_customerId}|{fk_staffId}";
+            return $"{idLogin}|{user}|{password}|{fk_customerId}|{fk_staffId}";
         }
     }
 }

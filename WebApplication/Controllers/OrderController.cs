@@ -4,15 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BLL;
+using Microsoft.Extensions.Configuration;
 
 namespace WebApplication.Controllers
 {
     public class OrderController : Controller
     {
+        private IConfiguration Configuration { get; }
+        public OrderController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // GET: Order
         public ActionResult Index()
         {
             return View();
+        }
+
+        // GET : Order
+        public ActionResult getOrders()
+        {
+            OrderManager oMan = new OrderManager(Configuration);
+            var orderList = oMan.GetOrders();
+            return View(orderList);
         }
 
         // GET: Order/Details/5

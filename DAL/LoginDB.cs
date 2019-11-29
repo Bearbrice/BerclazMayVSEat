@@ -137,7 +137,7 @@ namespace DAL
                     string query = "UPDATE Login SET login=@user, password=@password, fk_customerId=@fk_customerId, fk_staffId=@fk_staffId WHERE idLogin=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@id", login.idLogin);
-                    cmd.Parameters.AddWithValue("@user", login.login);
+                    cmd.Parameters.AddWithValue("@user", login.user);
                     cmd.Parameters.AddWithValue("@password", login.password);
                     cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
                     cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
