@@ -8,36 +8,36 @@ namespace BLL
 {
     public class StaffManager : IStaffManager
     {
-        public StaffDB StaffDB { get; }
+        private IStaffManager StaffDbObject { get; }
 
-        public StaffManager(IConfiguration configuration)
+        public StaffManager(IStaffManager staffDB)
         {
-            StaffDB = new StaffDB(configuration);
+            StaffDbObject = staffDB;
         }
 
         public List<Staff> GetStaffs()
         {
-            return StaffDB.GetStaffs();
+            return StaffDbObject.GetStaffs();
         }
 
         public Staff GetStaff(int id)
         {
-            return StaffDB.GetStaff(id);
+            return StaffDbObject.GetStaff(id);
         }
 
         public Staff AddStaff(Staff staff)
         {
-            return StaffDB.AddStaff(staff);
+            return StaffDbObject.AddStaff(staff);
         }
 
         public int UpdateStaff(Staff staff)
         {
-            return StaffDB.UpdateStaff(staff);
+            return StaffDbObject.UpdateStaff(staff);
         }
 
         public int DeleteStaff(int id)
         {
-            return StaffDB.DeleteStaff(id);
+            return StaffDbObject.DeleteStaff(id);
         }
     }
 }

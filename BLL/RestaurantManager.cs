@@ -8,36 +8,36 @@ namespace BLL
 {
     public class RestaurantManager : IRestaurantManager
     {
-        public RestaurantDB RestaurantDB { get; }
+        private IRestaurantManager RestaurantDbObject { get; }
 
-        public RestaurantManager(IConfiguration configuration)
+        public RestaurantManager(IRestaurantManager restaurantDB)
         {
-            RestaurantDB = new RestaurantDB(configuration);
+            RestaurantDbObject = restaurantDB;
         }
 
         public List<Restaurant> GetRestaurants()
         {
-            return RestaurantDB.GetRestaurants();
+            return RestaurantDbObject.GetRestaurants();
         }
 
         public Restaurant GetRestaurant(int id)
         {
-            return RestaurantDB.GetRestaurant(id);
+            return RestaurantDbObject.GetRestaurant(id);
         }
 
         public Restaurant AddRestaurant(Restaurant restaurant)
         {
-            return RestaurantDB.AddRestaurant(restaurant);
+            return RestaurantDbObject.AddRestaurant(restaurant);
         }
 
         public int UpdateRestaurant(Restaurant restaurant)
         {
-            return RestaurantDB.UpdateRestaurant(restaurant);
+            return RestaurantDbObject.UpdateRestaurant(restaurant);
         }
 
         public int DeleteRestaurant(int id)
         {
-            return RestaurantDB.DeleteRestaurant(id);
+            return RestaurantDbObject.DeleteRestaurant(id);
         }
     }
 }

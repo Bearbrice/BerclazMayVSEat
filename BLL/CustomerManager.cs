@@ -9,34 +9,41 @@ namespace BLL
     public class CustomerManager : ICustomerManager
     {
 
-        private CustomerDB CustomerDB { get; }
+        //private CustomerDB CustomerDB { get; }
 
-        public CustomerManager(IConfiguration configuration)
+        //public CustomerManager(IConfiguration configuration)
+        //{
+        //    CustomerDB = new CustomerDB(configuration);
+        //}
+
+        private ICustomerDB CustomerDbObject { get; }
+
+        public CustomerManager(ICustomerDB customerDB)
         {
-            CustomerDB = new CustomerDB(configuration);
+            CustomerDbObject = customerDB;
         }
 
         public List<Customer> GetCustomers()
         {
-            return CustomerDB.GetCustomers();
+            return CustomerDbObject.GetCustomers();
         }
 
         public Customer GetCustomer(int id)
         {
-            return CustomerDB.GetCustomer(id);
+            return CustomerDbObject.GetCustomer(id);
         }
 
         public Customer AddCustomer(Customer customer)
         {
-            return CustomerDB.AddCustomer(customer);
+            return CustomerDbObject.AddCustomer(customer);
         }
         public int UpdateCustomer(Customer customer)
         {
-            return CustomerDB.UpdateCustomer(customer);
+            return CustomerDbObject.UpdateCustomer(customer);
         }
         public int DeleteCustomer(int id)
         {
-            return CustomerDB.DeleteCustomer(id);
+            return CustomerDbObject.DeleteCustomer(id);
         }
 
     }

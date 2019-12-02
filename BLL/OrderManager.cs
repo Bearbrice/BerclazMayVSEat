@@ -8,36 +8,36 @@ namespace BLL
 {
     public class OrderManager : IOrderManager
     {
-        public OrderDB OrderDB { get; }
+        private IOrderManager OrderDbObject { get; }
 
-        public OrderManager(IConfiguration configuration)
+        public OrderManager(IOrderManager orderDB)
         {
-            OrderDB = new OrderDB(configuration);
+            OrderDbObject = orderDB;
         }
 
         public List<Order> GetOrders()
         {
-            return OrderDB.GetOrders();
+            return OrderDbObject.GetOrders();
         }
 
         public Order GetOrder(int id)
         {
-            return OrderDB.GetOrder(id);
+            return OrderDbObject.GetOrder(id);
         }
 
         public Order AddOrder(Order Order)
         {
-            return OrderDB.AddOrder(Order);
+            return OrderDbObject.AddOrder(Order);
         }
 
         public int UpdateOrder(Order Order)
         {
-            return OrderDB.UpdateOrder(Order);
+            return OrderDbObject.UpdateOrder(Order);
         }
 
         public int DeleteOrder(int id)
         {
-            return OrderDB.DeleteOrder(id);
+            return OrderDbObject.DeleteOrder(id);
         }
     }
 }

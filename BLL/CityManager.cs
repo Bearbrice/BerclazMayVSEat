@@ -8,17 +8,16 @@ namespace BLL
 {
     public class CityManager : ICityManager
     {
-        //setted as private
-        private CityDB CityDB { get; }
+        private ICityManager CityDbObject { get; }
 
-        public CityManager(IConfiguration configuration)
+        public CityManager(ICityManager cityDB)
         {
-            CityDB = new CityDB(configuration);
+            CityDbObject = cityDB;
         }
 
         public List<City> GetCities()
         {
-            return CityDB.GetCities();
+            return CityDbObject.GetCities();
         }
 
         //public City GetCity(int id)
