@@ -4,11 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BLL;
 
 namespace WebApplication.Controllers
 {
     public class CityController : Controller
     {
+        private ICityManager CityManager { get; }
+        public CityController(ICityManager cityManager)
+        {
+            CityManager = cityManager;
+        }
+
         // GET: City
         public ActionResult Index()
         {

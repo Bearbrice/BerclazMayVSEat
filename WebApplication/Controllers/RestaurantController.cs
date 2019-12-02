@@ -11,10 +11,16 @@ namespace WebApplication.Controllers
 {
     public class RestaurantController : Controller
     {
-        private IConfiguration Configuration { get; }
-        public RestaurantController(IConfiguration configuration)
+        //private IConfiguration Configuration { get; }
+        //public RestaurantController(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+
+        private IRestaurantManager RestaurantManager { get; }
+        public RestaurantController(IRestaurantManager restaurantManager)
         {
-            Configuration = configuration;
+            RestaurantManager = restaurantManager;
         }
 
         // GET: Restaurant
@@ -24,18 +30,18 @@ namespace WebApplication.Controllers
         }
 
         // GET : Restaurant
-        public ActionResult getRestaurants()
+        public ActionResult GetRestaurants()
         {
-            RestaurantManager rMan = new RestaurantManager(Configuration);
-            var restaurantList = rMan.GetRestaurants();
+            //RestaurantManager rMan = new RestaurantManager(Configuration);
+            var restaurantList = RestaurantManager.GetRestaurants();
             return View(restaurantList);
         }
 
         // GET: Restaurant/Details/5
         public ActionResult Details(int id)
         {
-            RestaurantManager rMan = new RestaurantManager(Configuration);
-            var restaurant = rMan.GetRestaurant(id);
+            //RestaurantManager rMan = new RestaurantManager(Configuration);
+            var restaurant = RestaurantManager.GetRestaurant(id);
             return View(restaurant);
         }
 

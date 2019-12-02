@@ -11,10 +11,10 @@ namespace WebApplication.Controllers
 {
     public class OrderController : Controller
     {
-        private IConfiguration Configuration { get; }
-        public OrderController(IConfiguration configuration)
+        private IOrderManager OrderManager { get; }
+        public OrderController(IOrderManager orderManager)
         {
-            Configuration = configuration;
+            OrderManager = orderManager;
         }
 
         // GET: Order
@@ -26,8 +26,8 @@ namespace WebApplication.Controllers
         // GET : Order
         public ActionResult getOrders()
         {
-            OrderManager oMan = new OrderManager(Configuration);
-            var orderList = oMan.GetOrders();
+            //OrderManager oMan = new OrderManager(Configuration);
+            var orderList = OrderManager.GetOrders();
             return View(orderList);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.ComponentModel.DataAnnotations;
 
 namespace DTO
 {
@@ -8,6 +9,7 @@ namespace DTO
         public int idCustomer { get; set; }
         public string full_name { get; set; }
         public DateTime created_at { get; set; }
+        [Phone]
         public string telephone { get; set; }
         public int fk_idCity { get; set; }
        
