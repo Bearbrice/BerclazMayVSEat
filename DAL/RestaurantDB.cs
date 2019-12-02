@@ -9,21 +9,22 @@ namespace DAL
 {
     public class RestaurantDB : IRestaurantDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public RestaurantDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<Restaurant> GetRestaurants()
         {
             List<Restaurant> results = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Restaurant";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -60,11 +61,11 @@ namespace DAL
         public Restaurant GetRestaurant(int id)
         {
             Restaurant restaurant = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Restaurant WHERE fk_idCity = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -97,11 +98,11 @@ namespace DAL
 
         public Restaurant AddRestaurant(Restaurant restaurant)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "INSERT INTO Restaurant(merchant_name, created_at, fk_idCity) values(@merchant_name, @created_at, @fk_idCity); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -125,11 +126,11 @@ namespace DAL
         public int UpdateRestaurant(Restaurant restaurant)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "UPDATE Restaurant SET merchant_name=@merchant_name, created_at=@created_at, fk_idCity=@fk_idCity WHERE idCity=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -154,11 +155,11 @@ namespace DAL
         public int DeleteRestaurant(int id)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "DELETE FROM Restaurant WHERE idCity=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);

@@ -9,21 +9,22 @@ namespace DAL
 {
     public class LoginDB : ILoginDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public LoginDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<Login> GetLogins()
         {
             List<Login> results = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Login";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -61,11 +62,11 @@ namespace DAL
         public Login GetLogin(int id)
         {
             Login login = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Login WHERE idLogin = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -99,11 +100,11 @@ namespace DAL
 
         public Login AddLogin(Login login)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "INSERT INTO Login(user, password, fk_customerId, fk_staffId) values(@user, @password, @fk_customerId, @fk_staffId); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -128,11 +129,11 @@ namespace DAL
         public int UpdateLogin(Login login)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "UPDATE Login SET login=@user, password=@password, fk_customerId=@fk_customerId, fk_staffId=@fk_staffId WHERE idLogin=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -158,11 +159,11 @@ namespace DAL
         public int DeleteLogin(int id)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "DELETE FROM Login WHERE idLogin=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);

@@ -9,21 +9,22 @@ namespace DAL
 {
     public class OrderDishDB : IOrderDishDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public OrderDishDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<OrderDish> GetOrderDishes()
         {
             List<OrderDish> results = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM OrderDish";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -59,11 +60,11 @@ namespace DAL
         public OrderDish GetOrderDish(int idOrder)
         {
             OrderDish orderDish = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM OrderDish WHERE fk_idOrder = @idOrder";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -95,11 +96,11 @@ namespace DAL
 
         public OrderDish AddOrderDish(OrderDish orderDish)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "INSERT INTO OrderDish(fk_idOrder, fk_idDish, quantity) values(@fk_idOrder, @fk_idDish, @quantity)";
                     SqlCommand cmd = new SqlCommand(query, cn);

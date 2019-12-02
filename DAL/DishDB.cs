@@ -9,21 +9,22 @@ namespace DAL
 {
     public class DishDB : IDishDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public DishDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<Dish> GetDishes()
         {
             List<Dish> results = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Dish";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -65,11 +66,11 @@ namespace DAL
         public Dish GetDish(int id)
         {
             Dish dish = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Dish WHERE idDish = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -106,11 +107,11 @@ namespace DAL
 
         public Dish AddDish(Dish dish)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "Insert into Dish(name, price, status, created_at, fk_idRestaurant) values(@name, @price, @status, @created_at, @fk_idRestaurant); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -136,11 +137,11 @@ namespace DAL
         public int UpdateDish(Dish dish)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "UPDATE Dish SET name=@name, price=@price, status=@status, created_at=@created_at, fk_idRestaurant=@fk_idRestaurant WHERE idDish=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -166,11 +167,11 @@ namespace DAL
         public int DeleteDish(int id)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "DELETE FROM Dish WHERE idDish=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);

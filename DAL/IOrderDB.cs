@@ -8,7 +8,7 @@ namespace DAL
 {
     public interface IOrderDB
     {
-        IConfiguration Configuration { get; }
+        //IConfiguration Configuration { get; }
 
         List<Order> GetOrders();
 

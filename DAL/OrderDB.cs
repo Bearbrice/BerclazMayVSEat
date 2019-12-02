@@ -8,21 +8,22 @@ namespace DAL
 {
     public class OrderDB : IOrderDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public OrderDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<Order> GetOrders()
         {
             List<Order> results = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Order";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -62,11 +63,11 @@ namespace DAL
         public Order GetOrder(int id)
         {
             Order order = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Order WHERE idOrder = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -102,11 +103,11 @@ namespace DAL
 
         public Order AddOrder(Order order)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "Insert into Order(status, created_at, delivered_at, fk_idStaff, fk_idCustomer) values(@status, @created_at, @finished_at, @fk_idStaff, @fk_idCustomer); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -132,11 +133,11 @@ namespace DAL
         public int UpdateOrder(Order order)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "UPDATE Order SET status=@status, created_at=@created_at, finished_at=@finished_at, fk_idStaff=@fk_idStaff, fk_idCustomer=@fk_idCustomer WHERE idOrder=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -162,11 +163,11 @@ namespace DAL
         public int DeleteOrder(int id)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "DELETE FROM Order WHERE idOrder=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);

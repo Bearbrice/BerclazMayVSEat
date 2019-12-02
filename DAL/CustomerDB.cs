@@ -8,22 +8,23 @@ namespace DAL
 {
     public class CustomerDB : ICustomerDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public CustomerDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<Customer> GetCustomers()
         {
             List<Customer> results = null;
 
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Customer";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -61,11 +62,11 @@ namespace DAL
         public Customer GetCustomer(int id)
         {
             Customer customer = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Customer WHERE idCustomer = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -99,11 +100,11 @@ namespace DAL
 
         public Customer AddCustomer(Customer customer)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "Insert into Customer(full_name, created_at, telephone, fk_idCity) values(@full_name, @created_at, @telephone, @fk_idCity); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -128,11 +129,11 @@ namespace DAL
         public int UpdateCustomer(Customer customer)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "UPDATE Customer SET full_name=@full_name, created_at=@created_at, telephone=@telephone, fk_idCity=@fk_idCity WHERE idCustomer=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -157,11 +158,11 @@ namespace DAL
         public int DeleteCustomer(int id)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "DELETE FROM Customer WHERE idCustomer=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);

@@ -8,7 +8,7 @@ namespace DAL
 {
     public interface IDishDB
     {
-        IConfiguration Configuration { get; }
+        //IConfiguration Configuration { get; }
 
         List<Dish> GetDishes();
 

@@ -9,21 +9,22 @@ namespace DAL
 {
     public class StaffDB : IStaffDB
     {
-        public IConfiguration Configuration { get; }
+        private String ConnectionString = null;
 
         public StaffDB(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var config = configuration;
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
         public List<Staff> GetStaffs()
         {
             List<Staff> results = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Staff";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -61,11 +62,11 @@ namespace DAL
         public Staff GetStaff(int id)
         {
             Staff staff = null;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "SELECT * FROM Staff WHERE idStaff = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -99,11 +100,11 @@ namespace DAL
 
         public Staff AddStaff(Staff staff)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "INSERT INTO Staff(full_name, hired_on, telephone, fk_idCity) values(@full_name, @hired_on, @telephone, @fk_idCity); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -128,11 +129,11 @@ namespace DAL
         public int UpdateStaff(Staff staff)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "UPDATE Staff SET merchant_name=@merchant_name, created_at=@created_at, fk_idCity=@fk_idCity WHERE idCity=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
@@ -158,11 +159,11 @@ namespace DAL
         public int DeleteStaff(int id)
         {
             int result = 0;
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
                     string query = "DELETE FROM Staff WHERE idCity=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
