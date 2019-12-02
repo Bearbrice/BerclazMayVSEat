@@ -8,7 +8,7 @@ namespace BLL
 {
     public interface IOrderDishManager
     {
-        IOrderDishManager OrderDishDB { get; }
+        //IOrderDishManager OrderDishDB { get; }
 
         List<OrderDish> GetOrderDishes();
 

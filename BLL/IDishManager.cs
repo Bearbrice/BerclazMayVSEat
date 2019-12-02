@@ -8,7 +8,7 @@ namespace BLL
 {
     public interface IDishManager
     {
-        IDishDB DishDB { get; }
+        //IDishDB DishDB { get; }
 
         List<Dish> GetDishes();
 

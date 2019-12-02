@@ -8,7 +8,7 @@ namespace BLL
 {
     public interface IRestaurantManager
     {
-        IRestaurantManager RestaurantDB { get; }
+        //IRestaurantManager RestaurantDB { get; }
 
         List<Restaurant> GetRestaurants();
 

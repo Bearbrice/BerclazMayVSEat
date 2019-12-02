@@ -6,7 +6,7 @@ using DTO;
 
 namespace BLL
 {
-    public class StaffManager
+    public class StaffManager : IStaffManager
     {
         public StaffDB StaffDB { get; }
 

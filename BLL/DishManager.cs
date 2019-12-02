@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace BLL
 {
-    public class DishManager
+    public class DishManager : IDishManager
     {
         public DishDB DishDB { get; }
 

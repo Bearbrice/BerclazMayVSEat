@@ -6,7 +6,7 @@ using DTO;
 
 namespace BLL
 {
-    public class RestaurantManager
+    public class RestaurantManager : IRestaurantManager
     {
         public RestaurantDB RestaurantDB { get; }
 

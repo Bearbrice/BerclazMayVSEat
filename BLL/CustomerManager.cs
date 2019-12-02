@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace BLL
 {
-    public class CustomerManager
+    public class CustomerManager : ICustomerManager
     {
 
-        public CustomerDB CustomerDB { get; }
+        private CustomerDB CustomerDB { get; }
 
         public CustomerManager(IConfiguration configuration)
         {

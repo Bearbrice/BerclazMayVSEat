@@ -6,7 +6,7 @@ using DTO;
 
 namespace BLL
 {
-    public class LoginManager
+    public class LoginManager : ILoginManager
     {
         public LoginDB LoginDB { get; }
 

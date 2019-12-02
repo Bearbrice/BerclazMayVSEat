@@ -8,7 +8,7 @@ namespace BLL
 {
     public interface IStaffManager
     {
-        IStaffManager StaffDB { get; }
+        //IStaffManager StaffDB { get; }
 
         List<Staff> GetStaffs();
 
@@ -18,6 +18,6 @@ namespace BLL
 
         int UpdateStaff(Staff staff);
 
-        int DeleteCity(int id);
+        int DeleteStaff(int id);
     }
 }

@@ -8,7 +8,7 @@ namespace BLL
 {
     public interface ILoginManager
     {
-        ILoginDB LoginDB { get; }
+        //ILoginDB LoginDB { get; }
 
         List<Login> GetLogins();
 

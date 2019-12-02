@@ -12,6 +12,7 @@ namespace DTO
         public int code { get; set; }
         public string name { get; set; }
 
+        //optional
         public override string ToString()
         {
             return $"{idCity}|{code}|{name}";
