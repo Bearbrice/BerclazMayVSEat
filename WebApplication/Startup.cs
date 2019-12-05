@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using DAL;
+using BLL;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApplication
@@ -31,7 +33,27 @@ namespace WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //dev
+            services.AddScoped<IRestaurantManager, RestaurantManager>();
+            services.AddScoped<IRestaurantDB, RestaurantDB>();
+
+            services.AddScoped<ICityManager, CityManager>();
+            services.AddScoped<ICityDB, CityDB>();
+
+            //services.AddScoped<IRestaurantManager, RestaurantManager>();
+            //services.AddScoped<IRestaurantDB, RestaurantDB>();
+
+            //services.AddScoped<IRestaurantManager, RestaurantManager>();
+            //services.AddScoped<IRestaurantDB, RestaurantDB>();
+
+            //services.AddScoped<IRestaurantManager, RestaurantManager>();
+            //services.AddScoped<IRestaurantDB, RestaurantDB>();
+
+            //services.AddScoped<IRestaurantManager, RestaurantManager>();
+            //services.AddScoped<IRestaurantDB, RestaurantDB>();
+
+            //services.AddTransient<IRestaurantManager, RestaurantManager>();
+            //services.AddTransient<IRestaurantDB, RestaurantDB>();
+
             services.AddSession();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

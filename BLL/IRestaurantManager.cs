@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DTO;
 using DAL;
+using DTO;
+using Microsoft.Extensions.Configuration;
 
 namespace BLL
 {
     public interface IRestaurantManager
     {
-        //IRestaurantManager RestaurantDB { get; }
 
         List<Restaurant> GetRestaurants();
 
@@ -19,5 +19,6 @@ namespace BLL
         int UpdateRestaurant(Restaurant restaurant);
 
         int DeleteRestaurant(int id);
+
     }
 }

@@ -67,7 +67,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT * FROM Restaurant WHERE fk_idCity = @id";
+                    string query = "SELECT * FROM Restaurant WHERE idRestaurant = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@id", id);
 

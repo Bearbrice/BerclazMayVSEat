@@ -22,4 +22,8 @@
     <ProjectReference Include="..\DTO\DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Order\getOrders.cshtml" />
+  </ItemGroup>
+
 </Project>
