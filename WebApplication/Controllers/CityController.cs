@@ -23,10 +23,7 @@ namespace WebApplication.Controllers
             return View();
         }
 
-
-
         // GET : City
-        
         public ActionResult GetCities()
         {
            
