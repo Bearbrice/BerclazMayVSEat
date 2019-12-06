@@ -43,9 +43,7 @@
                 @Html.DisplayFor(modelItem => item.fk_idCity)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Show delicious dishes", "GetDishes", "Dish", new { id = item.idRestaurant })
             </td>
         </tr>
 }

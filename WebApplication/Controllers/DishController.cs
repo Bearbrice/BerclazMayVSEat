@@ -32,9 +32,9 @@ namespace WebApplication.Controllers
         public ActionResult GetDishes(int id)
         {
             //RestaurantManager rMan = new RestaurantManager(Configuration);
-            var restaurantList = DishManager;
+            var dishList = DishManager.GetDishes(id);
 
-            return View(restaurantList);
+            return View(dishList);
         }
 
         // GET: Dish/Create
