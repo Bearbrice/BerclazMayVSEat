@@ -4,55 +4,54 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DTO;
 using BLL;
 using Microsoft.Extensions.Configuration;
 
 namespace WebApplication.Controllers
 {
-    public class RestaurantController : Controller
+    public class LoginController : Controller
     {
-        //private IConfiguration Configuration { get; }
-        //public RestaurantController(IConfiguration configuration)
-        //{
-        //    Configuration = configuration;
-        //}
-
-        private IRestaurantManager RestaurantManager { get; }
-        public RestaurantController(IRestaurantManager restaurantManager)
+        private ILoginManager LoginManager { get; }
+        public LoginController(ILoginManager loginManager)
         {
-            RestaurantManager = restaurantManager;
+            LoginManager = loginManager;
         }
 
-        // GET: Restaurant
+        // GET: Login
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET : Restaurant/5
-        public ActionResult GetRestaurants(int id)
+        [HttpPost]
+        public IActionResult Index(Login l)
         {
-            //RestaurantManager rMan = new RestaurantManager(Configuration);
-            var restaurantList = RestaurantManager.GetRestaurants(id);
-           
-            return View(restaurantList);
+            bool isValid = LoginManager.IsLoginValid(l);
+            if (isValid)
+            {
+                HttpContext.Session.SetString("Username", l.username);
+                return RedirectToAction("GetHotels", "Hotel", new { isValid = isValid, user = "Antoine" });
+            }
+            else
+            {
+                return View();
+            }
         }
 
-        // GET: Restaurant/Details/5
+        // GET: Login/Details/5
         public ActionResult Details(int id)
         {
-            //RestaurantManager rMan = new RestaurantManager(Configuration);
-            var restaurant = RestaurantManager.GetRestaurant(id);
-            return View(restaurant);
+            return View();
         }
 
-        // GET: Restaurant/Create
+        // GET: Login/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Restaurant/Create
+        // POST: Login/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -69,13 +68,13 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Restaurant/Edit/5
+        // GET: Login/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Restaurant/Edit/5
+        // POST: Login/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -92,13 +91,13 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Restaurant/Delete/5
+        // GET: Login/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Restaurant/Delete/5
+        // POST: Login/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

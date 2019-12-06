@@ -8,7 +8,7 @@ namespace DAL
 {
     public interface ILoginDB
     {
-        //IConfiguration Configuration { get; }
+        bool IsLoginValid(Login login);
 
         List<Login> GetLogins();
 

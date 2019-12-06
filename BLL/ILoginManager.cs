@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DTO;
 using DAL;
+using DTO;
+using Microsoft.Extensions.Configuration;
 
 namespace BLL
 {
     public interface ILoginManager
     {
-        //ILoginDB LoginDB { get; }
+        bool IsLoginValid(Login login);
 
         List<Login> GetLogins();
 
@@ -19,5 +20,6 @@ namespace BLL
         int UpdateLogin(Login login);
 
         int DeleteLogin(int id);
+
     }
 }

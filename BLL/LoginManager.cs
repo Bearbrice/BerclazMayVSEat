@@ -8,36 +8,43 @@ namespace BLL
 {
     public class LoginManager : ILoginManager
     {
-        private ILoginManager LoginDbObject { get; }
+
+        private ILoginManager LoginDBObject { get; }
 
         public LoginManager(ILoginManager loginDB)
         {
-            LoginDbObject = loginDB;
+            LoginDBObject = loginDB;
+        }
+
+        public bool IsLoginValid(Login login)
+        {
+            return LoginDBObject.IsLoginValid(login);
         }
 
         public List<Login> GetLogins()
         {
-            return LoginDbObject.GetLogins();
+            return LoginDBObject.GetLogins();
         }
 
         public Login GetLogin(int id)
         {
-            return LoginDbObject.GetLogin(id);
+            return LoginDBObject.GetLogin(id);
         }
 
         public Login AddLogin(Login login)
         {
-            return LoginDbObject.AddLogin(login);
+            return LoginDBObject.AddLogin(login);
         }
 
         public int UpdateLogin(Login login)
         {
-            return LoginDbObject.UpdateLogin(login);
+            return LoginDBObject.UpdateLogin(login);
         }
 
         public int DeleteLogin(int id)
         {
-            return LoginDbObject.DeleteLogin(id);
+            return LoginDBObject.DeleteLogin(id);
         }
+
     }
 }

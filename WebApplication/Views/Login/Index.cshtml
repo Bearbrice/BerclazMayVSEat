@@ -1,0 +1,48 @@
+﻿@model DTO.Login
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Login</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idLogin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.idLogin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_customerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fk_customerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_staffId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fk_staffId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

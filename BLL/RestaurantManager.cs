@@ -16,9 +16,10 @@ namespace BLL
             RestaurantDBObject = restaurantDB;
         }
 
-        public List<Restaurant> GetRestaurants()
+
+        public List<Restaurant> GetRestaurants(int id)
         {
-            return RestaurantDBObject.GetRestaurants();
+            return RestaurantDBObject.GetRestaurants(id);
         }
 
         public Restaurant GetRestaurant(int id)

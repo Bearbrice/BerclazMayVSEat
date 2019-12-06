@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BLL;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApplication.Controllers
 {
@@ -20,6 +21,26 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+
+
+        // GET : City
+        
+        public ActionResult GetCities()
+        {
+           
+            var cityList = new SelectList(CityManager.GetCities());
+
+            ViewBag.Cities = cityList;
+            //ViewBag.Selected = 1;
+
+            return View();
+            //return RedirectToAction("GetRestaurants");
+
+
+            //var cityList = CityManager.GetCities();
+            //return View(cityList);
         }
 
         // GET: City/Details/5

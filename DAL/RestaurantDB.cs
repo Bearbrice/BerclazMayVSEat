@@ -17,7 +17,42 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
-        public List<Restaurant> GetRestaurants()
+        public String GetCityName(int id)
+        {
+            String CityName = null;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT C.name" +
+                        "FROM Restaurant R, City C" +
+                        "WHERE R.fk_idCity=C.idCity" +
+                        "AND idRestaurant = @id";
+
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+
+                            CityName = (string)dr["C.name"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return CityName;
+        }
+
+        public List<Restaurant> GetRestaurants(int id)
         {
             List<Restaurant> results = null;
             //string connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -26,8 +61,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT * FROM Restaurant";
+                    string query = "SELECT * FROM Restaurant WHERE fk_idCity = @id";
                     SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cn.Open();
 

@@ -8,36 +8,18 @@ namespace BLL
 {
     public class CityManager : ICityManager
     {
-        private ICityManager CityDbObject { get; }
 
-        public CityManager(ICityManager cityDB)
+        private ICityDB CityDBObject { get; }
+
+        public CityManager(ICityDB cityDB)
         {
-            CityDbObject = cityDB;
+            CityDBObject = cityDB;
         }
+
 
         public List<City> GetCities()
         {
-            return CityDbObject.GetCities();
+            return CityDBObject.GetCities();
         }
-
-        //public City GetCity(int id)
-        //{
-        //    return CityDB.GetCity(id);
-        //}
-
-        //public City AddCity(City city)
-        //{
-        //    return CityDB.AddCity(city);
-        //}
-
-        //public int UpdateCity(City city)
-        //{
-        //    return CityDB.UpdateCity(city);
-        //}
-
-        //public int DeleteCity(int id)
-        //{
-        //    return CityDB.DeleteCity(id);
-        //}
     }
 }
