@@ -19,37 +19,34 @@ namespace DAL
 
         public bool IsLoginValid(Login login)
         {
-            //try
-            //{
-            //    using (SqlConnection cn = new SqlConnection(ConnectionString))
-            //    {
-            //        string query = "SELECT username, password FROM Login";
-            //        SqlCommand cmd = new SqlCommand(query, cn);
 
-            //        cn.Open();
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT username, password FROM Login";
+                    SqlCommand cmd = new SqlCommand(query, cn);
 
-            //        using (SqlDataReader dr = cmd.ExecuteReader())
-            //        {
-            //            while (dr.Read())
-            //            {
-            //                if (login.username.Equals((string)dr["username"]) && login.password.Equals((string)dr["password"]))
-            //                {
-            //                    return true;
-            //                }
-            //                else
-            //                {
-            //                    return false;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    throw e;
-            //}
+                    cn.Open();
 
-            return true;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            if (login.username.Equals((string)dr["username"]) && login.password.Equals((string)dr["password"]))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return false;
         }
     }
 }

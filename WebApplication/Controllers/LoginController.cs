@@ -31,6 +31,7 @@ namespace WebApplication.Controllers
             if (isValid)
             {
                 HttpContext.Session.SetString("username", l.username);
+                HttpContext.Session.SetString("password", l.password);
                 return RedirectToAction("GetAllCities", "City", new { isValid = isValid, user = "test" });
             }
             else
