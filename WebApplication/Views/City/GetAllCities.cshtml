@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DTO.City>
+
+@{
+    ViewData["Title"] = "GetAllCities";
+}
+
+<h2>GetAllCities</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.idCity)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.idCity)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.ActionLink("Show Restaurants", "GetRestaurants", "Restaurant", new { id=item.idCity })
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -17,17 +17,17 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
-        public List<Dish> GetDishes()
+        public List<Dish> GetDishes(int id)
         {
             List<Dish> results = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT * FROM Dish";
+                    string query = "SELECT * FROM Dish WHERE fk_idRestaurant=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cn.Open();
 
@@ -43,11 +43,6 @@ namespace DAL
                             dish.idDish = (int)dr["idDish"];
                             dish.name = (string)dr["name"];
                             dish.price = (int)dr["price"];
-
-                            if (dr["status"] != null)
-                                dish.status = (string)dr["status"];
-
-                            dish.created_at = (DateTime)dr["created_at"];
                             dish.fk_idRestaurant = (int)dr["fk_idRestaurant"];
 
                             results.Add(dish);
@@ -66,7 +61,6 @@ namespace DAL
         public Dish GetDish(int id)
         {
             Dish dish = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -87,11 +81,6 @@ namespace DAL
                             dish.idDish = (int)dr["idDish"];
                             dish.name = (string)dr["name"];
                             dish.price = (int)dr["price"];
-
-                            if (dr["status"] != null)
-                                dish.status = (string)dr["status"];
-
-                            dish.created_at = (DateTime)dr["created_at"];
                             dish.fk_idRestaurant = (int)dr["fk_idRestaurant"];
                         }
                     }
@@ -107,18 +96,15 @@ namespace DAL
 
         public Dish AddDish(Dish dish)
         {
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "Insert into Dish(name, price, status, created_at, fk_idRestaurant) values(@name, @price, @status, @created_at, @fk_idRestaurant); SELECT SCOPE_IDENTITY()";
+                    string query = "Insert into Dish(name, price, fk_idRestaurant) values(@name, @price, @fk_idRestaurant); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@name", dish.name);
                     cmd.Parameters.AddWithValue("@price", dish.price);
-                    cmd.Parameters.AddWithValue("@status", dish.status);
-                    cmd.Parameters.AddWithValue("@created_at", dish.created_at);
                     cmd.Parameters.AddWithValue("@fk_idRestaurant", dish.fk_idRestaurant);
 
                     cn.Open();
@@ -137,18 +123,15 @@ namespace DAL
         public int UpdateDish(Dish dish)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "UPDATE Dish SET name=@name, price=@price, status=@status, created_at=@created_at, fk_idRestaurant=@fk_idRestaurant WHERE idDish=@id";
+                    string query = "UPDATE Dish SET name=@name, price=@price, fk_idRestaurant=@fk_idRestaurant WHERE idDish=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@name", dish.name);
                     cmd.Parameters.AddWithValue("@price", dish.price);
-                    cmd.Parameters.AddWithValue("@status", dish.status);
-                    cmd.Parameters.AddWithValue("@created_at", dish.created_at);
                     cmd.Parameters.AddWithValue("@fk_idRestaurant", dish.fk_idRestaurant);
 
                     cn.Open();
@@ -167,7 +150,6 @@ namespace DAL
         public int DeleteDish(int id)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {

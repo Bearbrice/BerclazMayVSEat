@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using DAL;
 using DTO;
+using Microsoft.Extensions.Configuration;
 
 namespace BLL
 {
     public interface IDishManager
     {
-        //IDishDB DishDB { get; }
-
-        List<Dish> GetDishes();
+        List<Dish> GetDishes(int id);
 
         Dish GetDish(int id);
 
@@ -19,5 +18,6 @@ namespace BLL
         int UpdateDish(Dish dish);
 
         int DeleteDish(int id);
+
     }
 }

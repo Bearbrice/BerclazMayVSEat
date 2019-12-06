@@ -43,6 +43,24 @@ namespace WebApplication.Controllers
             //return View(cityList);
         }
 
+        // GET : City
+
+        public ActionResult GetAllCities()
+        {
+
+            var cityList = CityManager.GetCities();
+
+            //ViewBag.Cities = cityList;
+            //ViewBag.Selected = 1;
+
+            return View(cityList);
+            //return RedirectToAction("GetRestaurants");
+
+
+            //var cityList = CityManager.GetCities();
+            //return View(cityList);
+        }
+
         // GET: City/Details/5
         public ActionResult Details(int id)
         {

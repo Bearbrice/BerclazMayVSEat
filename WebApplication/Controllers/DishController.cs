@@ -4,11 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BLL;
 
 namespace WebApplication.Controllers
 {
     public class DishController : Controller
     {
+        private IDishManager DishManager { get; }
+        public DishController(IDishManager dishManager)
+        {
+            DishManager = dishManager;
+        }
+
         // GET: Dish
         public ActionResult Index()
         {
@@ -19,6 +26,15 @@ namespace WebApplication.Controllers
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        // GET: Dish/GetDishes/5
+        public ActionResult GetDishes(int id)
+        {
+            //RestaurantManager rMan = new RestaurantManager(Configuration);
+            var restaurantList = DishManager;
+
+            return View(restaurantList);
         }
 
         // GET: Dish/Create

@@ -39,20 +39,12 @@ namespace WebApplication
             services.AddScoped<ICityManager, CityManager>();
             services.AddScoped<ICityDB, CityDB>();
 
-            //services.AddScoped<IRestaurantManager, RestaurantManager>();
-            //services.AddScoped<IRestaurantDB, RestaurantDB>();
+            services.AddScoped<ILoginManager, LoginManager>();
+            services.AddScoped<ILoginDB, LoginDB>();
 
-            //services.AddScoped<IRestaurantManager, RestaurantManager>();
-            //services.AddScoped<IRestaurantDB, RestaurantDB>();
+            services.AddScoped<IDishManager, DishManager>();
+            services.AddScoped<IDishDB, DishDB>();
 
-            //services.AddScoped<IRestaurantManager, RestaurantManager>();
-            //services.AddScoped<IRestaurantDB, RestaurantDB>();
-
-            //services.AddScoped<IRestaurantManager, RestaurantManager>();
-            //services.AddScoped<IRestaurantDB, RestaurantDB>();
-
-            //services.AddTransient<IRestaurantManager, RestaurantManager>();
-            //services.AddTransient<IRestaurantDB, RestaurantDB>();
 
             services.AddSession();
 

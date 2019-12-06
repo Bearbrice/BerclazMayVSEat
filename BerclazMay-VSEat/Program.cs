@@ -25,6 +25,8 @@ namespace BerclazMay_VSEat
             //Console.WriteLine("--NEW CUSTOMER--");
             ////var newCustomer = customersDBManager.AddCustomer(new Customer { full_name = "CustomerA", created_at = DateTime.Today, telephone = "045758", login = "CA", password = "test", fk_idCity = 1 });
             ////Console.WriteLine($"ID : {newCustomer.idCustomer} Name : {newCustomer.full_name}");
+            ///
+            
 
             ////var customers = customersDBManager.GetCustomers();
            

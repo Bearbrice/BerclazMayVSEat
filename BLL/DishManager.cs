@@ -1,42 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Microsoft.Extensions.Configuration;
 using DAL;
 using DTO;
-using Microsoft.Extensions.Configuration;
 
 namespace BLL
 {
     public class DishManager : IDishManager
     {
-        private IDishManager DishDbObject { get; }
+        private IDishDB DishDBObject { get; }
 
-        public DishManager(IDishManager dishDB)
+        public DishManager(IDishDB dishDB)
         {
-            DishDbObject = dishDB;
+            DishDBObject = dishDB;
         }
 
-        public List<Dish> GetDishes()
+        public List<Dish> GetDishes(int id)
         {
-            return DishDbObject.GetDishes();
+            return DishDBObject.GetDishes(id);
         }
 
         public Dish GetDish(int id)
         {
-            return DishDbObject.GetDish(id);
+            return DishDBObject.GetDish(id);
         }
 
         public Dish AddDish(Dish dish)
         {
-            return DishDbObject.AddDish(dish);
+            return DishDBObject.AddDish(dish);
         }
+
         public int UpdateDish(Dish dish)
         {
-            return DishDbObject.UpdateDish(dish);
+            return DishDBObject.UpdateDish(dish);
         }
+
         public int DeleteDish(int id)
         {
-            return DishDbObject.DeleteDish(id);
+            return DishDBObject.DeleteDish(id);
         }
+
     }
 }

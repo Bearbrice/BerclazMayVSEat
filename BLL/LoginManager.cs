@@ -9,9 +9,9 @@ namespace BLL
     public class LoginManager : ILoginManager
     {
 
-        private ILoginManager LoginDBObject { get; }
+        private ILoginDB LoginDBObject { get; }
 
-        public LoginManager(ILoginManager loginDB)
+        public LoginManager(ILoginDB loginDB)
         {
             LoginDBObject = loginDB;
         }

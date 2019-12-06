@@ -8,14 +8,12 @@ namespace BLL
 {
     public class RestaurantManager : IRestaurantManager
     {
-
         private IRestaurantDB RestaurantDBObject { get; }
 
         public RestaurantManager(IRestaurantDB restaurantDB)
         {
             RestaurantDBObject = restaurantDB;
         }
-
 
         public List<Restaurant> GetRestaurants(int id)
         {
@@ -36,8 +34,6 @@ namespace BLL
         {
             return RestaurantDBObject.UpdateRestaurant(restaurant);
         }
-
-
 
         public int DeleteRestaurant(int id)
         {
