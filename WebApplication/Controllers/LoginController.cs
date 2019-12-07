@@ -24,6 +24,12 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        // GET: Login/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Index(Login l)
         {

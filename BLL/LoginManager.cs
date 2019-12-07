@@ -15,6 +15,11 @@ namespace BLL
             LoginDBObject = loginDB;
         }
 
+        public Login AddLogin(Login login)
+        {
+            return LoginDBObject.AddLogin(login);
+        }
+
         public bool IsItACustomer(string username)
         {
             return LoginDBObject.IsItACustomer(username);

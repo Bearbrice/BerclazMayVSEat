@@ -17,6 +17,33 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        //Method to add a Login
+        public Login AddLogin(Login login)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "INSERT INTO Login(username, password, fk_customerId, fk_staffId) values(@username, @password, @fk_customerId, @fk_staffId); SELECT SCOPE_IDENTITY()";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@username", login.username);
+                    cmd.Parameters.AddWithValue("@password", login.password);
+                    cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
+                    cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
+
+                    cn.Open();
+
+                    login.idLogin = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return login;
+        }
+
         //Method to control (by his username) if the login is a customer or a staff
         public bool IsItACustomer(string username)
         {
@@ -54,6 +81,7 @@ namespace DAL
             return false;
         }
 
+        //Method to control if the login is valid
         public bool IsLoginValid(Login login)
         {
 

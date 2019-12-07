@@ -9,6 +9,8 @@ namespace BLL
 {
     public interface ILoginManager
     {
+        Login AddLogin(Login login);
+
         bool IsItACustomer(string username);
 
         bool IsLoginValid(Login login);
