@@ -10,6 +10,8 @@ namespace DAL
     {
         //IConfiguration Configuration { get; }
 
+        List<Orders> GetOrdersRelativeToStaff(string username);
+
         List<Orders> GetOrders();
 
         Orders GetOrder(int id);

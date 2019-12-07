@@ -20,6 +20,11 @@ namespace BLL
             return OrderDbObject.GetOrders();
         }
 
+        public List<Orders> GetOrdersRelativeToStaff(string username)
+        {
+            return OrderDbObject.GetOrdersRelativeToStaff(username);
+        }
+
         public Orders GetOrder(int id)
         {
             return OrderDbObject.GetOrder(id);

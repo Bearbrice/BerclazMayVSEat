@@ -22,6 +22,16 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        // GET : GetOrderRelativeToStaff
+        public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
+        {
+            var name = HttpContext.Session.GetString("username");
+            var orderList = OrderManager.GetOrdersRelativeToStaff(username);
+            ViewBag.username = username;
+
+            return View(orderList);
+        }
+
         // GET : Order
         public ActionResult GetOrders([FromQuery(Name = "username")] string username)
         {

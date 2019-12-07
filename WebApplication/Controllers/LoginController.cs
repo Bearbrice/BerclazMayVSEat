@@ -50,7 +50,7 @@ namespace WebApplication.Controllers
                 else
                 {
                     HttpContext.Session.SetString("username", l.username);
-                    return RedirectToAction("GetOrders", "Orders", new { username = l.username });
+                    return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username = l.username });
                 }
             }
             else

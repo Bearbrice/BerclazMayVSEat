@@ -16,6 +16,52 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        public List<Orders> GetOrdersRelativeToStaff(string username)
+        {
+            List<Orders> results = null;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT status, scheduled_at, delivered_at FROM Orders O, Staff S, Login L " +
+                                    "WHERE O.fk_idStaff = S.idStaff " +
+                                    "AND L.fk_staffId = S.idStaff " +
+                                    "AND @username = L.username";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            if (results == null)
+                                results = new List<Orders>();
+
+                            Orders order = new Orders();
+
+
+
+                            order.status = (string)dr["status"];
+                            order.scheduled_at = (DateTime)dr["scheduled_at"];
+                            if (dr["delivered_at"] != System.DBNull.Value)
+                                order.delivered_at = (DateTime)dr["delivered_at"];
+
+                            results.Add(order);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return results;
+        }
+
         public List<Orders> GetOrders()
         {
             List<Orders> results = null;

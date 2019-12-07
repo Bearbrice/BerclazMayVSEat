@@ -9,6 +9,8 @@ namespace BLL
     {
         //IOrderDB OrderDB { get; }
 
+        List<Orders> GetOrdersRelativeToStaff(string username);
+
         List<Orders> GetOrders();
 
         Orders GetOrder(int id);
