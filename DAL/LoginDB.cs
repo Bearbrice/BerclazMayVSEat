@@ -17,6 +17,42 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        public bool IsItACustomer(string username)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT fk_customerId FROM Login WHERE username = @username";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            if (dr["fk_customerId"] == System.DBNull.Value)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return false;
+        }
+
         public bool IsLoginValid(Login login)
         {
 

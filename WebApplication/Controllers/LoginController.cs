@@ -27,12 +27,22 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Index(Login l)
         {
+            bool isCustomer = LoginManager.IsItACustomer(l.username);
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)
             {
                 HttpContext.Session.SetString("username", l.username);
                 HttpContext.Session.SetString("password", l.password);
-                return RedirectToAction("GetAllCities", "City", new { isValid = isValid, user = "test" });
+
+                if (isCustomer)
+                {
+                    return RedirectToAction("GetAllCities", "City", new { isValid = isValid, user = "test" });
+                }
+                else
+                {
+                    return RedirectToAction("Create", "City", new { isValid = isValid, user = "test" });
+                }
+
             }
             else
             {
