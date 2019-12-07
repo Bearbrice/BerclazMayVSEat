@@ -6,31 +6,31 @@ using DTO;
 
 namespace BLL
 {
-    public class OrderManager : IOrderManager
+    public class OrdersManager : IOrdersManager
     {
-        private IOrderManager OrderDbObject { get; }
+        private IOrdersDB OrderDbObject { get; }
 
-        public OrderManager(IOrderManager orderDB)
+        public OrdersManager(IOrdersDB orderDB)
         {
             OrderDbObject = orderDB;
         }
 
-        public List<Order> GetOrders()
+        public List<Orders> GetOrders()
         {
             return OrderDbObject.GetOrders();
         }
 
-        public Order GetOrder(int id)
+        public Orders GetOrder(int id)
         {
             return OrderDbObject.GetOrder(id);
         }
 
-        public Order AddOrder(Order Order)
+        public Orders AddOrder(Orders Order)
         {
             return OrderDbObject.AddOrder(Order);
         }
 
-        public int UpdateOrder(Order Order)
+        public int UpdateOrder(Orders Order)
         {
             return OrderDbObject.UpdateOrder(Order);
         }

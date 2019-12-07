@@ -45,6 +45,8 @@ namespace WebApplication
             services.AddScoped<IDishManager, DishManager>();
             services.AddScoped<IDishDB, DishDB>();
 
+            services.AddScoped<IOrdersManager, OrdersManager>();
+            services.AddScoped<IOrdersDB, OrdersDB>();
 
             services.AddSession();
 

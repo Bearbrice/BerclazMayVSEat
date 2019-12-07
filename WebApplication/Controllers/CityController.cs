@@ -41,7 +41,6 @@ namespace WebApplication.Controllers
         }
 
         // GET : City
-
         public ActionResult GetAllCities()
         {
 

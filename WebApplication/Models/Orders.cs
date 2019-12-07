@@ -4,7 +4,7 @@ using System.Configuration;
 
 namespace WebApplication.Models
 {
-    public class Order
+    public class Orders
     {
         public int idOrder { get; set; }
         public string status { get; set; }

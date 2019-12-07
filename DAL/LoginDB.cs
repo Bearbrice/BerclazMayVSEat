@@ -17,6 +17,7 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        //Method to control (by his username) if the login is a customer or a staff
         public bool IsItACustomer(string username)
         {
             try

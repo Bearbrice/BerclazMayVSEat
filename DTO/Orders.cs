@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace DTO
 {
-    public class Order
+    public class Orders
     {
         public int idOrder { get; set; }
         public string status { get; set; }

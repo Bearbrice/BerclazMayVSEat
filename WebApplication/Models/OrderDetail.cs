@@ -19,7 +19,7 @@ namespace WebApplication.Models
 
         public virtual Dish Dish { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Orders Order { get; set; }
 
     }
     

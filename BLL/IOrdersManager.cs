@@ -5,17 +5,17 @@ using DTO;
 
 namespace BLL
 {
-    public interface IOrderManager
+    public interface IOrdersManager
     {
         //IOrderDB OrderDB { get; }
 
-        List<Order> GetOrders();
+        List<Orders> GetOrders();
 
-        Order GetOrder(int id);
+        Orders GetOrder(int id);
 
-        Order AddOrder(Order Order);
+        Orders AddOrder(Orders Order);
 
-        int UpdateOrder(Order Order);
+        int UpdateOrder(Orders Order);
 
         int DeleteOrder(int id);
     }

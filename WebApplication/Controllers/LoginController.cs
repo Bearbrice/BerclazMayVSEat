@@ -34,13 +34,15 @@ namespace WebApplication.Controllers
                 HttpContext.Session.SetString("username", l.username);
                 HttpContext.Session.SetString("password", l.password);
 
+                //If this is a customer, the redirection is on GetAllCities (page for customer)
+                //If not, this is a staff, so the redirection is on his order
                 if (isCustomer)
                 {
-                    return RedirectToAction("GetAllCities", "City", new { isValid = isValid, user = "test" });
+                    return RedirectToAction("GetAllCities", "City", new { isValid = isValid, user = l.username });
                 }
                 else
                 {
-                    return RedirectToAction("Create", "City", new { isValid = isValid, user = "test" });
+                    return RedirectToAction("Create", "City", new { isValid = isValid, user = l.username });
                 }
 
             }

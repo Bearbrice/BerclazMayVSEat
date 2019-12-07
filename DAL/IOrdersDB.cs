@@ -6,17 +6,17 @@ using System.Text;
 
 namespace DAL
 {
-    public interface IOrderDB
+    public interface IOrdersDB
     {
         //IConfiguration Configuration { get; }
 
-        List<Order> GetOrders();
+        List<Orders> GetOrders();
 
-        Order GetOrder(int id);
+        Orders GetOrder(int id);
 
-        Order AddOrder(Order order);
+        Orders AddOrder(Orders order);
 
-        int UpdateOrder(Order order);
+        int UpdateOrder(Orders order);
 
         int DeleteOrder(int id);
     }

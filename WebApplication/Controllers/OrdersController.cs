@@ -5,45 +5,44 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BLL;
-using Microsoft.Extensions.Configuration;
 
 namespace WebApplication.Controllers
 {
-    public class OrderController : Controller
+    public class OrdersController : Controller
     {
-        private IOrderManager OrderManager { get; }
-        public OrderController(IOrderManager orderManager)
+        private IOrdersManager OrderManager { get; }
+        public OrdersController(IOrdersManager orderManager)
         {
             OrderManager = orderManager;
         }
 
-        // GET: Order
+        // GET: Orders
         public ActionResult Index()
         {
             return View();
         }
 
         // GET : Order
-        public ActionResult getOrders()
+        public ActionResult GetOrders()
         {
-            //OrderManager oMan = new OrderManager(Configuration);
             var orderList = OrderManager.GetOrders();
+
             return View(orderList);
         }
 
-        // GET: Order/Details/5
+        // GET: Orders/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Order/Create
+        // GET: Orders/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Order/Create
+        // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -60,13 +59,13 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Order/Edit/5
+        // GET: Orders/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Order/Edit/5
+        // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -83,13 +82,13 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Order/Delete/5
+        // GET: Orders/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Order/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
