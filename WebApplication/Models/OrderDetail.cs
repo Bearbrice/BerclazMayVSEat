@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DTO;
 
 namespace WebApplication.Models
 {
     public class OrderDetail
     {
+        public List<DTO.Dish> dishes {get; set;}
 
-        public int OrderDetailId { get; set; }
-        public int OrderId { get; set; }
 
-        public int idDish { get; set; }
-        public string name { get; set; }
-        public int price { get; set; }
-        public int fk_idRestaurant { get; set; }
-        public int Quantity { get; set; }
+        
+        public List<DTO.Dish> getDishes()
+        {
+            return dishes;
+        }
 
-        public virtual Dish Dish { get; set; }
-
-        public virtual Orders Order { get; set; }
 
     }
     

@@ -4,50 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BLL;
-using DTO;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class DishController : Controller
+    public class OrderDetailController : Controller
     {
-        private IDishManager DishManager { get; }
-        
-        public DishController(IDishManager dishManager)
-        {
-            DishManager = dishManager;
-        }
+        private OrderDetail od { get; set; }
 
-        // GET: Dish
+        // GET: OrderDetail
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Dish/Details/5
+        // GET: OrderDetail/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var odList = od.getDishes();
+
+            return View(odList);
         }
 
-        // GET: Dish/GetDishes/5
-        public ActionResult GetDishes(int id)
-        {
-            //RestaurantManager rMan = new RestaurantManager(Configuration);
-            var dishList = DishManager.GetDishes(id);
-
-            return View(dishList);
-        }
-        
-
-        // GET: Dish/Create
+        // GET: OrderDetail/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Dish/Create
+        // POST: OrderDetail/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -64,26 +49,22 @@ namespace WebApplication.Controllers
             }
         }
 
-        private OrderDetail od { get; set; }
-        // GET: Dish/Edit/5
+        // GET: OrderDetail/Edit/5
         public ActionResult Edit(int id)
         {
-            var dish = DishManager.GetDish(id);
-
-            return View(dish);
+            return View();
         }
 
-        // POST: Dish/Edit/5
+        // POST: OrderDetail/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DTO.Dish dish)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
-                od.dishes.Add(dish);
 
-                return RedirectToAction(nameof(GetDishes));
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -91,13 +72,13 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Dish/Delete/5
+        // GET: OrderDetail/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Dish/Delete/5
+        // POST: OrderDetail/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
