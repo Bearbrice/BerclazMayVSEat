@@ -8,6 +8,8 @@ namespace DAL
 {
     public interface ILoginDB
     {
+        Login AddLogin(Login login);
+
         bool IsItACustomer(string username);
 
         bool IsLoginValid(Login login);
