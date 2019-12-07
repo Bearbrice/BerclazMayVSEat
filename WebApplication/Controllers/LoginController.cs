@@ -38,13 +38,14 @@ namespace WebApplication.Controllers
                 //If not, this is a staff, so the redirection is on his order
                 if (isCustomer)
                 {
-                    return RedirectToAction("GetAllCities", "City", new { isValid = isValid, user = l.username });
+                    HttpContext.Session.SetString("username", l.username);
+                    return RedirectToAction("GetAllCities", "City", new { username = l.username });
                 }
                 else
                 {
-                    return RedirectToAction("Create", "City", new { isValid = isValid, user = l.username });
+                    HttpContext.Session.SetString("username", l.username);
+                    return RedirectToAction("GetOrders", "Orders", new { username = l.username });
                 }
-
             }
             else
             {

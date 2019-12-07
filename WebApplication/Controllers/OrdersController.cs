@@ -23,9 +23,11 @@ namespace WebApplication.Controllers
         }
 
         // GET : Order
-        public ActionResult GetOrders()
+        public ActionResult GetOrders([FromQuery(Name = "username")] string username)
         {
+            var name = HttpContext.Session.GetString("username");
             var orderList = OrderManager.GetOrders();
+            ViewBag.username = username;
 
             return View(orderList);
         }
