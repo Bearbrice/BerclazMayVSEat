@@ -40,12 +40,14 @@
                 @Html.DisplayFor(modelItem => item.delivered_at)
             </td>
             <td>
-        @*
+                @*
         Need to be redirect to Edit (change status + delivered_at)
         which will redirect to GetOrdersRelativeToStaff
-        *@
-                <input type="submit" class="btn btn-info btn-sm active" value="Delivered">
-                <input type="submit" class="btn btn-info btn-sm disabled" value="Delivered">
+                *@
+                @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">
+                <input type="submit" class="btn btn-info btn-sm disabled" value="Delivered">*@
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.idOrder })
 
                 @*@Html.ActionLink("Delivered", "GetOrdersRelativeToStaff", new { /* id=item.PrimaryKey */ })*@
             </td>

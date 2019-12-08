@@ -1,0 +1,59 @@
+﻿@model DTO.Orders
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Orders</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idOrder" class="control-label"></label>
+                <input asp-for="idOrder" class="form-control" />
+                <span asp-validation-for="idOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <input asp-for="status" class="form-control" />
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="scheduled_at" class="control-label"></label>
+                <input asp-for="scheduled_at" class="form-control" />
+                <span asp-validation-for="scheduled_at" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="delivered_at" class="control-label"></label>
+                <input asp-for="delivered_at" class="form-control" />
+                <span asp-validation-for="delivered_at" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fk_idStaff" class="control-label"></label>
+                <input asp-for="fk_idStaff" class="form-control" />
+                <span asp-validation-for="fk_idStaff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fk_idCustomer" class="control-label"></label>
+                <input asp-for="fk_idCustomer" class="form-control" />
+                <span asp-validation-for="fk_idCustomer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input name="user" type="hidden" value="@ViewBag.username" />
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
