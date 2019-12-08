@@ -24,7 +24,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT status, scheduled_at, delivered_at FROM Orders O, Staff S, Login L " +
+                    string query = "SELECT idOrder, status, scheduled_at, delivered_at FROM Orders O, Staff S, Login L " +
                                     "WHERE O.fk_idStaff = S.idStaff " +
                                     "AND L.fk_staffId = S.idStaff " +
                                     "AND @username = L.username";
@@ -43,7 +43,7 @@ namespace DAL
                             Orders order = new Orders();
 
 
-
+                            order.idOrder = (int)dr["idOrder"];
                             order.status = (string)dr["status"];
                             order.scheduled_at = (DateTime)dr["scheduled_at"];
                             if (dr["delivered_at"] != System.DBNull.Value)

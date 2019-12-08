@@ -21,12 +21,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.delivered_at)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fk_idStaff)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fk_idCustomer)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -46,15 +40,9 @@
                 @Html.DisplayFor(modelItem => item.delivered_at)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fk_idStaff)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fk_idCustomer)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <!-- Need to be redirect to Edit (change status + delivered_at)
+                     which will redirect to GetOrdersRelativeToStaff -->
+                @Html.ActionLink("Delivered", "GetOrdersRelativeToStaff", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
