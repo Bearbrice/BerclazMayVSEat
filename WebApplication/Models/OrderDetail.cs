@@ -6,16 +6,31 @@ using DTO;
 
 namespace WebApplication.Models
 {
-    public class OrderDetail
+    public class OrderDetail : IOrderDetail
     {
-        public List<DTO.Dish> dishes {get; set;}
-
-
         
-        public List<DTO.Dish> getDishes()
+
+        private IOrderDetail OrderDetailDBObject { get; set; }
+
+        List<DTO.Dish> Dishes { get; set; }
+
+        //public List<City> GetCities()
+        //{
+        //    return CityDBObject.GetCities();
+        //}
+
+
+
+        public List<DTO.Dish> GetDishes()
         {
-            return dishes;
+            return Dishes;
         }
+
+        public void Add(DTO.Dish dish)
+        {
+            Dishes.Add(dish);
+        }
+
 
 
     }
