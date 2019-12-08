@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using DAL;
 using BLL;
 using Microsoft.Extensions.DependencyInjection;
+using WebApplication.Models;
 
 namespace WebApplication
 {
@@ -47,6 +48,8 @@ namespace WebApplication
 
             services.AddScoped<IOrdersManager, OrdersManager>();
             services.AddScoped<IOrdersDB, OrdersDB>();
+
+            services.AddScoped<IOrderDetail, OrderDetail>();
 
             services.AddSession();
 

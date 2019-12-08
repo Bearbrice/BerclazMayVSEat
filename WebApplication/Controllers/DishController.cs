@@ -13,10 +13,27 @@ namespace WebApplication.Controllers
     public class DishController : Controller
     {
         private IDishManager DishManager { get; }
-        
-        public DishController(IDishManager dishManager)
+        private IOrderDetail OrderDetail { get;  set; }
+
+        public List<DTO.Dish> currentDishes = new List<DTO.Dish>();
+
+        public List<DTO.Dish> GetAllDishes()
         {
+            return currentDishes;
+        }
+
+        public void AddCurrentDish(DTO.Dish dish)
+        {
+            currentDishes.Add(dish);
+        }
+
+
+        public DishController(IDishManager dishManager, IOrderDetail orderdetail)
+        {
+            
+
             DishManager = dishManager;
+            OrderDetail = orderdetail;
         }
 
         // GET: Dish
@@ -64,7 +81,9 @@ namespace WebApplication.Controllers
             }
         }
 
-        private OrderDetail od { get; set; }
+        
+
+
         // GET: Dish/Edit/5
         public ActionResult Edit(int id)
         {
@@ -75,20 +94,36 @@ namespace WebApplication.Controllers
 
         // POST: Dish/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit(DTO.Dish dish)
         {
-            try
-            {
-                // TODO: Add update logic here
-                od.dishes.Add(dish);
+            //try
+            // {
+            // TODO: Add update logic here
+            //od.dishes.Add(dish);
 
-                return RedirectToAction(nameof(GetDishes));
-            }
-            catch
-            {
+            //currentDishes.Add(dish);
+            AddCurrentDish(dish);
+            //currentDishes.Add(new DTO.Dish {idDish=dish.idDish, name=dish.name, price=dish.price, fk_idRestaurant=dish.fk_idRestaurant });
+                //OrderDetail.Add(dish);
+                //OrderDetail.GetDishes();
+
+                //return RedirectToAction(nameof(GetDishes));
                 return View();
-            }
+           // }
+           // catch
+           // {
+            //    return View();
+            //}
+        }
+
+        // GET: Dish/GetDishes/5
+        public ActionResult GetCurrentDishes()
+        {
+            //RestaurantManager rMan = new RestaurantManager(Configuration);
+            var dishList = GetAllDishes();
+
+            return View(dishList);
         }
 
         // GET: Dish/Delete/5

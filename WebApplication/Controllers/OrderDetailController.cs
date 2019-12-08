@@ -10,7 +10,13 @@ namespace WebApplication.Controllers
 {
     public class OrderDetailController : Controller
     {
-        private OrderDetail od { get; set; }
+        
+        private IOrderDetail OrderDetail { get; }
+
+        public OrderDetailController(IOrderDetail orderdetail)
+        {
+            OrderDetail = orderdetail;
+        }
 
         // GET: OrderDetail
         public ActionResult Index()
@@ -19,9 +25,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: OrderDetail/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            var odList = od.getDishes();
+            var odList = OrderDetail.GetDishes();
 
             return View(odList);
         }
