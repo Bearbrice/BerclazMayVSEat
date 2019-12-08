@@ -13,9 +13,13 @@ namespace WebApplication.Controllers
     public class DishController : Controller
     {
         private IDishManager DishManager { get; }
-        private IOrderDetail OrderDetail { get;  set; }
 
-        public List<DTO.Dish> currentDishes = new List<DTO.Dish>();
+        public DishController(IDishManager dishManager)
+        {
+            DishManager = dishManager;
+        }
+
+        public static List<DTO.Dish> currentDishes = new List<DTO.Dish>();
 
         public List<DTO.Dish> GetAllDishes()
         {
@@ -27,13 +31,14 @@ namespace WebApplication.Controllers
             currentDishes.Add(dish);
         }
 
-
-        public DishController(IDishManager dishManager, IOrderDetail orderdetail)
+        public void DeleteCurrentDish(int idx)
         {
+            //var index = currentDishes.IndexOf(dish);
+
             
 
-            DishManager = dishManager;
-            OrderDetail = orderdetail;
+
+            currentDishes.RemoveAt(idx);
         }
 
         // GET: Dish
@@ -127,12 +132,15 @@ namespace WebApplication.Controllers
         }
 
         // GET: Dish/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int idx)
         {
-            return View();
+            //var dish = DishManager.GetDish(id);
+            DeleteCurrentDish(idx);
+
+            return RedirectToAction(nameof(GetCurrentDishes));
         }
 
-        // POST: Dish/Delete/5
+        //POST: Dish/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -140,8 +148,8 @@ namespace WebApplication.Controllers
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+               
+                return RedirectToAction(nameof(GetCurrentDishes));
             }
             catch
             {
