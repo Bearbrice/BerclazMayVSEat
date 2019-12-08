@@ -47,7 +47,7 @@ namespace WebApplication.Controllers
                     HttpContext.Session.SetString("username", l.username);
                     return RedirectToAction("GetAllCities", "City", new { username = l.username });
                 }
-                else
+                else //Staff connection
                 {
                     HttpContext.Session.SetString("username", l.username);
                     return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username = l.username });
