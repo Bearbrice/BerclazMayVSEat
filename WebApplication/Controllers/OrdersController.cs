@@ -72,9 +72,18 @@ namespace WebApplication.Controllers
         }
 
         // GET: Orders/Edit/5
-        public ActionResult Edit(int id)
+        //public ActionResult Edit(int id)
+        //{
+        //    var order = OrderManager.GetOrder(id);
+        //    return View(order);
+        //}
+
+        [HttpPost]
+        public ActionResult Edit(DTO.Orders o)
         {
-            return View();
+            string user = Request.Form["username"];
+            OrderManager.UpdateOrder(o);
+            return RedirectToAction(nameof(GetOrdersRelativeToStaff), new { username = user });
         }
 
         // POST: Orders/Edit/5
