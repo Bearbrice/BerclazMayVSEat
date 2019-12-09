@@ -34,6 +34,8 @@ namespace WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSession();
+
             services.AddScoped<IRestaurantManager, RestaurantManager>();
             services.AddScoped<IRestaurantDB, RestaurantDB>();
 
@@ -50,8 +52,6 @@ namespace WebApplication
             services.AddScoped<IOrdersDB, OrdersDB>();
 
             services.AddScoped<IOrderDetail, OrderDetail>();
-
-            services.AddSession();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
