@@ -8,7 +8,7 @@
 
 @{
     decimal totalPrice = new decimal(0.0);
-    int index = -1;
+    DateTime scheduledAt = new DateTime();
 }
 
 <p>
@@ -36,7 +36,7 @@
         @foreach (var item in Model)
         {
             totalPrice += item.price;
-            index++;
+            //index += 1;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.idDish)
@@ -53,7 +53,8 @@
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                     @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                    @Html.ActionLink("Remove", "Delete", new { index })
+                    @Html.ActionLink("Remove", "Delete", new { id = item.idDish })
+                    @*@index*@
 
                     @*@Html.ActionLink("Show delicious dishes", "GetDishes", "Dish", new { id = item.idRestaurant })*@
 
@@ -65,3 +66,7 @@
 </table>
 
 <TotalPrice> Total price : @totalPrice <devise> CHF</devise> </TotalPrice>
+
+
+<button type="submit" class="btn btn-primary">Choisir une heure de livraison</button>
+
