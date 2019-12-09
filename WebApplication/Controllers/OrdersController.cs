@@ -25,10 +25,12 @@ namespace WebApplication.Controllers
         // GET : GetOrderRelativeToStaff
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
+            var id = HttpContext.Session.Id;
+
             var name = HttpContext.Session.GetString("user");
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
             ViewBag.username = username;
-
+            
             return View(orderList);
         }
 
@@ -56,7 +58,8 @@ namespace WebApplication.Controllers
                 OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client
-                return RedirectToAction(nameof(GetOrders));
+                //return RedirectToAction(nameof(GetOrders));
+                return View();
             }
             catch
             {
