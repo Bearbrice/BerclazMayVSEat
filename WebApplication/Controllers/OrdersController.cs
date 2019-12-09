@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
             var name = HttpContext.Session.GetString("user");
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
             ViewBag.username = username;
-
+            
             return View(orderList);
         }
 
