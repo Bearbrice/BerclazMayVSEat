@@ -25,18 +25,8 @@ namespace WebApplication.Controllers
         // GET : GetOrderRelativeToStaff
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
-            var name = HttpContext.Session.GetString("username");
+            var name = HttpContext.Session.GetString("user");
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
-            ViewBag.username = username;
-
-            return View(orderList);
-        }
-
-        // GET : Order
-        public ActionResult GetOrders([FromQuery(Name = "username")] string username)
-        {
-            var name = HttpContext.Session.GetString("username");
-            var orderList = OrderManager.GetOrders();
             ViewBag.username = username;
 
             return View(orderList);
@@ -83,9 +73,11 @@ namespace WebApplication.Controllers
         public ActionResult Edit(DTO.Orders o)
         {
             string username = HttpContext.Session.GetString("username");
+            username = "michmich";
             ViewBag.username = username;
             OrderManager.UpdateOrder(o);
-            return RedirectToAction(nameof(GetOrdersRelativeToStaff));
+            return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username });
+            //return RedirectToAction(nameof(GetOrdersRelativeToStaff));
         }
 
         //// POST: Orders/Edit/5

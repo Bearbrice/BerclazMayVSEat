@@ -37,19 +37,17 @@ namespace WebApplication.Controllers
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)
             {
-                HttpContext.Session.SetString("username", l.username);
-                HttpContext.Session.SetString("password", l.password);
+                HttpContext.Session.SetString("user", l.username);
+                //HttpContext.Session.SetString("password", l.password);
 
                 //If this is a customer, the redirection is on GetAllCities (page for customer)
                 //If not, this is a staff, so the redirection is on his order
                 if (isCustomer)
                 {
-                    HttpContext.Session.SetString("username", l.username);
                     return RedirectToAction("GetAllCities", "City", new { username = l.username });
                 }
                 else //Staff connection
                 {
-                    HttpContext.Session.SetString("username", l.username);
                     return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username = l.username });
                 }
             }
