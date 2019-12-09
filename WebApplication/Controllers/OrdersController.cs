@@ -54,8 +54,10 @@ namespace WebApplication.Controllers
         {
             try
             {
+                //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
+                //OrderManager.AddOrder(x);
                 
-                order.status = "ON GOING";
+                order.status = "ongoing";
                 OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client
@@ -85,7 +87,7 @@ namespace WebApplication.Controllers
         public ActionResult Edit(DTO.Orders o)
         {
             string username = HttpContext.Session.GetString("username");
-            username = "michmich";
+            //username = "michmich";
             ViewBag.username = username;
             OrderManager.UpdateOrder(o);
             return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username });
