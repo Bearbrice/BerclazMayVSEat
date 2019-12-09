@@ -13,46 +13,63 @@ namespace WebApplication.Controllers
     public class DishController : Controller
     {
         private IDishManager DishManager { get; }
+        private IOrdersManager OrdersManager { get; }
 
-        public DishController(IDishManager dishManager)
+        public DishController(IDishManager dishManager, IOrdersManager orderManager)
         {
             DishManager = dishManager;
+            OrdersManager = orderManager;
         }
 
+        //Static list
         public static List<DTO.Dish> currentDishes = new List<DTO.Dish>();
 
+        //Method GET for the static list
         public List<DTO.Dish> GetAllDishes()
         {
             return currentDishes;
         }
 
+        //Method ADD for the static list
         public void AddCurrentDish(DTO.Dish dish)
         {
             currentDishes.Add(dish);
         }
 
-        public void DeleteCurrentDish(int idx)
+        //Method DELETE for the static list
+        public void DeleteCurrentDish(int id)
         {
             //var index = currentDishes.IndexOf(dish);
+            int count = -1;
+            foreach (var item in currentDishes)
+            {
+                count++;
+                if (item.idDish == id)
+                {
+                    break;
+                }
+                
+            };
 
-            
 
-
-            currentDishes.RemoveAt(idx);
+            currentDishes.RemoveAt(count);
         }
 
+        //NOT USED
         // GET: Dish
         public ActionResult Index()
         {
             return View();
         }
 
+        //NOT USED
         // GET: Dish/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        
         // GET: Dish/GetDishes/5
         public ActionResult GetDishes(int id)
         {
@@ -62,13 +79,14 @@ namespace WebApplication.Controllers
             return View(dishList);
         }
         
-
+        //NOTUSED
         // GET: Dish/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        //NOTUSED
         // POST: Dish/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -86,9 +104,9 @@ namespace WebApplication.Controllers
             }
         }
 
+
+
         
-
-
         // GET: Dish/Edit/5
         public ActionResult Edit(int id)
         {
@@ -131,11 +149,17 @@ namespace WebApplication.Controllers
             return View(dishList);
         }
 
+        [HttpPost]
+        public ActionResult GetCurrentDishes(List <DTO.Dish> dishes)
+        {
+            return RedirectToAction(nameof(GetCurrentDishes));
+        }
+
         // GET: Dish/Delete/5
-        public ActionResult Delete(int idx)
+        public ActionResult Delete(int id)
         {
             //var dish = DishManager.GetDish(id);
-            DeleteCurrentDish(idx);
+            DeleteCurrentDish(id);
 
             return RedirectToAction(nameof(GetCurrentDishes));
         }
