@@ -5,7 +5,6 @@
 }
 
 <h2>Edit</h2>
-<h3>@ViewBag.username</h3>
 
 <h4>Orders</h4>
 <hr />
@@ -44,7 +43,6 @@
                 <span asp-validation-for="fk_idCustomer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input name="username" type="hidden" value="@ViewBag.username" />
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>

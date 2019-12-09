@@ -23,9 +23,10 @@ namespace WebApplication.Controllers
         }
 
         // GET : GetOrderRelativeToStaff
+        [HttpGet]
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
-            var id = HttpContext.Session.Id;
+            //var id = HttpContext.Session.Id;
 
             var name = HttpContext.Session.GetString("user");
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
@@ -72,6 +73,11 @@ namespace WebApplication.Controllers
         {
             var order = OrderManager.GetOrder(id);
             ViewBag.username = username;
+
+            //Appelle de la méthode/requête SQL update(id) qui changera automatiquement
+            //le status en "delivered" et le delivered_at en DateTime.Now
+            //La méthode retournera le nouveau GetOrdersRelativeToStaff(username)
+
             return View(order);
         }
 
