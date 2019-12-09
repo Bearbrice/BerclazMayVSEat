@@ -157,8 +157,10 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "Insert into Orders(status, created_at, delivered_at, fk_idStaff, fk_idCustomer) values(@status, @created_at, @finished_at, @fk_idStaff, @fk_idCustomer); SELECT SCOPE_IDENTITY()";
+                    string query = "INSERT INTO Orders(status, scheduled_at, delivered_at, fk_idStaff, fk_idCustomer) VALUES(@status, @scheduled_at, @delivered_at, @fk_idStaff, @fk_idCustomer); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
+
+                    //cmd.Parameters.AddWithValue("@idOrder", order.idOrder);
                     cmd.Parameters.AddWithValue("@status", order.status);
                     cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
                     cmd.Parameters.AddWithValue("@delivered_at", order.delivered_at);
@@ -168,6 +170,11 @@ namespace DAL
                     cn.Open();
 
                     order.idOrder = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+                    cmd.ExecuteNonQuery();
+
+                    
                 }
             }
             catch (Exception e)

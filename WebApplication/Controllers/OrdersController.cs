@@ -25,6 +25,8 @@ namespace WebApplication.Controllers
         // GET : GetOrderRelativeToStaff
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
+            var id = HttpContext.Session.Id;
+
             var name = HttpContext.Session.GetString("user");
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
             ViewBag.username = username;
@@ -51,12 +53,15 @@ namespace WebApplication.Controllers
         {
             try
             {
+                //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
+                //OrderManager.AddOrder(x);
                 
-                order.status = "ON GOING";
+                order.status = "ongoing";
                 OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client
-                return RedirectToAction(nameof(GetOrders));
+                //return RedirectToAction(nameof(GetOrders));
+                return View();
             }
             catch
             {
@@ -76,7 +81,7 @@ namespace WebApplication.Controllers
         public ActionResult Edit(DTO.Orders o)
         {
             string username = HttpContext.Session.GetString("username");
-            username = "michmich";
+            //username = "michmich";
             ViewBag.username = username;
             OrderManager.UpdateOrder(o);
             return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username });

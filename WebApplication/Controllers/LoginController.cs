@@ -37,6 +37,7 @@ namespace WebApplication.Controllers
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)
             {
+                var id = HttpContext.Session.Id;
                 HttpContext.Session.SetString("user", l.username);
                 //HttpContext.Session.SetString("password", l.password);
 
