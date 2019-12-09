@@ -150,9 +150,9 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetCurrentDishes(List <DTO.Dish> dishes)
+        public ActionResult GetCurrentDishes(DTO.Dish dish)
         {
-            return RedirectToAction(nameof(GetCurrentDishes));
+             return RedirectToAction("Create", "OrdersController");
         }
 
         // GET: Dish/Delete/5

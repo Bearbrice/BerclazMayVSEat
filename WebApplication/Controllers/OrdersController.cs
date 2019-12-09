@@ -57,13 +57,16 @@ namespace WebApplication.Controllers
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(DTO.Orders order)
         {
             try
             {
-                // TODO: Add insert logic here
+                
+                order.status = "ON GOING";
+                OrderManager.AddOrder(order);
 
-                return RedirectToAction(nameof(Index));
+                //retourne tous les ordres du client
+                return RedirectToAction(nameof(GetOrders));
             }
             catch
             {

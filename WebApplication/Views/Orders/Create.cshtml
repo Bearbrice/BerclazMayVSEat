@@ -1,0 +1,86 @@
+﻿@model DTO.Orders
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Orders</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                    @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "time" } })
+                    @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+
+            @*<div class="form-group">
+                <label asp-for="idOrder" class="control-label"></label>
+                <input asp-for="idOrder" class="form-control" />
+                <span asp-validation-for="idOrder" class="text-danger"></span>
+            </div>*@
+
+
+
+            @*<div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <input asp-for="status" class="form-control" />
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>*@
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                    @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "time" } })
+                    @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="scheduled_at" class="control-label"></label>
+                <input asp-for="scheduled_at" class="form-control" />
+                <span asp-validation-for="scheduled_at" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="delivered_at" class="control-label"></label>
+                <input type="date" asp-for="delivered_at" class="form-control" />
+                <span asp-validation-for="delivered_at" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fk_idStaff" class="control-label"></label>
+                <input asp-for="fk_idStaff" class="form-control" />
+                <span asp-validation-for="fk_idStaff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fk_idCustomer" class="control-label"></label>
+                <input asp-for="fk_idCustomer" class="form-control" />
+                <span asp-validation-for="fk_idCustomer" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Validate" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
