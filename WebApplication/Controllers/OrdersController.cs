@@ -71,37 +71,39 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Orders/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    var order = OrderManager.GetOrder(id);
-        //    return View(order);
-        //}
+        //GET: Orders/Edit/5
+        public ActionResult Edit(int id, string username)
+        {
+            var order = OrderManager.GetOrder(id);
+            ViewBag.username = username;
+            return View(order);
+        }
 
         [HttpPost]
         public ActionResult Edit(DTO.Orders o)
         {
-            string user = Request.Form["username"];
+            string username = HttpContext.Session.GetString("username");
+            ViewBag.username = username;
             OrderManager.UpdateOrder(o);
-            return RedirectToAction(nameof(GetOrdersRelativeToStaff), new { username = user });
+            return RedirectToAction(nameof(GetOrdersRelativeToStaff));
         }
 
-        // POST: Orders/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //// POST: Orders/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: Orders/Delete/5
         public ActionResult Delete(int id)

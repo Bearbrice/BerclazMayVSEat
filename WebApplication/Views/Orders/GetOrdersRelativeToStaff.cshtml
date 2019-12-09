@@ -5,6 +5,7 @@
 }
 
 <h2>GetOrdersRelativeToStaff</h2>
+<h3>@ViewBag.username</h3>
 
 <table class="table">
     <thead>
@@ -47,7 +48,7 @@
                 @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">
                 <input type="submit" class="btn btn-info btn-sm disabled" value="Delivered">*@
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.idOrder })
+                @Html.ActionLink("Edit", "Edit", new { id = item.idOrder, @ViewBag.username })
 
                 @*@Html.ActionLink("Delivered", "GetOrdersRelativeToStaff", new { /* id=item.PrimaryKey */ })*@
             </td>

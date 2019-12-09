@@ -130,7 +130,9 @@ namespace DAL
                             order.idOrder = (int)dr["idOrder"];
                             order.status = (string)dr["status"];
                             order.scheduled_at = (DateTime)dr["scheduled_at"];
-                            order.delivered_at = (DateTime)dr["delivered_at"];
+                            if (!dr["delivered_at"].Equals(System.DBNull.Value)){
+                                order.delivered_at = (DateTime)dr["delivered_at"];
+                            }
                             order.fk_idStaff = (int)dr["fk_idStaff"];
                             order.fk_idCustomer = (int)dr["fk_idCustomer"];
 
@@ -185,8 +187,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "UPDATE Orders SET status=@status, created_at=@created_at, finished_at=@finished_at, fk_idStaff=@fk_idStaff, fk_idCustomer=@fk_idCustomer WHERE idOrder=@id";
+                    string query = "UPDATE Orders SET status=@status, scheduled_at=@scheduled_at, delivered_at=@delivered_at, fk_idStaff=@fk_idStaff, fk_idCustomer=@fk_idCustomer WHERE idOrder=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", order.idOrder);
                     cmd.Parameters.AddWithValue("@status", order.status);
                     cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
                     cmd.Parameters.AddWithValue("@delivered_at", order.delivered_at);
