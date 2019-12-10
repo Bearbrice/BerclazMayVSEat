@@ -6,30 +6,28 @@ using DTO;
 
 namespace BLL
 {
-    public class OrderDishManager : IOrderDishManager
+    public class OrderDishManager : IOrderdishManager
     {
+        private IOrderDishDB OrderdishDBObject { get; }
 
-        private IOrderDishManager OrderDishDbObject { get; }
-
-        public OrderDishManager(IOrderDishManager orderDishDB)
+        public OrderDishManager(IOrderDishDB orderdishDB)
         {
-            OrderDishDbObject = orderDishDB;
-        }
-
-        public List<OrderDish> GetOrderDishes()
-        {
-            return OrderDishDbObject.GetOrderDishes();
-        }
-
-        public OrderDish GetOrderDish(int idOrder)
-        {
-            return OrderDishDbObject.GetOrderDish(idOrder);
+            OrderdishDBObject = orderdishDB;
         }
 
         public OrderDish AddOrderDish(OrderDish orderDish)
         {
-            return OrderDishDbObject.AddOrderDish(orderDish);
+            throw new NotImplementedException();
         }
 
+        public OrderDish GetOrderDish(int idOrder)
+        { 
+            throw new NotImplementedException();
+        }
+
+        public List<OrderDish> GetOrderDishes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

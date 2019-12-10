@@ -11,140 +11,56 @@ namespace WebApplication.Controllers
 {
     public class OrderDishController : Controller
     {
-
         private IOrderDishManager OrderDishManager { get; }
-        private IDishManager DishManager { get; }
+        //private IDishManager DishManager { get; }
+       // private IOrdersManager OrderManager { get; }
 
-        public OrderDishController(IOrderDishManager orderDishManager, IDishManager dishManager)
-        {
+
+        public OrderDishController(IOrderDishManager orderDishManager)
+       {
             OrderDishManager = orderDishManager;
-            DishManager = dishManager;
-        }
+            //DishManager = dishManager;
+            //OrderManager = orderManager;
+       }
 
-        public ActionResult AddOrderDish(int idOrder)
+        public void AddOrderDish(int idOrder)
         {
             var dishes = DishController.currentDishes;
 
-            foreach(var dish in dishes)
+            foreach (var dish in dishes)
             {
-                DTO.OrderDish od = new DTO.OrderDish { fk_idOrder = idOrder, fk_idDish=dish.idDish };
-                OrderDishManager.AddOrderDish(od);
+                DTO.OrderDish od = new DTO.OrderDish { fk_idOrder = idOrder, fk_idDish = dish.idDish };
+                //OrderDishManager.AddOrderDish(od);
             }
 
-            return RedirectToAction(nameof(GetOrdersInfo));
+            //return RedirectToAction("GetOrdersInfo", "OrderDishController", new { @id = idOrder });
         }
 
         //LIST
         public ActionResult GetOrdersInfo(int idOrder)
         {
-            var orderList = OrderDishManager.GetOrderDishes();
-
-            List<OrderDishDetails> details = new List<OrderDishDetails>();
-            
-            foreach(var orderD in orderList)
-            {
-                details.Add(new OrderDishDetails
-                {
-                    idOrder = idOrder,
-                    //dishName = DishManager.GetDish()
-                    //dishName=
-
-                });
-                
-            }
-            
+            //AddOrderDish(idOrder);
 
 
-            //ViewBag.Cities = cityList;
-            //ViewBag.Selected = 1;
+           // var orderList = OrderDishManager.GetOrderDishes();
 
-            return View(details);
-            //return RedirectToAction("GetRestaurants");
+            //List<OrderDishDetails> details = new List<OrderDishDetails>();
 
+            //foreach (var orderD in orderList)
+            //{
+            //    details.Add(new OrderDishDetails
+            //    {
+            //        idOrder = idOrder,
+            //        //dishName = DishManager.GetDish(orderD.fk_idDish).name,
+            //        //dishPrice = DishManager.GetDish(orderD.fk_idDish).price,
+            //        //scheduled = OrderManager.GetOrder(idOrder).scheduled_at
+            //    });
+            //}
 
-            //var cityList = CityManager.GetCities();
-            //return View(cityList);
-        }
-
-        // GET: OrderDish
-        public ActionResult Index()
-        {
             return View();
+
         }
 
-        // GET: OrderDish/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: OrderDish/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrderDish/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderDish/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderDish/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderDish/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderDish/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+ 
     }
 }

@@ -8,7 +8,7 @@ namespace WebApplication.Models
     {
         public int idOrder { get; set; }
 
-        public int dishName { get; set; }
+        public String dishName { get; set; }
 
         public int dishPrice { get; set; }
 

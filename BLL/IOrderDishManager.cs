@@ -6,17 +6,12 @@ using DAL;
 
 namespace BLL
 {
-    public interface IOrderDishManager
+    public interface IOrderdishManager
     {
-        //IOrderDishManager OrderDishDB { get; }
-
         List<OrderDish> GetOrderDishes();
 
-        OrderDish GetOrderDish(int id);
+        OrderDish GetOrderDish(int idOrder);
 
         OrderDish AddOrderDish(OrderDish orderDish);
-
-        //UPDATE ?
-        //DELETE ?
     }
 }
