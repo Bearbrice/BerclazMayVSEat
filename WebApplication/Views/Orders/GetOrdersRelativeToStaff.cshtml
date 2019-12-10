@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.delivered_at)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fk_idCustomer)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,9 +44,12 @@
                 @Html.DisplayFor(modelItem => item.delivered_at)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.fk_idCustomer)
+            </td>
+            <td>
                 @*
-        Need to be redirect to Edit (change status + delivered_at)
-        which will redirect to GetOrdersRelativeToStaff
+            Need to be redirect to Edit (change status + delivered_at)
+            which will redirect to GetOrdersRelativeToStaff
                 *@
 
                 @if (item.status.Equals("delivered"))
@@ -56,8 +62,8 @@
                     @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">*@
                 }
 
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.idOrder, @ViewBag.username })*@
-                </td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.idOrder, @ViewBag.username })*@
+            </td>
         </tr>
 }
     </tbody>

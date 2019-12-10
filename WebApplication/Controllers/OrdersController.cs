@@ -73,7 +73,6 @@ namespace WebApplication.Controllers
         //GET: Orders/Edit
         public ActionResult Edit(int id, string username)
         {
-            //var order = OrderManager.GetOrder(id);
             ViewBag.username = username;
 
             //Appelle de la méthode/requête SQL update(id) qui changera automatiquement

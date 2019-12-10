@@ -40,6 +40,20 @@
                     <li><a asp-area="" asp-controller="Dish" asp-action="GetCurrentDishes">Shopping cart</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">MyOrders</a></li>
                 </ul>
+
+                @*Login display on the top right with a dropdown bar to edit the account*@
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Log in as @ViewBag.username
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" @*onclick="@("window.location.href='" + @Url.Action("Edit", "Orders") + "'");"*@>My account</a></li>
+                            <li><a href="#" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
