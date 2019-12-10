@@ -17,7 +17,7 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
-        public List<OrderDish> GetOrderDishes()
+        public List<OrderDish> GetOrderDishes(int id)
         {
             List<OrderDish> results = null;
 
@@ -25,8 +25,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT * FROM OrderDish";
+                    string query = "SELECT * FROM OrderDish WHERE fk_idOrder=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cn.Open();
 
@@ -108,6 +109,7 @@ namespace DAL
                    
 
                     cn.Open();
+                    cmd.ExecuteScalar();
                 }
             }
             catch (Exception e)

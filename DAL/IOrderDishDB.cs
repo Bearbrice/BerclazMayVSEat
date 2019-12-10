@@ -8,7 +8,7 @@ namespace DAL
 {
     public interface IOrderDishDB
     {
-        List<OrderDish> GetOrderDishes();
+        List<OrderDish> GetOrderDishes(int id);
 
         OrderDish GetOrderDish(int idOrder);
 

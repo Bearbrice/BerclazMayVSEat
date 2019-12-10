@@ -25,9 +25,9 @@ namespace BLL
             return OrderdishDBObject.GetOrderDish(idOrder);
         }
 
-        public List<OrderDish> GetOrderDishes()
+        public List<OrderDish> GetOrderDishes(int id)
         {
-            return OrderdishDBObject.GetOrderDishes();
+            return OrderdishDBObject.GetOrderDishes(id);
         }
     }
 }

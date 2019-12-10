@@ -39,16 +39,21 @@ namespace WebApplication.Controllers
         //LIST
         public ActionResult GetOrdersInfo(int idOrder)
         {
+            //Add data into the SQL OrderDish table
             AddOrderDish(idOrder);
 
+            //List<DTO.OrderDish> orderDishes;
+            //orderDishes = OrderDishManager.GetOrderDishes();
+            var orderList = OrderDishManager.GetOrderDishes(idOrder);
 
-            var orderList = OrderDishManager.GetOrderDishes();
-
+            //List based on a model to show specific data to the customer
             List<OrderDishDetails> details = new List<OrderDishDetails>();
 
+            //Get the informations only one time
             var status = OrderManager.GetOrderInfo(idOrder).status;
             var scheduled = OrderManager.GetOrderInfo(idOrder).scheduled_at;
 
+            //Get specific informations such as name and price to sum up the order
             foreach (var orderD in orderList)
             {
                 details.Add(new OrderDishDetails
