@@ -2,13 +2,70 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class OrderDishController : Controller
     {
+
+        private IOrderDishManager OrderDishManager { get; }
+        private IDishManager DishManager { get; }
+
+        public OrderDishController(IOrderDishManager orderDishManager, IDishManager dishManager)
+        {
+            OrderDishManager = orderDishManager;
+            DishManager = dishManager;
+        }
+
+        public ActionResult AddOrderDish(int idOrder)
+        {
+            var dishes = DishController.currentDishes;
+
+            foreach(var dish in dishes)
+            {
+                DTO.OrderDish od = new DTO.OrderDish { fk_idOrder = idOrder, fk_idDish=dish.idDish };
+                OrderDishManager.AddOrderDish(od);
+            }
+
+            return RedirectToAction(nameof(GetOrdersInfo));
+        }
+
+        //LIST
+        public ActionResult GetOrdersInfo(int idOrder)
+        {
+            var orderList = OrderDishManager.GetOrderDishes();
+
+            List<OrderDishDetails> details = new List<OrderDishDetails>();
+            
+            foreach(var orderD in orderList)
+            {
+                details.Add(new OrderDishDetails
+                {
+                    idOrder = idOrder,
+                    //dishName = DishManager.GetDish()
+                    //dishName=
+
+                });
+                
+            }
+            
+
+
+            //ViewBag.Cities = cityList;
+            //ViewBag.Selected = 1;
+
+            return View(details);
+            //return RedirectToAction("GetRestaurants");
+
+
+            //var cityList = CityManager.GetCities();
+            //return View(cityList);
+        }
+
         // GET: OrderDish
         public ActionResult Index()
         {

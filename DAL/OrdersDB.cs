@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using DTO;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 
 namespace DAL
 {
@@ -157,24 +158,36 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "INSERT INTO Orders(status, scheduled_at, delivered_at, fk_idStaff, fk_idCustomer) VALUES(@status, @scheduled_at, @delivered_at, @fk_idStaff, @fk_idCustomer); SELECT SCOPE_IDENTITY()";
+                    string query = "INSERT INTO Orders(status, scheduled_at) VALUES(@status, @scheduled_at); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
 
                     //cmd.Parameters.AddWithValue("@idOrder", order.idOrder);
                     cmd.Parameters.AddWithValue("@status", order.status);
-                    cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
-                    cmd.Parameters.AddWithValue("@delivered_at", order.delivered_at);
-                    cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
-                    cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
+
+                    SqlDateTime myDateTime = order.scheduled_at;
+                    cmd.Parameters.AddWithValue("@scheduled_at", myDateTime);
+
+                    //DateTime myDateTime = order.scheduled_at;
+                    //string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+
+
+                    //myDateTime = order.delivered_at;
+                    //sqlFormattedDate = order.delivered_at.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                    //myDateTime = order.delivered_at;
+
+                    //sqlFormattedDate = order.delivered_at.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                    //cmd.Parameters.AddWithValue("@delivered_at", myDateTime);
+
+                    //cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
+                    //cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
 
                     cn.Open();
 
                     order.idOrder = Convert.ToInt32(cmd.ExecuteScalar());
 
 
-                    cmd.ExecuteNonQuery();
-
-                    
+                    //cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception e)

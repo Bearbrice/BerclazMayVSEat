@@ -58,10 +58,11 @@ namespace WebApplication.Controllers
                 //OrderManager.AddOrder(x);
                 
                 order.status = "ongoing";
-                OrderManager.AddOrder(order);
+                order=OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client
                 //return RedirectToAction(nameof(GetOrders));
+                RedirectToAction("AddOrderDish", "OrderDishController", new { @id = order.idOrder });
                 return View();
             }
             catch
