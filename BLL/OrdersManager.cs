@@ -13,6 +13,13 @@ namespace BLL
         public OrdersManager(IOrdersDB orderDB)
         {
             OrderDbObject = orderDB;
+        
+        
+        }
+
+        public Orders GetOrderInfo(int id)
+        {
+            return OrderDbObject.GetOrderInfo(id);
         }
 
         public List<Orders> GetOrders()

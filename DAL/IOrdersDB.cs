@@ -8,8 +8,7 @@ namespace DAL
 {
     public interface IOrdersDB
     {
-        //IConfiguration Configuration { get; }
-
+        
         List<Orders> GetOrdersRelativeToStaff(string username);
 
         List<Orders> GetOrders();
@@ -17,6 +16,8 @@ namespace DAL
         Orders GetOrder(int id);
 
         Orders AddOrder(Orders order);
+
+        Orders GetOrderInfo(int id);
 
         int UpdateOrderById(int id);
 

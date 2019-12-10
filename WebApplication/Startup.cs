@@ -51,7 +51,10 @@ namespace WebApplication
             services.AddScoped<IOrdersManager, OrdersManager>();
             services.AddScoped<IOrdersDB, OrdersDB>();
 
-            services.AddScoped<IOrderDetail, OrderDetail>();
+            services.AddScoped<IOrderDishManager, OrderDishManager>();
+            services.AddScoped<IOrderDishDB, OrderDishDB>();
+
+           
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -11,59 +11,58 @@ namespace WebApplication.Controllers
 {
     public class OrderDishController : Controller
     {
-
         private IOrderDishManager OrderDishManager { get; }
         private IDishManager DishManager { get; }
+        private IOrdersManager OrderManager { get; }
 
-        public OrderDishController(IOrderDishManager orderDishManager, IDishManager dishManager)
+
+        public OrderDishController(IOrderDishManager orderDishManager, IDishManager dishManager, IOrdersManager orderManager)
         {
             OrderDishManager = orderDishManager;
             DishManager = dishManager;
+            OrderManager = orderManager;
         }
 
-        public ActionResult AddOrderDish(int idOrder)
+        public void AddOrderDish(int idOrder)
         {
             var dishes = DishController.currentDishes;
 
-            foreach(var dish in dishes)
+            foreach (var dish in dishes)
             {
-                DTO.OrderDish od = new DTO.OrderDish { fk_idOrder = idOrder, fk_idDish=dish.idDish };
+                DTO.OrderDish od = new DTO.OrderDish { fk_idOrder = idOrder, fk_idDish = dish.idDish };
                 OrderDishManager.AddOrderDish(od);
             }
 
-            return RedirectToAction(nameof(GetOrdersInfo));
+            //return RedirectToAction("GetOrdersInfo", "OrderDishController", new { @id = idOrder });
         }
 
         //LIST
         public ActionResult GetOrdersInfo(int idOrder)
         {
+            AddOrderDish(idOrder);
+
+
             var orderList = OrderDishManager.GetOrderDishes();
 
             List<OrderDishDetails> details = new List<OrderDishDetails>();
-            
-            foreach(var orderD in orderList)
+
+            var status = OrderManager.GetOrderInfo(idOrder).status;
+            var scheduled = OrderManager.GetOrderInfo(idOrder).scheduled_at;
+
+            foreach (var orderD in orderList)
             {
                 details.Add(new OrderDishDetails
                 {
                     idOrder = idOrder,
-                    //dishName = DishManager.GetDish()
-                    //dishName=
-
-                });
-                
+                    dishName = DishManager.GetDish(orderD.fk_idDish).name,
+                    dishPrice = DishManager.GetDish(orderD.fk_idDish).price,
+                    scheduled = scheduled,
+                    status = status
+                }) ;
             }
-            
-
-
-            //ViewBag.Cities = cityList;
-            //ViewBag.Selected = 1;
 
             return View(details);
-            //return RedirectToAction("GetRestaurants");
 
-
-            //var cityList = CityManager.GetCities();
-            //return View(cityList);
         }
 
         // GET: OrderDish

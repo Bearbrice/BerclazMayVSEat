@@ -8,28 +8,26 @@ namespace BLL
 {
     public class OrderDishManager : IOrderDishManager
     {
+        private IOrderDishDB OrderdishDBObject { get; }
 
-        private IOrderDishManager OrderDishDbObject { get; }
-
-        public OrderDishManager(IOrderDishManager orderDishDB)
+        public OrderDishManager(IOrderDishDB orderdishDB)
         {
-            OrderDishDbObject = orderDishDB;
-        }
-
-        public List<OrderDish> GetOrderDishes()
-        {
-            return OrderDishDbObject.GetOrderDishes();
-        }
-
-        public OrderDish GetOrderDish(int idOrder)
-        {
-            return OrderDishDbObject.GetOrderDish(idOrder);
+            OrderdishDBObject = orderdishDB;
         }
 
         public OrderDish AddOrderDish(OrderDish orderDish)
         {
-            return OrderDishDbObject.AddOrderDish(orderDish);
+            return OrderdishDBObject.AddOrderDish(orderDish);
         }
 
+        public OrderDish GetOrderDish(int idOrder)
+        {
+            return OrderdishDBObject.GetOrderDish(idOrder);
+        }
+
+        public List<OrderDish> GetOrderDishes()
+        {
+            return OrderdishDBObject.GetOrderDishes();
+        }
     }
 }

@@ -20,7 +20,6 @@ namespace DAL
         public List<OrderDish> GetOrderDishes()
         {
             List<OrderDish> results = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -42,7 +41,7 @@ namespace DAL
 
                             orderDish.fk_idOrder = (int)dr["fk_idOrder"];
                             orderDish.fk_idDish = (int)dr["fk_idDish"];
-                            orderDish.quantity = (int)dr["quantity"];
+                            
 
                             results.Add(orderDish);
                         }
@@ -80,7 +79,7 @@ namespace DAL
 
                             orderDish.fk_idOrder = (int)dr["fk_idOrder"];
                             orderDish.fk_idDish = (int)dr["fk_idDish"];
-                            orderDish.quantity = (int)dr["quantity"];
+                            
 
                         }
                     }
@@ -102,11 +101,11 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "INSERT INTO OrderDish(fk_idOrder, fk_idDish, quantity) values(@fk_idOrder, @fk_idDish, @quantity)";
+                    string query = "INSERT INTO OrderDish(fk_idOrder, fk_idDish) values(@fk_idOrder, @fk_idDish)";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@fk_idOrder", orderDish.fk_idOrder);
                     cmd.Parameters.AddWithValue("@fk_idDish", orderDish.fk_idDish);
-                    cmd.Parameters.AddWithValue("@quantity", orderDish.quantity);
+                   
 
                     cn.Open();
                 }

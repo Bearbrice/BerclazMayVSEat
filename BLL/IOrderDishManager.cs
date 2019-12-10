@@ -8,15 +8,10 @@ namespace BLL
 {
     public interface IOrderDishManager
     {
-        //IOrderDishManager OrderDishDB { get; }
-
         List<OrderDish> GetOrderDishes();
 
-        OrderDish GetOrderDish(int id);
+        OrderDish GetOrderDish(int idOrder);
 
         OrderDish AddOrderDish(OrderDish orderDish);
-
-        //UPDATE ?
-        //DELETE ?
     }
 }

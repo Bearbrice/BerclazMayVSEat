@@ -153,11 +153,11 @@ namespace WebApplication.Controllers
             return View(dishList);
         }
 
-        [HttpPost]
-        public ActionResult GetCurrentDishes(DTO.Dish dish)
-        {
-             return RedirectToAction("Create", "OrdersController");
-        }
+        //[HttpPost]
+        //public ActionResult GetCurrentDishes(int id)
+        //{
+        //     return RedirectToAction("Create", "OrdersController");
+        //}
 
         // GET: Dish/Delete/5
         public ActionResult Delete(int id)

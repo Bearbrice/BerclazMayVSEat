@@ -62,8 +62,9 @@ namespace WebApplication.Controllers
 
                 //retourne tous les ordres du client
                 //return RedirectToAction(nameof(GetOrders));
-                RedirectToAction("AddOrderDish", "OrderDishController", new { @id = order.idOrder });
-                return View();
+                
+
+                return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder });
             }
             catch
             {
