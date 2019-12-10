@@ -185,6 +185,32 @@ namespace DAL
             return order;
         }
 
+        //Update method for the btn delivered when a staff is connected
+        public int UpdateOrderById(int id)
+        {
+            int result = 0;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "UPDATE Orders SET status='delivered', delivered_at=CURRENT_TIMESTAMP WHERE idOrder=@id";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cn.Open();
+
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
+            return result;
+        }
+
         public int UpdateOrder(Orders order)
         {
             int result = 0;

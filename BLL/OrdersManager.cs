@@ -35,6 +35,11 @@ namespace BLL
             return OrderDbObject.AddOrder(Order);
         }
 
+        public int UpdateOrderById(int id)
+        {
+            return OrderDbObject.UpdateOrderById(id);
+        }
+
         public int UpdateOrder(Orders Order)
         {
             return OrderDbObject.UpdateOrder(Order);
