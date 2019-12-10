@@ -70,28 +70,18 @@ namespace WebApplication.Controllers
             }
         }
 
-        //GET: Orders/Edit/5
+        //GET: Orders/Edit
         public ActionResult Edit(int id, string username)
         {
-            var order = OrderManager.GetOrder(id);
+            //var order = OrderManager.GetOrder(id);
             ViewBag.username = username;
 
             //Appelle de la méthode/requête SQL update(id) qui changera automatiquement
             //le status en "delivered" et le delivered_at en DateTime.Now
             //La méthode retournera le nouveau GetOrdersRelativeToStaff(username)
+            OrderManager.UpdateOrderById(id);
 
-            return View(order);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(DTO.Orders o)
-        {
-            string username = HttpContext.Session.GetString("username");
-            //username = "michmich";
-            ViewBag.username = username;
-            OrderManager.UpdateOrder(o);
             return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username });
-            //return RedirectToAction(nameof(GetOrdersRelativeToStaff));
         }
 
         //// POST: Orders/Edit/5
