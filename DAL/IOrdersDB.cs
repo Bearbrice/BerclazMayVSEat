@@ -18,6 +18,8 @@ namespace DAL
 
         Orders AddOrder(Orders order);
 
+        int UpdateOrderById(int id);
+
         int UpdateOrder(Orders order);
 
         int DeleteOrder(int id);

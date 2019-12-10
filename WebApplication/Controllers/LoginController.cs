@@ -37,8 +37,8 @@ namespace WebApplication.Controllers
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)
             {
-                var id = HttpContext.Session.Id;
-               HttpContext.Session.SetString("user", l.username);
+                //var id = HttpContext.Session.Id;
+                HttpContext.Session.SetString("user", l.username);
                 //HttpContext.Session.SetString("password", l.password);
 
                 //If this is a customer, the redirection is on GetAllCities (page for customer)

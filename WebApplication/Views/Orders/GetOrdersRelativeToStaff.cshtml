@@ -52,13 +52,12 @@
                 }
                 else
                 {
-                    <input type="submit" class="btn btn-info btn-sm active" value="Delivered">
+                    <input type="button" class="btn btn-info btn-sm active" value="Delivered" onclick="@("window.location.href='" + @Url.Action("Edit", "Orders", new { id = item.idOrder, @ViewBag.username }) + "'");" />
+                    @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">*@
                 }
 
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.idOrder, @ViewBag.username })*@
-
-                @*@Html.ActionLink("Delivered", "GetOrdersRelativeToStaff", new { /* id=item.PrimaryKey */ })*@
-            </td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.idOrder, @ViewBag.username })*@
+                </td>
         </tr>
 }
     </tbody>
