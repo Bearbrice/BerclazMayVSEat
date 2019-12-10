@@ -30,7 +30,7 @@ namespace DAL
                                     "WHERE O.fk_idStaff = S.idStaff " +
                                     "AND L.fk_staffId = S.idStaff " +
                                     "AND @username = L.username " +
-                                    "ORDER BY status DESC, scheduled_at";
+                                    "ORDER BY status DESC, delivered_at";
 
                     //query = "SELECT idOrder, status, scheduled_at, delivered_at, " +
                     //        "(SELECT full_name FROM Customer WHERE idCustomer = fk_idCustomer) AS 'Customer' " +
