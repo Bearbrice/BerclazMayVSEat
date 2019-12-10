@@ -42,7 +42,43 @@
             <td>
                 @if (item.status.Equals("ongoing"))
                 {
-                    <text>not delivered</text>
+                    DateTime scheduled_at = (DateTime)item.scheduled_at;
+                    DateTime now = DateTime.Now;
+
+                    TimeSpan diff = scheduled_at.Subtract(now);
+
+                    string t = diff.ToString(@"hh");
+                    int te = Int32.Parse(t);
+
+                    if (now < scheduled_at)
+                    {
+                        if (te > 2) 
+                        {
+                            <span style="color:green;">
+                                @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                            </span>
+                        }
+
+                        if (te < 1)
+                        {
+                            <span style="color:red;">
+                                @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                            </span>
+                        }
+
+                        if (te < 2 && te > 1)
+                        {
+                            <span style="color:orange;">
+                                @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                            </span>
+                        }
+                    }
+                    else
+                    {
+                        <span style="color:red;">
+                            LATE
+                        </span>
+                    }
                 }
                 else
                 {
