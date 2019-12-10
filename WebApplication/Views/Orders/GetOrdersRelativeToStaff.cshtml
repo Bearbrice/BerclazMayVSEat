@@ -5,7 +5,6 @@
 }
 
 <h2>GetOrdersRelativeToStaff</h2>
-<h3>@ViewBag.username</h3>
 
 <table class="table">
     <thead>
@@ -41,7 +40,14 @@
                 @Html.DisplayFor(modelItem => item.scheduled_at)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.delivered_at)
+                @if (item.status.Equals("ongoing"))
+                {
+                    <text>not delivered</text>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.delivered_at)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fk_idCustomer)

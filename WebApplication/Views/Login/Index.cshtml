@@ -24,21 +24,14 @@
                         <span asp-validation-for="password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        @if (false)
-                        {
-                            <input value="Log in" class="btn btn-default disabled" />
-                        }
-                        else
-                        {
-                            <input type="submit" value="Log in" class="btn btn-default active" />
-                        }
+                        <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </form>
             </div>
         </div>
 
         <p>
-            <a asp-action="Create">Create an account</a>
+            @*@Html.ActionLink("Create an account", "GetRestaurants", "Restaurant")*@
         </p>
     </body>
 

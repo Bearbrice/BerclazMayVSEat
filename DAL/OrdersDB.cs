@@ -25,10 +25,11 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT idOrder, status, scheduled_at, delivered_at FROM Orders O, Staff S, Login L " +
+                    string query = "SELECT idOrder, status, scheduled_at, delivered_at, fk_idCustomer FROM Orders O, Staff S, Login L " +
                                     "WHERE O.fk_idStaff = S.idStaff " +
                                     "AND L.fk_staffId = S.idStaff " +
-                                    "AND @username = L.username";
+                                    "AND @username = L.username " +
+                                    "ORDER BY status DESC, scheduled_at";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@username", username);
 
@@ -49,6 +50,8 @@ namespace DAL
                             order.scheduled_at = (DateTime)dr["scheduled_at"];
                             if (dr["delivered_at"] != System.DBNull.Value)
                                 order.delivered_at = (DateTime)dr["delivered_at"];
+                            if (dr["fk_idCustomer"] != System.DBNull.Value)
+                                order.fk_idCustomer = (int)dr["fk_idCustomer"];
 
                             results.Add(order);
                         }
