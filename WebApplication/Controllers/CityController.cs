@@ -44,9 +44,9 @@ namespace WebApplication.Controllers
         public ActionResult GetAllCities([FromQuery(Name = "username")] string username)
         {
 
-            var name = HttpContext.Session.GetString("username");
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
             var cityList = CityManager.GetCities();
-            ViewBag.username = username;
 
             //ViewBag.Cities = cityList;
             //ViewBag.Selected = 1;

@@ -73,6 +73,10 @@ namespace WebApplication.Controllers
         // GET: Dish/GetDishes/5
         public ActionResult GetDishes(int id)
         {
+            //to get the user name session on the top right
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
+
             //RestaurantManager rMan = new RestaurantManager(Configuration);
             var dishList = DishManager.GetDishes(id);
 

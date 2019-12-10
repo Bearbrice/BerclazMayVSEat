@@ -32,6 +32,10 @@ namespace WebApplication.Controllers
         // GET : Restaurant/5
         public ActionResult GetRestaurants(int id)
         {
+            //to get the user name session on the top right
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
+
             //RestaurantManager rMan = new RestaurantManager(Configuration);
             var restaurantList = RestaurantManager.GetRestaurants(id);
            
