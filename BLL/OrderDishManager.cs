@@ -6,7 +6,7 @@ using DTO;
 
 namespace BLL
 {
-    public class OrderDishManager : IOrderdishManager
+    public class OrderDishManager : IOrderDishManager
     {
         private IOrderDishDB OrderdishDBObject { get; }
 

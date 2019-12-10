@@ -6,7 +6,7 @@ using DAL;
 
 namespace BLL
 {
-    public interface IOrderdishManager
+    public interface IOrderDishManager
     {
         List<OrderDish> GetOrderDishes();
 
