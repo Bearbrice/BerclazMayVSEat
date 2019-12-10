@@ -17,17 +17,17 @@ namespace BLL
 
         public OrderDish AddOrderDish(OrderDish orderDish)
         {
-            throw new NotImplementedException();
+            return OrderdishDBObject.AddOrderDish(orderDish);
         }
 
         public OrderDish GetOrderDish(int idOrder)
-        { 
-            throw new NotImplementedException();
+        {
+            return OrderdishDBObject.GetOrderDish(idOrder);
         }
 
         public List<OrderDish> GetOrderDishes()
         {
-            throw new NotImplementedException();
+            return OrderdishDBObject.GetOrderDishes();
         }
     }
 }

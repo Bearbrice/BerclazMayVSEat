@@ -64,7 +64,7 @@ namespace WebApplication.Controllers
                 //return RedirectToAction(nameof(GetOrders));
                 
 
-                return RedirectToAction("GetOrdersInfo", "Orderdish", new { @id = order.idOrder });
+                return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder });
             }
             catch
             {

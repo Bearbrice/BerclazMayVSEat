@@ -13,9 +13,11 @@ namespace WebApplication.Models
         public int dishPrice { get; set; }
 
         public DateTime scheduled { get; set; }
+        
+        public String status { get; set; }
 
 
-       
+
 
         //public override string ToString()
         //{

@@ -162,6 +162,46 @@ namespace DAL
 
         }
 
+        //Brice
+        public Orders GetOrderInfo(int id)
+        {
+            Orders order = null;
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT * FROM Orders WHERE idOrder = @id";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            order = new Orders();
+
+                            order.idOrder = (int)dr["idOrder"];
+                            order.status = (string)dr["status"];
+                            order.scheduled_at = (DateTime)dr["scheduled_at"];
+                           
+
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return order;
+
+        }
+
         public Orders AddOrder(Orders order)
         {
             //string connectionString = Configuration.GetConnectionString("DefaultConnection");

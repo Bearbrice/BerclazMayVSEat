@@ -13,9 +13,13 @@ namespace BLL
 
         List<Orders> GetOrders();
 
+        
+
         Orders GetOrder(int id);
 
         Orders AddOrder(Orders Order);
+
+        Orders GetOrderInfo(int id);
 
         int UpdateOrderById(int id);
 
