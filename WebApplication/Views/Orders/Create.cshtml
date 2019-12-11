@@ -2,7 +2,12 @@
 
 @{
     ViewData["Title"] = "Create";
+
 }
+
+
+
+
 
 <h2>Create</h2>
 
@@ -15,83 +20,92 @@
 
 <h3> The order will be delivered the @DateTime.Today.ToString("dd.MM.yyyy")  </h3>
 <h3>Choose the time you want the delivery </h3>
+
+
+
+
+
+
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             @*TIME*@
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
             <div class="form-group">
                 @*@Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                @*@Html.Label("Choisissez un horaire pour une commande le :" + @DateTime.Now.Date);*@
+                @Html.Label("Choisissez un horaire pour une commande le :" + @DateTime.Now.Date);
                 <hr />
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "time" } })
-                    @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
+
+                    @Html.TextBoxFor(m => m.scheduled_at, new { @class = @"timepicker" })
+
                 </div>
             </div>
 
             @*DATE*@
             @*<hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })
-            <hr />
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <hr />
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
 
-                @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-
+                        @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
 
 
-
-            @*<div class="form-group">
-            <label asp-for="idOrder" class="control-label"></label>
-            <input asp-for="idOrder" class="form-control" />
-            <span asp-validation-for="idOrder" class="text-danger"></span>
-        </div>*@
 
 
 
             @*<div class="form-group">
-            <label asp-for="status" class="control-label"></label>
-            <input asp-for="status" class="form-control" />
-            <span asp-validation-for="status" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="idOrder" class="control-label"></label>
+                    <input asp-for="idOrder" class="form-control" />
+                    <span asp-validation-for="idOrder" class="text-danger"></span>
+                </div>*@
+
+
 
             @*<div class="form-group">
-            @Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
-                @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "time" } })
-                @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                    <label asp-for="status" class="control-label"></label>
+                    <input asp-for="status" class="form-control" />
+                    <span asp-validation-for="status" class="text-danger"></span>
+                </div>*@
+
             @*<div class="form-group">
-            <label asp-for="scheduled_at" class="control-label"></label>
-            <input asp-for="scheduled_at" class="form-control" />
-            <span asp-validation-for="scheduled_at" class="text-danger"></span>
-        </div>*@
+                    @Html.LabelFor(model => model.scheduled_at, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                        @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "time" } })
+                        @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
             @*<div class="form-group">
-            <label asp-for="delivered_at" class="control-label"></label>
-            <input type="date" asp-for="delivered_at" class="form-control" />
-            <span asp-validation-for="delivered_at" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="scheduled_at" class="control-label"></label>
+                    <input asp-for="scheduled_at" class="form-control" />
+                    <span asp-validation-for="scheduled_at" class="text-danger"></span>
+                </div>*@
             @*<div class="form-group">
-            <label asp-for="fk_idStaff" class="control-label"></label>
-            <input asp-for="fk_idStaff" class="form-control" />
-            <span asp-validation-for="fk_idStaff" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="delivered_at" class="control-label"></label>
+                    <input type="date" asp-for="delivered_at" class="form-control" />
+                    <span asp-validation-for="delivered_at" class="text-danger"></span>
+                </div>*@
             @*<div class="form-group">
-            <label asp-for="fk_idCustomer" class="control-label"></label>
-            <input asp-for="fk_idCustomer" class="form-control" />
-            <span asp-validation-for="fk_idCustomer" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="fk_idStaff" class="control-label"></label>
+                    <input asp-for="fk_idStaff" class="form-control" />
+                    <span asp-validation-for="fk_idStaff" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="fk_idCustomer" class="control-label"></label>
+                    <input asp-for="fk_idCustomer" class="form-control" />
+                    <span asp-validation-for="fk_idCustomer" class="text-danger"></span>
+                </div>*@
 
             <div class="form-group">
                 <input type="submit" value="Validate" class="btn btn-default" />
@@ -104,6 +118,12 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+
+
