@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BLL;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class OrdersController : Controller
     {
         private IOrdersManager OrderManager { get; }
-        public OrdersController(IOrdersManager orderManager)
+        private ICustomerManager CustomerManager { get; }
+        public OrdersController(IOrdersManager orderManager, ICustomerManager customerManager)
         {
             OrderManager = orderManager;
+            CustomerManager = customerManager;
         }
 
         // GET: Orders
@@ -29,10 +32,29 @@ namespace WebApplication.Controllers
             //var id = HttpContext.Session.Id;
 
             var name = HttpContext.Session.GetString("user");
+
+            List<OrderStaffCustomer> oscList = new List<OrderStaffCustomer>();
+
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
+
+            foreach (var order in orderList)
+            {
+                oscList.Add(new OrderStaffCustomer
+                {
+                    idOrder = order.idOrder,
+                    status = order.status,
+                    scheduled = order.scheduled_at,
+                    delivered = order.delivered_at,
+                    customerName = CustomerManager.GetCustomer(order.fk_idCustomer).full_name
+
+
+                });
+                
+            }
+
             ViewBag.username = username;
             
-            return View(orderList);
+            return View(oscList);
         }
 
         // GET: Orders/Details/5
