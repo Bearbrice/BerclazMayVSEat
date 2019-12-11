@@ -57,6 +57,43 @@ namespace DAL
             return results;
         }
 
-        
+        //GetCity by id
+        public City GetCity(int id)
+        {
+            City city = null;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM City WHERE idCity = @id";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            city = new City();
+
+                            city.idCity = (int)dr["idCity"];
+                            city.code = (int)dr["code"];
+                            city.name = (string)dr["name"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return city;
+
+        }
+
+
     }
 }

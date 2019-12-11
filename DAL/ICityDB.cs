@@ -10,5 +10,6 @@ namespace DAL
     {
         List<City> GetCities();
 
+        City GetCity(int id);
     }
 }

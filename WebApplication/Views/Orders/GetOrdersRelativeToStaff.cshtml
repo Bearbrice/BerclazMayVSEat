@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication.Models.OrderStaffCustomer>
+﻿@model IEnumerable<WebApplication.Models.OrderRelativeToStaffWithCustomer>
 
 @{
     ViewData["Title"] = "GetOrdersRelativeToStaff";
@@ -102,7 +102,7 @@
                 }
                 
                 @*CHECK WITH BRICE THE REDIRECTION*@
-                <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrdersInfo", "OrderDish", new { id = item.idOrder}) + "'");" />
+                <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrderDetails", "Orders", new { id = item.idOrder }) + "'");" />
             </td>
         </tr>
 }
