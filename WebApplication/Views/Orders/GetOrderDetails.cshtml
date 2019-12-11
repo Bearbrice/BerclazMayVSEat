@@ -1,0 +1,66 @@
+﻿@model WebApplication.Models.OrderDetailForStaff
+
+@{
+    ViewData["Title"] = "GetOrderDetails";
+}
+
+<h2>GetOrderDetails</h2>
+
+<div>
+    <h4>OrderDetailForStaff</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.idOrder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.scheduled)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.scheduled)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.delivered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.delivered)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.customerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.telepone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.telepone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cityName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.dishName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dishName)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

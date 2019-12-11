@@ -13,10 +13,40 @@ namespace WebApplication.Controllers
     {
         private IOrdersManager OrderManager { get; }
         private ICustomerManager CustomerManager { get; }
-        public OrdersController(IOrdersManager orderManager, ICustomerManager customerManager)
+        private ICityManager CityManager { get; }
+        private IOrderDishManager OrderDishManager { get; }
+        private IDishManager DishManager { get; }
+        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager,IOrderDishManager orderDishManager)
         {
             OrderManager = orderManager;
             CustomerManager = customerManager;
+            CityManager = cityManager;
+            OrderDishManager = orderDishManager;
+            DishManager = dishmanager;
+        }
+
+        [HttpGet]
+        public ActionResult GetOrderDetails(int id)
+        {
+
+            var name = HttpContext.Session.GetString("user");
+
+            OrderDetailForStaff odfsOrder = new OrderDetailForStaff();
+
+            var orderDetails = OrderManager.GetOrder(id);
+
+            odfsOrder.idOrder = orderDetails.idOrder;
+            odfsOrder.status = orderDetails.status;
+            odfsOrder.scheduled = orderDetails.scheduled_at;
+            odfsOrder.delivered = orderDetails.delivered_at;
+            odfsOrder.customerName = CustomerManager.GetCustomer(orderDetails.fk_idCustomer).full_name;
+            odfsOrder.telepone = CustomerManager.GetCustomer(orderDetails.fk_idCustomer).telephone;
+            odfsOrder.cityName = CityManager.GetCity(CustomerManager.GetCustomer(orderDetails.fk_idCustomer).fk_idCity).name;
+            odfsOrder.dishName = DishManager.GetDish(OrderDishManager.GetOrderDish(orderDetails.idOrder).fk_idDish).name;
+
+            ViewBag.username = name;
+
+            return View(odfsOrder);
         }
 
         // GET: Orders
@@ -33,20 +63,19 @@ namespace WebApplication.Controllers
 
             var name = HttpContext.Session.GetString("user");
 
-            List<OrderStaffCustomer> oscList = new List<OrderStaffCustomer>();
+            List<OrderRelativeToStaffWithCustomer> oscList = new List<OrderRelativeToStaffWithCustomer>();
 
             var orderList = OrderManager.GetOrdersRelativeToStaff(username);
 
             foreach (var order in orderList)
             {
-                oscList.Add(new OrderStaffCustomer
+                oscList.Add(new OrderRelativeToStaffWithCustomer
                 {
                     idOrder = order.idOrder,
                     status = order.status,
                     scheduled = order.scheduled_at,
                     delivered = order.delivered_at,
                     customerName = CustomerManager.GetCustomer(order.fk_idCustomer).full_name
-
 
                 });
                 

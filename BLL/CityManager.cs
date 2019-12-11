@@ -16,10 +16,14 @@ namespace BLL
             CityDBObject = cityDB;
         }
 
-
         public List<City> GetCities()
         {
             return CityDBObject.GetCities();
+        }
+
+        public City GetCity(int id)
+        {
+            return CityDBObject.GetCity(id);
         }
     }
 }
