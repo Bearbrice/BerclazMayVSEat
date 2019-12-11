@@ -7,6 +7,19 @@
     window.onunload = function () { null };
 </script>
 
+@*Used in Orders/Create*@
+<script type="text/javascript">
+    $(function () {
+        $('.timepicker').live('mousedown', function () {
+            $(this).timepicker({
+                stepMinute: 15,
+                hourMin: 7,
+                hourMax: 19
+            });
+        });
+    });
+</script>
+
 <html>
 <head>
     <meta charset="utf-8" />
