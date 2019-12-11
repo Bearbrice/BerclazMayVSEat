@@ -20,6 +20,32 @@
     });
 </script>
 
+<script>
+    $(function () {
+        $('#datetime24').combodate();
+    });
+</script>
+
+<script type="text/javascript">
+
+    function selectedStartTime(sender) {
+
+        var selDate = sender.value; // mentions the selected time.
+
+        minTimepicker = $("#timeEnd").data("ejTimePicker");// creating TimePicker object
+
+        minTimepicker.setModel({ "minTime": selDate });// setting minTime property through setModel of TimePicker object.
+
+    }
+
+    function button() {
+
+        alert("You have Successfully booked");
+
+    }
+
+</script>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -48,14 +74,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">VSEat</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Login" asp-action="Index">Login</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Dish" asp-action="GetCurrentDishes">Shopping cart</a></li>

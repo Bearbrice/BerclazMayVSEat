@@ -132,14 +132,14 @@ namespace WebApplication.Controllers
             //currentDishes.Add(dish);
             AddCurrentDish(dish);
             //currentDishes.Add(new DTO.Dish {idDish=dish.idDish, name=dish.name, price=dish.price, fk_idRestaurant=dish.fk_idRestaurant });
-                //OrderDetail.Add(dish);
-                //OrderDetail.GetDishes();
+            //OrderDetail.Add(dish);
+            //OrderDetail.GetDishes();
 
-                //return RedirectToAction(nameof(GetDishes));
-                return View();
-           // }
-           // catch
-           // {
+            //return RedirectToAction(nameof(GetDishes));
+            return RedirectToAction("GetDishes", "Dish", new { id=dish.fk_idRestaurant });
+            // }
+            // catch
+            // {
             //    return View();
             //}
         }

@@ -76,10 +76,30 @@ namespace WebApplication.Controllers
         {
             try
             {
-                //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
-                //OrderManager.AddOrder(x);
+                Boolean error = false;
+
+                if(order.scheduled_at < DateTime.Now.AddMinutes(30))
+                {
+                    error = true;
+                }
+
+                if (!(order.scheduled_at.Minute % 15 == 0))
+                {
+                    error = true;
+                }
+
+                if (error == true)
+                {
+                    return View();
+                }
                 
-                order.status = "ongoing";
+               
+
+
+                    //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
+                    //OrderManager.AddOrder(x);
+
+                    order.status = "ongoing";
                 order=OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client
