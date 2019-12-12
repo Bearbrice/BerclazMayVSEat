@@ -10,6 +10,7 @@ namespace DAL
     {
         
         List<Orders> GetOrdersRelativeToStaff(string username);
+        Boolean isStaffOverbooked(int idStaff, DateTime hour);
 
         List<Orders> GetOrders();
 

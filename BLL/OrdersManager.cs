@@ -17,6 +17,11 @@ namespace BLL
         
         }
 
+        public Boolean isStaffOverbooked(int idStaff, DateTime hour)
+        {
+            return OrderDbObject.isStaffOverbooked(idStaff, hour);
+        }
+
         public Orders GetOrderInfo(int id)
         {
             return OrderDbObject.GetOrderInfo(id);

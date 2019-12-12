@@ -18,7 +18,7 @@ namespace DAL
         }
 
         //Check if Staff have more than 5 orders in the next 30 minutes
-        public Boolean isStaffOverbooked(int idStaff)
+        public Boolean isStaffOverbooked(int idStaff, DateTime hour)
         {
             int count = 0;
 
@@ -26,10 +26,10 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "SELECT * FROM Orders WHERE fk_idCustomer=@idCustomer AND status=@ongoing";
+                    string query = "SELECT * FROM Orders WHERE fk_idStaff=@id AND status=@status";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@id", idStaff);
-                    cmd.Parameters.AddWithValue("@ongoing", "on going");
+                    cmd.Parameters.AddWithValue("@status", "ongoing");
 
                     cn.Open();
 
@@ -41,9 +41,16 @@ namespace DAL
                         {
                             var scheduled = (DateTime)dr["scheduled_at"];
 
-                            if (scheduled < DateTime.Now.AddMinutes(30)){
+                            //if (scheduled < DateTime.Now.AddMinutes(30)){
+                            //    DateTime.Now.
+                            //    count++;
+                            //}
+                            if (scheduled>hour.AddMinutes(-15) && scheduled < hour.AddMinutes(15))
+                            {
                                 count++;
                             }
+
+
 
                         }
                     }
@@ -51,7 +58,7 @@ namespace DAL
             }
             catch (Exception e)
             {
-                throw e;
+                return false;
             }
 
             if (count >= 5)
@@ -320,6 +327,7 @@ namespace DAL
             return result;
         }
 
+        //UPDATE THE ORDER WITHOUT THE DELIVERED_AT
         public int UpdateOrder(Orders order)
         {
             int result = 0;
@@ -329,12 +337,13 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "UPDATE Orders SET status=@status, scheduled_at=@scheduled_at, delivered_at=@delivered_at, fk_idStaff=@fk_idStaff, fk_idCustomer=@fk_idCustomer WHERE idOrder=@id";
+                    string query = "UPDATE Orders SET status=@status, scheduled_at=@scheduled_at, fk_idStaff=@fk_idStaff, fk_idCustomer=@fk_idCustomer WHERE idOrder=@id";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@id", order.idOrder);
                     cmd.Parameters.AddWithValue("@status", order.status);
                     cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
-                    cmd.Parameters.AddWithValue("@delivered_at", order.delivered_at);
+                    
+                    
                     cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
                     cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
 

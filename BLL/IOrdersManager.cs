@@ -13,7 +13,7 @@ namespace BLL
 
         List<Orders> GetOrders();
 
-        
+        Boolean isStaffOverbooked(int idStaff, DateTime hour);
 
         Orders GetOrder(int id);
 
