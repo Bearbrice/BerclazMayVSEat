@@ -114,6 +114,10 @@ namespace WebApplication.Controllers
         // GET: Dish/Edit/5
         public ActionResult Edit(int id)
         {
+            //to get the user name session on the top right
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
+
             var dish = DishManager.GetDish(id);
 
             return View(dish);
