@@ -15,10 +15,12 @@ namespace WebApplication.Controllers
     {
         private ILoginManager LoginManager { get; }
         private ICustomerManager CustomerManager { get; }
-        public LoginController(ILoginManager loginManager, ICustomerManager customerManager)
+        private IStaffManager StaffManager { get; }
+        public LoginController(ILoginManager loginManager, ICustomerManager customerManager, IStaffManager staffManager)
         {
             LoginManager = loginManager;
             CustomerManager = customerManager;
+            StaffManager = staffManager;
         }
 
         [HttpGet]

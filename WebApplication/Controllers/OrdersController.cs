@@ -20,7 +20,7 @@ namespace WebApplication.Controllers
         private ILoginManager LoginManager { get; }
         private IRestaurantManager RestaurantManager { get; }
         private IStaffManager StaffManager { get; }
-        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager,IOrderDishManager orderDishManager, ILoginManager loginManager, IStaffManager staffManager, IRestaurantManager restaurantManager, IStaffManager staffManager)
+        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager,IOrderDishManager orderDishManager, ILoginManager loginManager, IStaffManager staffManager, IRestaurantManager restaurantManager)
         {
             OrderManager = orderManager;
             CustomerManager = customerManager;
