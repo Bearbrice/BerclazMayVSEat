@@ -8,6 +8,8 @@ namespace WebApplication.Models
 {
     public class OrderDetailForStaff
     {
+        internal object dishesNames;
+
         public int idOrder { get; set; }
 
         public String status { get; set; }
@@ -22,6 +24,6 @@ namespace WebApplication.Models
 
         public String cityName { get; set; }
 
-        public List<string> dishesName { get; set; }
+        public List<String> dishesName { get; set; }
     }
 }

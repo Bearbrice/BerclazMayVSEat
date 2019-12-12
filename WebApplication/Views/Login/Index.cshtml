@@ -14,8 +14,10 @@
                 <form asp-action="Index">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <p style="color:red;">@ViewBag.ErrorMessageUsername</p>
-                        <p style="color:red;">@ViewBag.ErrorMessagePassword</p>
+                        <b style="color:red; font-size:small;">
+                            @*Error message set in controller if username not entered or password not entered or invalid login*@
+                            <p>@ViewBag.ErrorMessage</p>
+                        </b>
                         <label asp-for="username" class="control-label"></label>
                         <input asp-for="username" class="form-control" type="text" placeholder="your username" />
                         <span asp-validation-for="username" class="text-danger"></span>
@@ -33,7 +35,7 @@
         </div>
 
         <p>
-            @*@Html.ActionLink("Create an account", "GetRestaurants", "Restaurant")*@
+            @Html.ActionLink("Create an account", "Create", "Customer")
         </p>
     </body>
 

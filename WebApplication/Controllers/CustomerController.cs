@@ -39,18 +39,11 @@ namespace WebApplication.Controllers
         // POST: Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(DTO.Customer c)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            CustomerManager.AddCustomer(c);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Create", "Login", new { c.idCustomer});
         }
 
         // GET: Customer/Edit/5

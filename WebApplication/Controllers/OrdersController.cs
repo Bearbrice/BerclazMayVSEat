@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BLL;
 using WebApplication.Models;
+using DTO;
 
 namespace WebApplication.Controllers
 {
@@ -43,7 +44,31 @@ namespace WebApplication.Controllers
             odfsOrder.telepone = CustomerManager.GetCustomer(orderDetails.fk_idCustomer).telephone;
             odfsOrder.cityName = CityManager.GetCity(CustomerManager.GetCustomer(orderDetails.fk_idCustomer).fk_idCity).name;
             //Requête SQL ?
-            odfsOrder.dishesName.Add(DishManager.GetDish(OrderDishManager.GetOrderDish(orderDetails.idOrder).fk_idDish).name);
+            //odfsOrder.dishesName.Add(DishManager.GetDish(OrderDishManager.GetOrderDish(orderDetails.idOrder).fk_idDish).name);
+
+            var orderDishList = OrderDishManager.GetOrderDishes(orderDetails.idOrder);
+
+            odfsOrder.dishesName = new List<String>();
+
+            foreach (var od in orderDishList)
+            {
+                var x = DishManager.GetDish(od.fk_idDish);
+                odfsOrder.dishesName.Add(x.name + " ");
+            }
+
+            //int cpt = 0;
+
+            //for (int i = 0; i < odfsOrder.dishesName.Count; i++)
+            //{
+            //    for (int j = 0; j < odfsOrder.dishesName.Count; j++)
+            //    {
+            //        if (odfsOrder.dishesName.ElementAt(i) == odfsOrder.dishesName.ElementAt(j))
+            //        {
+            //            cpt++;
+            //            odfsOrder.dishesName.Insert(i, odfsOrder.dishesName.ElementAt(i) + cpt);
+            //        }
+            //    }
+            //}
 
             ViewBag.username = name;
 
