@@ -17,13 +17,20 @@ namespace WebApplication.Controllers
         private ICityManager CityManager { get; }
         private IOrderDishManager OrderDishManager { get; }
         private IDishManager DishManager { get; }
-        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager,IOrderDishManager orderDishManager)
+        private ILoginManager LoginManager { get; }
+        private IRestaurantManager RestaurantManager { get; }
+        private IStaffManager StaffManager { get; }
+        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager,IOrderDishManager orderDishManager, ILoginManager loginManager, IStaffManager staffManager, IRestaurantManager restaurantManager, IStaffManager staffManager)
         {
             OrderManager = orderManager;
             CustomerManager = customerManager;
             CityManager = cityManager;
             OrderDishManager = orderDishManager;
             DishManager = dishmanager;
+            LoginManager = loginManager;
+            RestaurantManager = restaurantManager;
+            StaffManager = staffManager;
+
         }
 
         [HttpGet]
@@ -121,7 +128,9 @@ namespace WebApplication.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
+
             return View();
         }
 
@@ -130,6 +139,7 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DTO.Orders order)
         {
+
             try
             {
                 Boolean error = false;
@@ -137,7 +147,7 @@ namespace WebApplication.Controllers
                 //Condition 1 : time cannot be lower as current time
                 //Condition 2 : give a delay of 30 minutes for current time
                 //Remark : The condition 2 include automatically condition 1 no need of two "if"
-                if(order.scheduled_at <= DateTime.Now.AddMinutes(30))
+                if (order.scheduled_at <= DateTime.Now.AddMinutes(30))
                 {
                     error = true;
                 }
@@ -158,7 +168,30 @@ namespace WebApplication.Controllers
                 //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
                 //OrderManager.AddOrder(x);
 
+                //assign customer to the order
+                var name = HttpContext.Session.GetString("user");
+                int id = LoginManager.GetCustomerId(name);
+
+                order.fk_idCustomer = id;
+
+
+                //assign staff to the order
+                var z = DishManager.GetDish(order.idOrder).fk_idRestaurant;
+                var y = RestaurantManager.GetRestaurant(z);
+                List <DTO.Staff> staffs = new List<DTO.Staff>();
+                staffs = StaffManager.GetStaffsByCity(y.fk_idCity);
+
+                foreach(var staff in staffs){
+                    if(staff.fk_idCity==z){
+                    order.fk_idStaff = staff.idStaff;
+                        break;
+                    }
+                }
+
+                //assign status
                 order.status = "ongoing";
+
+                //add order to DB
                 order=OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client

@@ -17,6 +17,49 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        public List<Staff> GetStaffsByCity(int idCity)
+        {
+            List<Staff> results = null;
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT * FROM Staff WHERE fk_idCity=@idCity";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@idCity", idCity);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            if (results == null)
+                                results = new List<Staff>();
+
+                            Staff staff = new Staff();
+
+                            staff.idStaff = (int)dr["idStaff"];
+                            staff.full_name = (string)dr["full_name"];
+                            staff.hired_on = (DateTime)dr["hired_on"];
+                            staff.telephone = (string)dr["telephone"];
+                            staff.fk_idCity = (int)dr["fk_idCity"];
+
+                            results.Add(staff);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return results;
+        }
+
         public List<Staff> GetStaffs()
         {
             List<Staff> results = null;

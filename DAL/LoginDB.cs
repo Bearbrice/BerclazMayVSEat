@@ -50,6 +50,39 @@ namespace DAL
             return login;
         }
 
+        public int GetCustomerId(string username)
+        {
+            int id = 0;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT fk_customerId FROM Login WHERE username = @username";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            
+
+                            id=(int)dr["fk_customerId"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return id;
+
+        }
+
         //Method to control (by his username) if the login is a customer or a staff
         public bool IsItACustomer(string username)
         {

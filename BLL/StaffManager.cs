@@ -15,6 +15,11 @@ namespace BLL
             StaffDbObject = staffDB;
         }
 
+        public List<Staff> GetStaffsByCity(int idCity)
+        {
+            return StaffDbObject.GetStaffsByCity(idCity);
+        }
+
         public List<Staff> GetStaffs()
         {
             return StaffDbObject.GetStaffs();

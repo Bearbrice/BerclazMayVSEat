@@ -11,6 +11,8 @@ namespace BLL
     {
         Login AddLogin(Login login, int idCustomer);
 
+        int GetCustomerId(string username);
+
         bool IsItACustomer(string username);
 
         bool IsLoginValid(Login login);

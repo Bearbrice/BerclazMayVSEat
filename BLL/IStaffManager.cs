@@ -10,6 +10,8 @@ namespace BLL
     {
         //IStaffManager StaffDB { get; }
 
+        List<Staff> GetStaffsByCity(int idCity);
+
         List<Staff> GetStaffs();
 
         Staff GetStaff(int id);
