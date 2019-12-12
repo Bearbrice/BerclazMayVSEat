@@ -29,7 +29,7 @@ namespace WebApplication.Controllers
             DishManager = dishmanager;
             LoginManager = loginManager;
             RestaurantManager = restaurantManager;
-            StaffManager = staffManager;
+            StaffManager = staffM;
 
         }
 
@@ -128,6 +128,13 @@ namespace WebApplication.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
+            //if (DishController.currentDishes.Count==0)
+            //{
+            //    ViewBag.ErrorBasketEmpty = "Insert dishes in the shopping cart";
+            //    return RedirectToAction("GetCurrentDishes", "Dish");
+            //}
+
+
             var name = HttpContext.Session.GetString("user");
             ViewBag.username = name;
 
@@ -153,7 +160,7 @@ namespace WebApplication.Controllers
                 }
 
                 //Condition : only minutes 00, 15, 30, 45
-                if (!(order.scheduled_at.Minute % 15 == 0))
+                if (!(order.scheduled_at.Minute % 15 == 0 || order.scheduled_at.Minute == 00))
                 {
                     error = true;
                 }
@@ -170,29 +177,40 @@ namespace WebApplication.Controllers
 
                 //assign customer to the order
                 var name = HttpContext.Session.GetString("user");
+
                 int id = LoginManager.GetCustomerId(name);
 
                 order.fk_idCustomer = id;
-
-
-                //assign staff to the order
-                var z = DishManager.GetDish(order.idOrder).fk_idRestaurant;
-                var y = RestaurantManager.GetRestaurant(z);
-                List <DTO.Staff> staffs = new List<DTO.Staff>();
-                staffs = StaffManager.GetStaffsByCity(y.fk_idCity);
-
-                foreach(var staff in staffs){
-                    if(staff.fk_idCity==z){
-                    order.fk_idStaff = staff.idStaff;
-                        break;
-                    }
-                }
 
                 //assign status
                 order.status = "ongoing";
 
                 //add order to DB
                 order=OrderManager.AddOrder(order);
+                //validate until here
+
+                //assign staff to the order
+
+                var dish = DishController.currentDishes.ElementAt(0);
+
+                var restauId = dish.fk_idRestaurant;
+
+                var y = RestaurantManager.GetRestaurant(restauId);
+
+                List<DTO.Staff> staffs = new List<DTO.Staff>();
+
+                staffs = StaffManager.GetStaffsByCity(y.fk_idCity);
+
+                foreach (var staff in staffs)
+                {
+                    if (staff.fk_idCity == y.fk_idCity)
+                    {
+                        order.fk_idStaff = staff.idStaff;
+                        break;
+                    }
+                }
+
+                OrderManager.UpdateOrder(order);
 
                 //retourne tous les ordres du client
                 //return RedirectToAction(nameof(GetOrders));
@@ -201,7 +219,7 @@ namespace WebApplication.Controllers
             }
             catch
             {
-                ViewBag.ErrorMessage = "Error, the dateformat is not respected or out of range";
+                ViewBag.ErrorMessage = "Something went wrong, is the format HH:MM correct ? Try again";
                 return View();
             }
         }
