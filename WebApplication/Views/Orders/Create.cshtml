@@ -12,8 +12,6 @@
 <h3> The order will be delivered the @DateTime.Today.ToString("dd.MM.yyyy")  </h3>
 <h3>Choose the time you want the delivery </h3>
 
-
-
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -29,10 +27,11 @@
             @*@Html.Label("Choisissez un horaire pour une commande le :" + @DateTime.Now.Date);*@
             <hr />
             <div class="col-md-10">
+
                 @Html.EditorFor(model => model.scheduled_at, new { htmlAttributes = new { @class = "form-control", @Type = "time" } })
                 @Html.ValidationMessageFor(model => model.scheduled_at, "", new { @class = "text-danger" })
 
-
+                <p style="color:red;">@ViewBag.ErrorMessage</p>
                 @*@Html.EditorFor(m => m.scheduled_at, new { @class = @"timepicker" })*@
 
             </div>
@@ -44,6 +43,8 @@
         </form>
     </div>
 </div>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
