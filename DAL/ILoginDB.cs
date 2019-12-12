@@ -10,6 +10,7 @@ namespace DAL
     {
         Login AddLogin(Login login, int idCustomer);
 
+        int GetStaffId(string username);
         int GetCustomerId(string username);
 
         bool IsItACustomer(string username);

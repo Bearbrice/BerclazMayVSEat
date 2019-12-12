@@ -24,22 +24,41 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCustomerByLogin(string username)
+        public IActionResult GetAccountDetailByLogin(string username)
         {
             var name = HttpContext.Session.GetString("user");
-
-            //PAS FORCEMENT UN CUSTOMER !!!!
-
-            CustomerDetailsRelativeToLogin cdrtlDetails = new CustomerDetailsRelativeToLogin();
-
-            //faire une requête SQL qui get le login par rapport au username
-            //var customerDetails = CustomerManager.GetCustomer(LoginManager.GetLogin(username).fk_customerId);
-
-            //cdrtlDetails.fullName = customerDetails.full_name;
-
             ViewBag.username = name;
 
-            return View();
+            AccountDetails accountDetails = new AccountDetails();
+
+            //Test if the connected user is a customer or a staff to display the details of the account
+            bool isCustomer = LoginManager.IsItACustomer(username);
+            HttpContext.Session.SetString("isCustomer", isCustomer.ToString());
+            var isCusto = HttpContext.Session.GetString("isCustomer");
+            ViewBag.isCusto = isCusto;
+
+            if (isCustomer)
+            {
+                var orderDetails = CustomerManager.GetCustomer(LoginManager.GetCustomerId(username));
+
+                accountDetails.fullName = orderDetails.full_name;
+                accountDetails.username = username;
+                accountDetails.createdOrHired = orderDetails.created_at;
+                accountDetails.phone = orderDetails.telephone;
+
+                return View(accountDetails);
+            }
+            else
+            {
+                var orderDetails = StaffManager.GetStaff(LoginManager.GetStaffId(username));
+
+                accountDetails.fullName = orderDetails.full_name;
+                accountDetails.username = username;
+                accountDetails.createdOrHired = orderDetails.hired_on;
+                accountDetails.phone = orderDetails.telephone;
+
+                return View(accountDetails);
+            }
         }
 
         [HttpGet]

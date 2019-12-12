@@ -36,6 +36,8 @@ namespace DAL
 
                     cn.Open();
 
+                    //LOGIN EST LA SEULE TABLE QUI N'A PAS SON IDLOGIN EN CLE ETRANGERE AILLEURS. LIEN ?
+
                     //login.idLogin = count;
                     cmd.ExecuteNonQuery();
                 }
@@ -46,6 +48,36 @@ namespace DAL
             }
 
             return login;
+        }
+
+        public int GetStaffId(string username)
+        {
+            int id = 0;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT fk_staffId FROM Login WHERE username = @username";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            id = (int)dr["fk_staffId"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return id;
         }
 
         public int GetCustomerId(string username)
@@ -65,8 +97,6 @@ namespace DAL
                     {
                         if (dr.Read())
                         {
-                            
-
                             id=(int)dr["fk_customerId"];
                         }
                     }
@@ -78,7 +108,6 @@ namespace DAL
             }
 
             return id;
-
         }
 
         //Method to control (by his username) if the login is a customer or a staff

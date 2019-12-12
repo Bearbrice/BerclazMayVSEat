@@ -15,6 +15,11 @@ namespace BLL
             LoginDBObject = loginDB;
         }
 
+        public int GetStaffId(string username)
+        {
+            return LoginDBObject.GetStaffId(username);
+        }
+
         public int GetCustomerId(string username)
         {
             return LoginDBObject.GetCustomerId(username);

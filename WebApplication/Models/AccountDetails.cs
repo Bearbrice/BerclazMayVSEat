@@ -11,7 +11,7 @@ namespace WebApplication.Models
 
         public string username { get; set; }
 
-        public string createdOrHired { get; set; }
+        public DateTime createdOrHired { get; set; }
 
         public string phone { get; set; }
     }

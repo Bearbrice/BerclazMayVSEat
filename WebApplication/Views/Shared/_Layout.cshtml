@@ -94,7 +94,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" @*onclick="@("window.location.href='" + @Url.Action("Edit", "Orders") + "'");"*@>My account</a></li>
+                            <li><a href="#" onclick="@("window.location.href='" + @Url.Action("GetAccountDetailByLogin", "Login", new { ViewBag.username }) + "'");">My account</a></li>
                             <li><a href="#" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");">Log out</a></li>
                         </ul>
                     </li>
