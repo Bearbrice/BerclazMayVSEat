@@ -26,6 +26,8 @@ namespace WebApplication.Controllers
         {
             var name = HttpContext.Session.GetString("user");
 
+            //PAS FORCEMENT UN CUSTOMER !!!!
+
             CustomerDetailsRelativeToLogin cdrtlDetails = new CustomerDetailsRelativeToLogin();
 
             //faire une requête SQL qui get le login par rapport au username
@@ -53,6 +55,19 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Index(Login l)
         {
+            //Test if the user entered something in the field username
+            if (l.username == null)
+            {
+                ViewBag.ErrorMessageUsername = "Enter a username";
+                return View();
+            }
+            //Test if the user entered something in the field password
+            if (l.password == null)
+            {
+                ViewBag.ErrorMessagePassword = "Enter a password";
+                return View();
+            }
+
             bool isCustomer = LoginManager.IsItACustomer(l.username);
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)

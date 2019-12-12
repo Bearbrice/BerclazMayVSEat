@@ -14,6 +14,8 @@
                 <form asp-action="Index">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
+                        <p style="color:red;">@ViewBag.ErrorMessageUsername</p>
+                        <p style="color:red;">@ViewBag.ErrorMessagePassword</p>
                         <label asp-for="username" class="control-label"></label>
                         <input asp-for="username" class="form-control" type="text" placeholder="your username" />
                         <span asp-validation-for="username" class="text-danger"></span>
