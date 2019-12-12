@@ -15,6 +15,12 @@ namespace BLL
             LoginDBObject = loginDB;
         }
 
+        public int GetCustomerId(string username)
+        {
+            return LoginDBObject.GetCustomerId(username);
+        }
+
+
         public Login AddLogin(Login login)
         {
             return LoginDBObject.AddLogin(login);
@@ -30,5 +36,6 @@ namespace BLL
             return LoginDBObject.IsLoginValid(login);
         }
 
+        
     }
 }
