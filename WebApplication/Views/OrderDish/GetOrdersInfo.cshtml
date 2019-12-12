@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "GetOrdersInfo";
 
-    var orderId = @Html.DisplayFor(model => model.ElementAt(1).idOrder);
+    var orderId = @Html.DisplayFor(model => model.ElementAt(0).idOrder);
     decimal totalPrice = new decimal(0.0);
 }
 
-<h2>Order details</h2>
+<h2>Detailed summary of the order</h2>
 <h3>Order #@orderId</h3>
 
 <p>
@@ -64,4 +64,5 @@
     </tbody>
 </table>
 
-<TotalPrice> Total price to pay to the deliverer : @totalPrice <devise> CHF</devise> </TotalPrice>
+<p><TotalPrice> Total price to pay to the deliverer : @totalPrice <devise> CHF</devise> </TotalPrice></p>
+<p><Thanks> Thank you for your order, your delivery person has been informed. </Thanks></p>

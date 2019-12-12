@@ -4,65 +4,66 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
+<h2>Confirmation</h2>
 <h4>Dish</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <text>Would you like to add this item to your shopping cart ? </text>
-            <blockquote>@Html.DisplayFor(model => model.name)</blockquote>
-            @*<input asp-for="idDish" class="form-control" />*@
-            
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-            <input asp-for="idDish" class="form-control" />
-            <span asp-validation-for="idDish" class="text-danger"></span>
+    <div class="form-horizontal">
+        <text>Would you like to add this item to your shopping cart ? </text>
+        <blockquote>@Html.DisplayFor(model => model.name)</blockquote>
 
-            <input asp-for="name" class="form-control" />
-            <span asp-validation-for="name" class="control-label"></span>
-
-            <input asp-for="price" class="form-control" />
-            <span asp-validation-for="price" class="text-danger"></span>
-
-            <input asp-for="fk_idRestaurant" class="form-control" />
-            <span asp-validation-for="fk_idRestaurant" class="text-danger"></span>
-
-
-
-            @*<div class="form-group">
-            <label asp-for="idDish" class="control-label"></label>
-            <input asp-for="idDish" class="form-control" />
-            <span asp-validation-for="idDish" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="name" class="control-label"></label>
-            <label asp-for="name" class="form-control"></label>
-            <input asp-for="name" class="form-control" />
-            <span asp-validation-for="name" class="control-label"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="price" class="control-label"></label>
-            <input asp-for="price" class="form-control" />
-            <span asp-validation-for="price" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="fk_idRestaurant" class="control-label"></label>
-            <input asp-for="fk_idRestaurant" class="form-control" />
-            <span asp-validation-for="fk_idRestaurant" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.fk_idRestaurant)
+        @Html.HiddenFor(model => model.idDish)
+        @Html.HiddenFor(model => model.name)
+        @Html.HiddenFor(model => model.price)
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="form-group">
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+@*@Html.ActionLink("Abort and get back", "GetDishes", "Dish", new { id = Model.fk_idRestaurant })*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

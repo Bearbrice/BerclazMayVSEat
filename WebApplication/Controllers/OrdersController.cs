@@ -96,6 +96,7 @@ namespace WebApplication.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -106,20 +107,43 @@ namespace WebApplication.Controllers
         {
             try
             {
+                Boolean error = false;
+
+                //Condition 1 : time cannot be lower as current time
+                //Condition 2 : give a delay of 30 minutes for current time
+                //Remark : The condition 2 include automatically condition 1 no need of two "if"
+                if(order.scheduled_at <= DateTime.Now.AddMinutes(30))
+                {
+                    error = true;
+                }
+
+                //Condition : only minutes 00, 15, 30, 45
+                if (!(order.scheduled_at.Minute % 15 == 0))
+                {
+                    error = true;
+                }
+
+                //string errormessage = "error";
+                if (error == true)
+                {
+                    ViewBag.ErrorMessage = "Error with time given, please correct it";
+                    return View();
+                }
+
                 //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
                 //OrderManager.AddOrder(x);
-                
+
                 order.status = "ongoing";
                 order=OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client
                 //return RedirectToAction(nameof(GetOrders));
-                
 
                 return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder });
             }
             catch
             {
+                ViewBag.ErrorMessage = "Error, the dateformat is not respected or out of range";
                 return View();
             }
         }
