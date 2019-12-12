@@ -18,22 +18,28 @@ namespace DAL
         }
 
         //Method to add a Login
-        public Login AddLogin(Login login)
+        public Login AddLogin(Login login, int idCustomer)
         {
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "INSERT INTO Login(username, password, fk_customerId, fk_staffId) values(@username, @password, @fk_customerId, @fk_staffId); SELECT SCOPE_IDENTITY()";
+                    string query = "INSERT INTO Login(idLogin, username, password, fk_customerId) values(@idLogin, @username, @password, @fk_customerId); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@idLogin", 6);
                     cmd.Parameters.AddWithValue("@username", login.username);
                     cmd.Parameters.AddWithValue("@password", login.password);
-                    cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
-                    cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
+                    cmd.Parameters.AddWithValue("@fk_customerId", idCustomer);
+                    //cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
+                    //cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
 
                     cn.Open();
 
-                    login.idLogin = Convert.ToInt32(cmd.ExecuteScalar());
+                    //login.idLogin = 6;
+
+                    //int temp = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    //login.idLogin = temp;
                 }
             }
             catch (Exception e)

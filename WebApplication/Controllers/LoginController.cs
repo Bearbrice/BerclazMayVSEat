@@ -47,9 +47,22 @@ namespace WebApplication.Controllers
         }
 
         // GET: Login/Create
-        public ActionResult Create()
+        public ActionResult Create(int idCustomer)
         {
+            HttpContext.Session.SetString("idCustomer", idCustomer.ToString());
+            ViewBag.idCustomer = idCustomer;
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DTO.Login l)
+        {
+            Int32.TryParse(HttpContext.Session.GetString("idCustomer"), out int idCustomer);
+
+            LoginManager.AddLogin(l, idCustomer);
+
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
@@ -58,13 +71,13 @@ namespace WebApplication.Controllers
             //Test if the user entered something in the field username
             if (l.username == null)
             {
-                ViewBag.ErrorMessageUsername = "Enter a username";
+                ViewBag.ErrorMessage = "*enter a username*";
                 return View();
             }
             //Test if the user entered something in the field password
             if (l.password == null)
             {
-                ViewBag.ErrorMessagePassword = "Enter a password";
+                ViewBag.ErrorMessage = "*enter a password*";
                 return View();
             }
 
@@ -72,12 +85,10 @@ namespace WebApplication.Controllers
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)
             {
-                //var id = HttpContext.Session.Id;
                 HttpContext.Session.SetString("user", l.username);
-                //HttpContext.Session.SetString("password", l.password);
 
                 //If this is a customer, the redirection is on GetAllCities (page for customer)
-                //If not, this is a staff, so the redirection is on his order
+                //If not, this is a staff, so the redirection is on the orders he must manage
                 if (isCustomer)
                 {
                     return RedirectToAction("GetAllCities", "City", new { username = l.username });
@@ -89,6 +100,7 @@ namespace WebApplication.Controllers
             }
             else
             {
+                ViewBag.ErrorMessage = "*invalid login*";
                 return View();
             }
         }

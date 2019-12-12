@@ -106,7 +106,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "Insert into Customer(full_name, created_at, telephone, fk_idCity) values(@full_name, @created_at, @telephone, @fk_idCity); SELECT SCOPE_IDENTITY()";
+                    string query = "INSERT INTO Customer(full_name, created_at, telephone, fk_idCity) values(@full_name, @created_at, @telephone, @fk_idCity); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@full_name", customer.full_name);
                     cmd.Parameters.AddWithValue("@created_at", customer.created_at);

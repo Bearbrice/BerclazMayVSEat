@@ -55,15 +55,11 @@
         <dt>
             @Html.DisplayNameFor(model => model.dishesName)
         </dt>
-        @*@foreach (var item in Model)
-        {*@
-            <dd>
-                @Html.DisplayFor(model => model.dishesName)
-            </dd>
-        @*  *@}
+        <dd>
+            @Html.DisplayFor(model => model.dishesName);
+        </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Back to Order list", "GetOrdersRelativeToStaff", new { @ViewBag.username })
 </div>
