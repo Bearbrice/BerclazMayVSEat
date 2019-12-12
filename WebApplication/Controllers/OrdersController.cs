@@ -189,8 +189,7 @@ namespace WebApplication.Controllers
                 order=OrderManager.AddOrder(order);
                 //validate until here
 
-                //assign staff to the order
-
+                /* ASSIGN STAFF TO AN ORDER */
                 var dish = DishController.currentDishes.ElementAt(0);
 
                 var restauId = dish.fk_idRestaurant;
@@ -201,12 +200,16 @@ namespace WebApplication.Controllers
 
                 staffs = StaffManager.GetStaffsByCity(y.fk_idCity);
 
+                //FIND A STAFF IN THE SAME CITY AS THE RESTAURANT
                 foreach (var staff in staffs)
                 {
                     if (staff.fk_idCity == y.fk_idCity)
                     {
-                        order.fk_idStaff = staff.idStaff;
-                        break;
+                        if (OrderManager.isStaffOverbooked(staff.idStaff, order.scheduled_at) == false)
+                        {
+                            order.fk_idStaff = staff.idStaff;
+                            break;
+                        }                        
                     }
                 }
 
