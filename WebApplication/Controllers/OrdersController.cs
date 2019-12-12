@@ -143,29 +143,30 @@ namespace WebApplication.Controllers
                 //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
                 //OrderManager.AddOrder(x);
 
-
+                //assign customer to the order
                 var name = HttpContext.Session.GetString("user");
                 int id = LoginManager.GetCustomerId(name);
 
                 order.fk_idCustomer = id;
 
+
+                //assign staff to the order
                 var z = DishManager.GetDish(order.idOrder).fk_idRestaurant;
                 var y = RestaurantManager.GetRestaurant(z);
-                List <Staff> staffs = new List<Staff>();
-                //staffs = StaffManager.GetStaffByCity(y.fk_idCity);
+                List <DTO.Staff> staffs = new List<DTO.Staff>();
+                staffs = StaffManager.GetStaffsByCity(y.fk_idCity);
 
                 foreach(var staff in staffs){
                     if(staff.fk_idCity==z){
                     order.fk_idStaff = staff.idStaff;
+                        break;
                     }
                 }
 
-
-
-
+                //assign status
                 order.status = "ongoing";
 
-
+                //add order to DB
                 order=OrderManager.AddOrder(order);
 
                 //retourne tous les ordres du client

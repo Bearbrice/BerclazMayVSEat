@@ -17,6 +17,50 @@ namespace DAL
             ConnectionString = config.GetConnectionString("DefaultConnection");
         }
 
+        //Check if Staff have more than 5 orders in the next 30 minutes
+        public Boolean isStaffOverbooked(int idStaff)
+        {
+            int count = 0;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT * FROM Orders WHERE fk_idCustomer=@idCustomer AND status=@ongoing";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@id", idStaff);
+                    cmd.Parameters.AddWithValue("@ongoing", "on going");
+
+                    cn.Open();
+
+                    
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            var scheduled = (DateTime)dr["scheduled_at"];
+
+                            if (scheduled < DateTime.Now.AddMinutes(30)){
+                                count++;
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            if (count >= 5)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public List<Orders> GetOrdersRelativeToStaff(string username)
         {
             List<Orders> results = null;
