@@ -24,9 +24,10 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    string query = "INSERT INTO Login(idLogin, username, password, fk_customerId) values(@idLogin, @username, @password, @fk_customerId); SELECT SCOPE_IDENTITY()";
+                    cn.Open();
+                    string query = "INSERT INTO Login(username, password, fk_customerId) values( @username, @password, @fk_customerId); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@idLogin", 6);
+                    //cmd.Parameters.AddWithValue("@idLogin", 6);
                     cmd.Parameters.AddWithValue("@username", login.username);
                     cmd.Parameters.AddWithValue("@password", login.password);
                     cmd.Parameters.AddWithValue("@fk_customerId", idCustomer);
@@ -35,11 +36,8 @@ namespace DAL
 
                     cn.Open();
 
-                    //login.idLogin = 6;
-
-                    //int temp = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    //login.idLogin = temp;
+                    //login.idLogin = count;
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception e)
