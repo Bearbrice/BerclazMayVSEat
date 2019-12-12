@@ -29,7 +29,7 @@ namespace WebApplication.Controllers
             DishManager = dishmanager;
             LoginManager = loginManager;
             RestaurantManager = restaurantManager;
-            StaffManager = staffM;
+            StaffManager = staffManager;
 
         }
 
