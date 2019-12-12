@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,17 @@ namespace WebApplication.Controllers
 {
     public class CustomerController : Controller
     {
+        private ICustomerManager CustomerManager { get; }
+
+        public CustomerController(ICustomerManager customerManager)
+        {
+            CustomerManager = customerManager;
+        }
+
         // GET: Customer
         public ActionResult Index()
         {
+
             return View();
         }
 

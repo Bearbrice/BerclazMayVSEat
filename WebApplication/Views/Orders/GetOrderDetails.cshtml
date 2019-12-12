@@ -53,11 +53,14 @@
             @Html.DisplayFor(model => model.cityName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.dishName)
+            @Html.DisplayNameFor(model => model.dishesName)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.dishName)
-        </dd>
+        @*@foreach (var item in Model)
+        {*@
+            <dd>
+                @Html.DisplayFor(model => model.dishesName)
+            </dd>
+        @*  *@}
     </dl>
 </div>
 <div>

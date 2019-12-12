@@ -22,6 +22,6 @@ namespace WebApplication.Models
 
         public String cityName { get; set; }
 
-        public string dishName { get; set; }
+        public List<string> dishesName { get; set; }
     }
 }

@@ -7,15 +7,35 @@ using Microsoft.AspNetCore.Mvc;
 using DTO;
 using BLL;
 using Microsoft.Extensions.Configuration;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class LoginController : Controller
     {
         private ILoginManager LoginManager { get; }
-        public LoginController(ILoginManager loginManager)
+        private ICustomerManager CustomerManager { get; }
+        public LoginController(ILoginManager loginManager, ICustomerManager customerManager)
         {
             LoginManager = loginManager;
+            CustomerManager = customerManager;
+        }
+
+        [HttpGet]
+        public IActionResult GetCustomerByLogin(string username)
+        {
+            var name = HttpContext.Session.GetString("user");
+
+            CustomerDetailsRelativeToLogin cdrtlDetails = new CustomerDetailsRelativeToLogin();
+
+            //faire une requête SQL qui get le login par rapport au username
+            //var customerDetails = CustomerManager.GetCustomer(LoginManager.GetLogin(username).fk_customerId);
+
+            //cdrtlDetails.fullName = customerDetails.full_name;
+
+            ViewBag.username = name;
+
+            return View();
         }
 
         [HttpGet]
