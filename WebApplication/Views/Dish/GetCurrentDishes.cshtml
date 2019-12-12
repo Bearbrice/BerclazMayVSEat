@@ -66,6 +66,8 @@
     </tbody>
 </table>
 
+@*<p style="color:red;">@ViewBag.ErrorBasketEmpty</p>*@
+
 <TotalPrice> Total price : @totalPrice <devise> CHF</devise> </TotalPrice></br>
 <input type="button" class="btn btn-info btn-sm active" value="Choose delivery time" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
 

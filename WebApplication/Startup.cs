@@ -57,6 +57,9 @@ namespace WebApplication
             services.AddScoped<ICustomerManager, CustomerManager>();
             services.AddScoped<ICustomerDB, CustomerDB>();
 
+            services.AddScoped<IStaffManager, StaffManager>();
+            services.AddScoped<IStaffDB, StaffDB>();
+
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
