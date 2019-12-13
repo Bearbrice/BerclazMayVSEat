@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    //Layout = null;
+    Layout = "~/Views/Shared/_LayoutCreateAnAccount.cshtml";
 }
 
 <h2>Create</h2>
@@ -23,30 +23,37 @@
                 <input asp-for="full_name" class="form-control" />
                 <span asp-validation-for="full_name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="created_at" class="control-label"></label>
                 <input asp-for="created_at" class="form-control" />
                 <span asp-validation-for="created_at" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="telephone" class="control-label"></label>
                 <input asp-for="telephone" class="form-control" />
                 <span asp-validation-for="telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="fk_idCity" class="control-label"></label>
+
+                <select class="form-control" id="StudentGender" name="City">
+                    <option>Select City</option>
+                    <option>Sierre</option>
+                    <option>Sion</option>
+                    <option>Martigny</option>
+                </select>
+
+                @*<label asp-for="fk_idCity" class="control-label"></label>
                 <input asp-for="fk_idCity" class="form-control" />
-                <span asp-validation-for="fk_idCity" class="text-danger"></span>
+                <span asp-validation-for="fk_idCity" class="text-danger"></span>*@
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Continue" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-action="Index">Back to List</a>
+    <input type="button" class="btn btn-info btn-sm active" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");" />
 </div>
 
 @section Scripts {

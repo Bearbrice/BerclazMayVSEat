@@ -109,7 +109,7 @@ namespace DAL
                     string query = "INSERT INTO Customer(full_name, created_at, telephone, fk_idCity) values(@full_name, @created_at, @telephone, @fk_idCity); SELECT SCOPE_IDENTITY()";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@full_name", customer.full_name);
-                    cmd.Parameters.AddWithValue("@created_at", customer.created_at);
+                    cmd.Parameters.AddWithValue("@created_at", DateTime.Now);
                     cmd.Parameters.AddWithValue("@telephone", customer.telephone);
                     cmd.Parameters.AddWithValue("@fk_idCity", customer.fk_idCity);
 
