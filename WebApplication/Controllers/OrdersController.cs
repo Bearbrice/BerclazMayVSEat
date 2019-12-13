@@ -100,7 +100,6 @@ namespace WebApplication.Controllers
         }
 
         // GET : GetOrderRelativeToStaff
-        [HttpGet]
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
             //var id = HttpContext.Session.Id;
@@ -120,9 +119,7 @@ namespace WebApplication.Controllers
                     scheduled = order.scheduled_at,
                     delivered = order.delivered_at,
                     customerName = CustomerManager.GetCustomer(order.fk_idCustomer).full_name
-
                 });
-                
             }
 
             ViewBag.username = username;
