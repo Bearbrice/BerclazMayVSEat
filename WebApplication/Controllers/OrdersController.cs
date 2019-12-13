@@ -214,9 +214,9 @@ namespace WebApplication.Controllers
 
                 OrderManager.UpdateOrder(order);
 
-                
+                string x = "adding";
 
-                return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder }, "adding");
+                return RedirectToAction("GetOrdersInfo", "Orderdish", new {idOrder=order.idOrder, type=x });
             }
             catch
             {

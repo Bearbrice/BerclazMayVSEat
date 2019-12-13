@@ -33,6 +33,9 @@ namespace WebApplication.Controllers
                 OrderDishManager.AddOrderDish(od);
             }
 
+            //Clear all elements in the shopping cart
+            DishController.currentDishes.Clear();
+
             //return RedirectToAction("GetOrdersInfo", "OrderDishController", new { @id = idOrder });
         }
 
