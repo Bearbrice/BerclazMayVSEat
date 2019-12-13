@@ -63,4 +63,4 @@
 
 <p><TotalPrice> Total price : @totalPrice <devise> CHF</devise> </TotalPrice></p>
 
-@Html.ActionLink("Go to MyOrders", "GetOrdersRelativeToCustomer", "Orders", new { orderId })
+@Html.ActionLink("Go to MyOrders", "GetOrdersRelativeToCustomer", "Orders", new { @ViewBag.username })

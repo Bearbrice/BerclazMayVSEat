@@ -12,7 +12,7 @@ namespace WebApplication.Controllers
 {
     public class DishController : Controller
     {
-        private IDishManager DishManager { get; }
+        private IDishManager DishManager { get; } 
         private IOrdersManager OrdersManager { get; }
 
         public DishController(IDishManager dishManager, IOrdersManager orderManager)
