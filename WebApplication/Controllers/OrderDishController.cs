@@ -37,10 +37,13 @@ namespace WebApplication.Controllers
         }
 
         //LIST
-        public ActionResult GetOrdersInfo(int idOrder)
+        public ActionResult GetOrdersInfo(int idOrder, string type)
         {
-            //Add data into the SQL OrderDish table
-            AddOrderDish(idOrder);
+            if (type == "adding")
+            {
+                //Add data into the SQL OrderDish table
+                AddOrderDish(idOrder);
+            }
 
             //List<DTO.OrderDish> orderDishes;
             //orderDishes = OrderDishManager.GetOrderDishes();

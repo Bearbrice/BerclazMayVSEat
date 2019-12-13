@@ -219,7 +219,7 @@ namespace WebApplication.Controllers
 
                 
 
-                return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder });
+                return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder }, "adding");
             }
             catch
             {
