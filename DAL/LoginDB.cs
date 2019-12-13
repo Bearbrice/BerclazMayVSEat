@@ -24,21 +24,27 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
+                    int id = 0;
+                    string queryT = "SELECT COUNT(*) AS 'ID' FROM Login";
+                    SqlCommand cmdT = new SqlCommand(queryT, cn);
+
                     cn.Open();
-                    string query = "INSERT INTO Login(username, password, fk_customerId) values( @username, @password, @fk_customerId); SELECT SCOPE_IDENTITY()";
+
+                    using (SqlDataReader dr = cmdT.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            id = (int)dr["ID"];
+                        }
+                    }
+
+                    string query = "INSERT INTO Login(idLogin, username, password, fk_customerId) values(@idLogin, @username, @password, @fk_customerId)";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    //cmd.Parameters.AddWithValue("@idLogin", 6);
+                    cmd.Parameters.AddWithValue("@idLogin", id+1);
                     cmd.Parameters.AddWithValue("@username", login.username);
                     cmd.Parameters.AddWithValue("@password", login.password);
                     cmd.Parameters.AddWithValue("@fk_customerId", idCustomer);
-                    //cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
-                    //cmd.Parameters.AddWithValue("@fk_staffId", login.fk_staffId);
-
-                    cn.Open();
-
-                    //LOGIN EST LA SEULE TABLE QUI N'A PAS SON IDLOGIN EN CLE ETRANGERE AILLEURS. LIEN ?
-
-                    //login.idLogin = count;
+                    
                     cmd.ExecuteNonQuery();
                 }
             }

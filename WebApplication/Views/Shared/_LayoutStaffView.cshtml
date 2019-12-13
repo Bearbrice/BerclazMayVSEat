@@ -2,10 +2,10 @@
 
 @*Blocked the user to go back to the previous connected user session*@
 @*<script>
-    function preventBack() { window.history.forward(); }
-    setTimeout("preventBack()", 0);
-    window.onunload = function () { null };
-</script>*@
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>*@
 
 @*Used in Orders/Create*@
 <script type="text/javascript">
@@ -82,7 +82,6 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Dish" asp-action="GetCurrentDishes">Shopping cart</a></li>
                 </ul>
 
                 @*Login display on the top right with a dropdown bar*@
@@ -94,7 +93,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#" onclick="@("window.location.href='" + @Url.Action("GetAccountDetailByLogin", "Login", new { ViewBag.username }) + "'");">My account</a></li>
-                            <li><a href="#" onclick="@("window.location.href='" + @Url.Action("GetAccountDetailByLogin", "Login", new { ViewBag.username }) + "'");">My orders</a></li>
+                            <li><a href="#" onclick="@("window.location.href='" + @Url.Action("GetOrdersRelativeToStaff", "Orders", new { ViewBag.username }) + "'");">My deliveries</a></li>
                             <li><a href="#" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");">Log out</a></li>
                         </ul>
                     </li>

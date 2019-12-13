@@ -151,6 +151,7 @@ namespace WebApplication.Controllers
         // GET: Dish/GetDishes/5
         public ActionResult GetCurrentDishes()
         {
+            ViewBag.username = HttpContext.Session.GetString("user");
             //RestaurantManager rMan = new RestaurantManager(Configuration);
             var dishList = GetAllDishes();
 

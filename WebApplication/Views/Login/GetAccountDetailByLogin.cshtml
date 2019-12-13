@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "GetAccountDetailByLogin";
+    if (!(Convert.ToBoolean(ViewBag.isCusto)))
+    {
+        Layout = "~/Views/Shared/_LayoutStaffView.cshtml";
+    }
 }
 
 <h2>Account details for user <i>@ViewBag.username</i></h2>
