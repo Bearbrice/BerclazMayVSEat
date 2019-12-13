@@ -7,9 +7,9 @@ namespace BLL
 {
     public interface IOrdersManager
     {
-        //IOrderDB OrderDB { get; }
-
         List<Orders> GetOrdersRelativeToStaff(string username);
+
+        List<Orders> GetOrdersRelativeToCustomer(string username);
 
         List<Orders> GetOrders();
 

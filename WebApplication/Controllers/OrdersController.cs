@@ -30,7 +30,34 @@ namespace WebApplication.Controllers
             LoginManager = loginManager;
             RestaurantManager = restaurantManager;
             StaffManager = staffManager;
+        }
 
+        // GET : GetMyOrders/id
+        // Get all orders by customer
+        public ActionResult GetOrdersRelativeToCustomer([FromQuery(Name = "username")] string username)
+        {
+            var name = HttpContext.Session.GetString("user");
+
+            List<OrderRelativeToCus> ortcList = new List<OrderRelativeToCus>();
+
+            var orderList = OrderManager.GetOrdersRelativeToCustomer(username);
+
+            foreach (var order in orderList)
+            {
+                ortcList.Add(new OrderRelativeToCus
+                {
+                    idOrder = order.idOrder,
+                    status = order.status,
+                    scheduled = order.scheduled_at,
+                    delivered = order.delivered_at,
+                    staffName = StaffManager.GetStaff(order.fk_idStaff).full_name
+                });
+
+            }
+
+            ViewBag.username = username;
+
+            return View(ortcList);
         }
 
         [HttpGet]
@@ -50,8 +77,6 @@ namespace WebApplication.Controllers
             odfsOrder.customerName = CustomerManager.GetCustomer(orderDetails.fk_idCustomer).full_name;
             odfsOrder.telepone = CustomerManager.GetCustomer(orderDetails.fk_idCustomer).telephone;
             odfsOrder.cityName = CityManager.GetCity(CustomerManager.GetCustomer(orderDetails.fk_idCustomer).fk_idCity).name;
-            //Requête SQL ?
-            //odfsOrder.dishesName.Add(DishManager.GetDish(OrderDishManager.GetOrderDish(orderDetails.idOrder).fk_idDish).name);
 
             var orderDishList = OrderDishManager.GetOrderDishes(orderDetails.idOrder);
 
@@ -62,20 +87,6 @@ namespace WebApplication.Controllers
                 var x = DishManager.GetDish(od.fk_idDish);
                 odfsOrder.dishesName.Add(x.name + " ");
             }
-
-            //int cpt = 0;
-
-            //for (int i = 0; i < odfsOrder.dishesName.Count; i++)
-            //{
-            //    for (int j = 0; j < odfsOrder.dishesName.Count; j++)
-            //    {
-            //        if (odfsOrder.dishesName.ElementAt(i) == odfsOrder.dishesName.ElementAt(j))
-            //        {
-            //            cpt++;
-            //            odfsOrder.dishesName.Insert(i, odfsOrder.dishesName.ElementAt(i) + cpt);
-            //        }
-            //    }
-            //}
 
             ViewBag.username = name;
 
@@ -128,13 +139,6 @@ namespace WebApplication.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            //if (DishController.currentDishes.Count==0)
-            //{
-            //    ViewBag.ErrorBasketEmpty = "Insert dishes in the shopping cart";
-            //    return RedirectToAction("GetCurrentDishes", "Dish");
-            //}
-
-
             var name = HttpContext.Session.GetString("user");
             ViewBag.username = name;
 
@@ -146,7 +150,6 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DTO.Orders order)
         {
-
             try
             {
                 Boolean error = false;
@@ -172,8 +175,7 @@ namespace WebApplication.Controllers
                     return View();
                 }
 
-                //var x = new DTO.Orders{ status = "ongoing", scheduled_at = DateTime.Now };
-                //OrderManager.AddOrder(x);
+                
 
                 //assign customer to the order
                 var name = HttpContext.Session.GetString("user");
@@ -215,8 +217,7 @@ namespace WebApplication.Controllers
 
                 OrderManager.UpdateOrder(order);
 
-                //retourne tous les ordres du client
-                //return RedirectToAction(nameof(GetOrders));
+                
 
                 return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder });
             }
