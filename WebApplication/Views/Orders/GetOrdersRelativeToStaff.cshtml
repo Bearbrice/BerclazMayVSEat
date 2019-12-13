@@ -5,25 +5,30 @@
     Layout = "~/Views/Shared/_LayoutStaffView.cshtml";
 }
 
-<h2>GetOrdersRelativeToStaff</h2>
+<h2>My deliveries</h2>
 
 <table class="table">
     <thead>
-        <tr>
+        <tr style="background-color:darkcyan; color:white">
             <th>
-                @Html.DisplayNameFor(model => model.idOrder)
+                N°
+                @*@Html.DisplayNameFor(model => model.idOrder)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.status)
+                Status
+                @*@Html.DisplayNameFor(model => model.status)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.scheduled)
+                Scheduled
+                @*@Html.DisplayNameFor(model => model.scheduled)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.delivered)
+                Delivered
+                @*@Html.DisplayNameFor(model => model.delivered)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.customerName)
+                Customer
+                @*@Html.DisplayNameFor(model => model.customerName)*@
             </th>
             <th></th>
         </tr>
@@ -91,7 +96,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.customerName)
             </td>
-            <td>
+            <td align="center">
                 @if (item.status.Equals("delivered"))
                 {
                     <input type="submit" class="btn btn-info btn-sm disabled" value="Delivered">
