@@ -8,7 +8,7 @@
 
 @{
     decimal totalPrice = new decimal(0.0);
-    
+    Boolean isEmpty = true;
 }
 
 <p>
@@ -40,6 +40,10 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.idDish)
+                    @if (!(item.idDish == null))
+                    {
+                        isEmpty = false;
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
@@ -57,11 +61,8 @@
                     @*@index*@
 
                     @*@Html.ActionLink("Show delicious dishes", "GetDishes", "Dish", new { id = item.idRestaurant })*@
-
-
                 </td>
             </tr>
-            
         }
     </tbody>
 </table>
@@ -69,7 +70,15 @@
 @*<p style="color:red;">@ViewBag.ErrorBasketEmpty</p>*@
 
 <TotalPrice> Total price : @totalPrice <devise> CHF</devise> </TotalPrice></br>
-<input type="button" class="btn btn-info btn-sm active" value="Choose delivery time" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
+
+@if (isEmpty)
+{
+    <input type="button" class="btn btn-info btn-sm disabled" value="Choose delivery time" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
+}
+else
+{
+    <input type="button" class="btn btn-info btn-sm active" value="Choose delivery time" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
+}
 
 
 
