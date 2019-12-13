@@ -39,6 +39,9 @@ namespace WebApplication.Controllers
         //LIST
         public ActionResult GetOrdersInfo(int idOrder, string type)
         {
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
+
             if (type == "adding")
             {
                 //Add data into the SQL OrderDish table

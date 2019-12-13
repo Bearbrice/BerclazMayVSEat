@@ -61,5 +61,6 @@
     </tbody>
 </table>
 
-<p><TotalPrice> Total price to pay to the deliverer : @totalPrice <devise> CHF</devise> </TotalPrice></p>
-<p><Thanks> Thank you for your order, your delivery person has been informed. </Thanks></p>
+<p><TotalPrice> Total price : @totalPrice <devise> CHF</devise> </TotalPrice></p>
+
+@Html.ActionLink("Go to MyOrders", "GetOrdersRelativeToCustomer", "Orders", new { orderId })
