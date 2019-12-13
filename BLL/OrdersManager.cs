@@ -13,8 +13,6 @@ namespace BLL
         public OrdersManager(IOrdersDB orderDB)
         {
             OrderDbObject = orderDB;
-        
-        
         }
 
         public Boolean isStaffOverbooked(int idStaff, DateTime hour)
@@ -30,6 +28,11 @@ namespace BLL
         public List<Orders> GetOrders()
         {
             return OrderDbObject.GetOrders();
+        }
+
+        public List<Orders> GetOrdersRelativeToCustomer(string username)
+        {
+            return OrderDbObject.GetOrdersRelativeToCustomer(username);
         }
 
         public List<Orders> GetOrdersRelativeToStaff(string username)

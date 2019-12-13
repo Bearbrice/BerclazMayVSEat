@@ -126,6 +126,70 @@ namespace DAL
             return results;
         }
 
+        public List<Orders> GetOrdersRelativeToCustomer(string username)
+        {
+            List<Orders> results = null;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    //string query2 = "SELECT idOrder, status, scheduled_at, delivered_at, fk_idCustomer FROM Orders O, Staff S, Login L " +
+                    //                "WHERE O.fk_idStaff = S.idStaff " +
+                    //                "AND L.fk_staffId = S.idStaff " +
+                    //                "AND @username = L.username " +
+                    //                "ORDER BY status DESC, scheduled_at, delivered_at";
+
+
+                    string query = "SELECT idOrder, status, scheduled_at, delivered_at, fk_idStaff FROM Orders O, Customer C, Login L " +
+                                    "WHERE O.fk_idCustomer = C.idCustomer " +
+                                    "AND L.fk_customerId = C.idCustomer " +
+                                    "AND @username = L.username " +
+                                    "ORDER BY status DESC, scheduled_at, delivered_at";
+
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            if (results == null)
+                                results = new List<Orders>();
+
+                            Orders order = new Orders();
+
+                            order.idOrder = (int)dr["idOrder"];
+                            order.status = (string)dr["status"];
+                            order.scheduled_at = (DateTime)dr["scheduled_at"];
+                            if (dr["delivered_at"] != System.DBNull.Value)
+                            {
+                                order.delivered_at = (DateTime)dr["delivered_at"];
+                            }
+                                
+
+                            //problem here
+                            if (dr["fk_idStaff"] != System.DBNull.Value)
+                            {
+                                order.fk_idStaff = (int)dr["fk_idStaff"];
+                            }
+                                
+
+                            results.Add(order);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return results;
+        }
+
         public List<Orders> GetOrders()
         {
             List<Orders> results = null;
