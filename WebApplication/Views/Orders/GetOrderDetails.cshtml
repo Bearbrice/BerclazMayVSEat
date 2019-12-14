@@ -32,7 +32,14 @@
             @Html.DisplayNameFor(model => model.delivered)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.delivered)
+            @if (Model.delivered.Equals(DateTime.MinValue))
+            {
+                <text>not delivered yet</text>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.delivered)
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.customerName)
