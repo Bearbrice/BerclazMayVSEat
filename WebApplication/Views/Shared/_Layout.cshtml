@@ -78,16 +78,9 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">VSEat</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
-                    <li><a asp-area="" asp-controller="Dish" asp-action="GetCurrentDishes">Shopping cart</a>
-
-                    <img src="~/images/HESLOGO.png"></img>
-
-                    </li>
-                </ul>
+                @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
 
                 @*Login display on the top right with a dropdown bar*@
                 <ul class="nav navbar-nav navbar-right">
@@ -101,6 +94,22 @@
                             <li><a href="#" onclick="@("window.location.href='" + @Url.Action("GetOrdersRelativeToCustomer", "Orders", new { ViewBag.username }) + "'");">My orders</a></li>
                             <li><a href="#" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");">Log out</a></li>
                         </ul>
+                    </li>
+                </ul>
+                @*Shopping cart icon*@
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a asp-area="" asp-controller="Dish" asp-action="GetCurrentDishes">
+                            <img src="~/images/cart.png" style="width:20px; height:20px;" />
+                        </a>
+                    </li>
+                </ul>
+                @*Search icon*@
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a asp-area="" asp-controller="City" asp-action="GetAllCities">
+                            <img src="~/images/search.jpg" style="width:20px; height:20px;" />
+                        </a>
                     </li>
                 </ul>
             </div>
