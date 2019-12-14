@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_LayoutStaffView.cshtml";
 }
 
-<h2 style="font-family:'Courier New'">My deliveries</h2>
+<h2>My deliveries</h2>
 
-<table class="table" style="font-family:'Courier New'">
+<table class="table">
     <thead>
         <tr style="background-color:darkcyan; color:white">
             <th>
@@ -46,59 +46,71 @@
                 @Html.DisplayFor(modelItem => item.scheduled)
             </td>
             <td>
-               
-                @if (item.status.Equals("ongoing"))
+                @switch (item.status)
                 {
-                    DateTime scheduled_at = (DateTime)item.scheduled;
-                    DateTime now = DateTime.Now;
-
-                    TimeSpan diff = scheduled_at.Subtract(now);
-
-                    string t = diff.ToString(@"hh");
-                    int te = Int32.Parse(t);
-
-                    if (now < scheduled_at)
-                    {
-                        if (te >= 2)
-                        {
-                            <span style="color:green;">
-                                @diff.ToString(@"hh") h @diff.ToString(@"mm") left
-                            </span>
-                        }
-
-                        if (te < 1)
-                        {
-                            <span style="color:red;">
-                                @diff.ToString(@"hh") h @diff.ToString(@"mm") left
-                            </span>
-                        }
-
-                        if (te < 2 && te >= 1)
-                        {
-                            <span style="color:orange;">
-                                @diff.ToString(@"hh") h @diff.ToString(@"mm") left
-                            </span>
-                        }
-                    }
-                    else
-                    {
-                        <span style="color:red;">
+                    case "cancelled":
+                        <span style="color:firebrick;">
                             <b>
-                                LATE
+                                CANCELLED
                             </b>
                         </span>
-                    }
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.delivered)
+
+                        break;
+
+                    case "ongoing":
+                        DateTime scheduled_at = (DateTime)item.scheduled;
+                        DateTime now = DateTime.Now;
+
+                        TimeSpan diff = scheduled_at.Subtract(now);
+
+                        string t = diff.ToString(@"hh");
+                        int te = Int32.Parse(t);
+
+                        if (now < scheduled_at)
+                        {
+                            if (te >= 2)
+                            {
+                                <span style="color:green;">
+                                    @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                                </span>
+                            }
+
+                            if (te < 1)
+                            {
+                                <span style="color:red;">
+                                    @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                                </span>
+                            }
+
+                            if (te < 2 && te >= 1)
+                            {
+                                <span style="color:orange;">
+                                    @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                                </span>
+                            }
+                        }
+                        else
+                        {
+                            <span style="color:red;">
+                                <b>
+                                    LATE
+                                </b>
+                            </span>
+                        }
+
+
+                        break;
+
+                    default:
+                        @Html.DisplayFor(modelItem => item.delivered);
+                        break;
                 }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.customerName)
             </td>
             <td align="center">
-                @if (item.status.Equals("delivered"))
+                @if (item.status.Equals("delivered") || item.status.Equals("cancelled"))
                 {
                     <input type="submit" class="btn btn-info btn-sm disabled" value="Delivered">
                 }

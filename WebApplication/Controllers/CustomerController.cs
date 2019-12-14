@@ -52,6 +52,8 @@ namespace WebApplication.Controllers
             }
             else
             {
+                CustomerManager.AddCustomer(c);
+                HttpContext.Session.SetString("idCustomer", c.idCustomer.ToString());
                 return RedirectToAction("Create", "Login", new { c.idCustomer});
             }
         }
