@@ -238,16 +238,37 @@ namespace WebApplication.Controllers
             return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username });
         }
 
+
+        //GET: Orders/CancelOrder
+        public ActionResult CancelOrder(int id, string username)
+        { 
+            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = name;
+
+            var order = OrderManager.GetOrder(id);
+            order.status = "cancelled";
+            OrderManager.UpdateOrder(order);
+
+            return RedirectToAction("GetOrdersRelativeToCustomer", "Orders", new { username });
+        }
+
         //// POST: Orders/Edit/5
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
+        //public ActionResult CancelOrder(int id, string username)
         //{
         //    try
         //    {
+        //        username = HttpContext.Session.GetString("user");
+        //        ViewBag.username = username;
+
+        //        var x = OrderManager.GetOrder(id);
+        //        x.status = "cancelled";
+        //        OrderManager.UpdateOrder(x);
+
         //        // TODO: Add update logic here
 
-        //        return RedirectToAction(nameof(Index));
+        //        return RedirectToAction("GetOrdersRelativeToCustomer", "Orders", new { username });
         //    }
         //    catch
         //    {
