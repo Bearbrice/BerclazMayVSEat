@@ -85,15 +85,19 @@ namespace WebApplication.Controllers
             l.fk_customerId = idCustomer;
 
             //Manage the exception if the new user enter nothing in username or in password !
-
             if (LoginManager.IsUsernameTaken(l.username))
             {
                 return RedirectToAction("Create", "Login", new { idCustomer, errorMessage = "Username '" + l.username + "' is already taken." });
             }
             else
             {
-                LoginManager.AddLogin(l);
-                return RedirectToAction("Index", "Login");
+                if (LoginManager.AddLogin(l) == null) {
+                    return RedirectToAction("Create", "Login", new { idCustomer, errorMessage = "Enter valid values" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
             }
         }
 
