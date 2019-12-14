@@ -9,7 +9,7 @@ namespace BLL
 {
     public interface ILoginManager
     {
-        Login AddLogin(Login login, int idCustomer);
+        Login AddLogin(Login login);
 
         int GetStaffId(string username);
 

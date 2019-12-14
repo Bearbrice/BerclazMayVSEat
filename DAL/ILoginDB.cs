@@ -8,7 +8,7 @@ namespace DAL
 {
     public interface ILoginDB
     {
-        Login AddLogin(Login login, int idCustomer);
+        Login AddLogin(Login login);
 
         int GetStaffId(string username);
         int GetCustomerId(string username);

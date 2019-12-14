@@ -18,7 +18,7 @@ namespace DAL
         }
 
         //Method to add a Login
-        public Login AddLogin(Login login, int idCustomer)
+        public Login AddLogin(Login login)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@idLogin", id+1);
                     cmd.Parameters.AddWithValue("@username", login.username);
                     cmd.Parameters.AddWithValue("@password", login.password);
-                    cmd.Parameters.AddWithValue("@fk_customerId", idCustomer);
+                    cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
                     
                     cmd.ExecuteNonQuery();
                 }

@@ -25,9 +25,9 @@ namespace BLL
             return LoginDBObject.GetCustomerId(username);
         }
 
-        public Login AddLogin(Login login, int idCustomer)
+        public Login AddLogin(Login login)
         {
-            return LoginDBObject.AddLogin(login, idCustomer);
+            return LoginDBObject.AddLogin(login);
         }
 
         public bool IsItACustomer(string username)

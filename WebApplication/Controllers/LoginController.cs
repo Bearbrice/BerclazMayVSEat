@@ -79,9 +79,11 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DTO.Login l)
         {
+            //Get the idCustomer just created to add the fk_idCustomer in the table Login
             Int32.TryParse(HttpContext.Session.GetString("idCustomer"), out int idCustomer);
+            l.fk_customerId = idCustomer;
 
-            LoginManager.AddLogin(l, idCustomer);
+            LoginManager.AddLogin(l);
 
             return RedirectToAction("Index", "Login");
         }
