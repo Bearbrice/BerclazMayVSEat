@@ -55,7 +55,6 @@ namespace DAL
         public List<Restaurant> GetRestaurants(int id)
         {
             List<Restaurant> results = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -97,7 +96,6 @@ namespace DAL
         public Restaurant GetRestaurant(int id)
         {
             Restaurant restaurant = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -134,7 +132,6 @@ namespace DAL
 
         public Restaurant AddRestaurant(Restaurant restaurant)
         {
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -162,7 +159,6 @@ namespace DAL
         public int UpdateRestaurant(Restaurant restaurant)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -191,7 +187,6 @@ namespace DAL
         public int DeleteRestaurant(int id)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {

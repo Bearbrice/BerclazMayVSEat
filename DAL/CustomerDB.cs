@@ -20,8 +20,6 @@ namespace DAL
         {
             List<Customer> results = null;
 
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
-
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
@@ -62,7 +60,6 @@ namespace DAL
         public Customer GetCustomer(int id)
         {
             Customer customer = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -100,7 +97,6 @@ namespace DAL
 
         public Customer AddCustomer(Customer customer)
         {
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -129,7 +125,6 @@ namespace DAL
         public int UpdateCustomer(Customer customer)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -158,7 +153,6 @@ namespace DAL
         public int DeleteCustomer(int id)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {

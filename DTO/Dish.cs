@@ -11,6 +11,7 @@ namespace DTO
         public int price { get; set; }
         public int fk_idRestaurant { get; set; }
 
+        //Optional
         public override string ToString()
         {
             return $"{idDish}|{name}|{price}|{fk_idRestaurant}";

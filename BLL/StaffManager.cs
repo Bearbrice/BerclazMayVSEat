@@ -8,8 +8,6 @@ namespace BLL
 {
     public class StaffManager : IStaffManager
     {
-
-
         private IStaffDB StaffDBObject { get; }
 
         public StaffManager(IStaffDB staffDB)

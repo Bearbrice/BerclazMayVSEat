@@ -12,6 +12,7 @@ namespace DTO
         public string telephone { get; set; }
         public int fk_idCity { get; set; }
 
+        //Optional
         public override string ToString()
         {
             return $"{idStaff}|{full_name}|{hired_on}|{telephone}|{fk_idCity}";

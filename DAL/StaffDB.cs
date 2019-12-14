@@ -20,7 +20,6 @@ namespace DAL
         public List<Staff> GetStaffsByCity(int idCity)
         {
             List<Staff> results = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -63,7 +62,6 @@ namespace DAL
         public List<Staff> GetStaffs()
         {
             List<Staff> results = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -105,7 +103,6 @@ namespace DAL
         public Staff GetStaff(int id)
         {
             Staff staff = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -143,7 +140,6 @@ namespace DAL
 
         public Staff AddStaff(Staff staff)
         {
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -172,7 +168,6 @@ namespace DAL
         public int UpdateStaff(Staff staff)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -202,7 +197,6 @@ namespace DAL
         public int DeleteStaff(int id)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {

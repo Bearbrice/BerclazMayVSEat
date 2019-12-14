@@ -8,8 +8,6 @@ namespace DAL
 {
     public interface IStaffDB
     {
-        //IConfiguration Configuration { get; }
-
         List<Staff> GetStaffsByCity(int idCity);
 
         List<Staff> GetStaffs();

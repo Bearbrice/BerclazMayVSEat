@@ -8,8 +8,6 @@ namespace BLL
 {
     public interface IStaffManager
     {
-        //IStaffManager StaffDB { get; }
-
         List<Staff> GetStaffsByCity(int idCity);
 
         List<Staff> GetStaffs();
