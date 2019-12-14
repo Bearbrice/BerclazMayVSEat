@@ -25,6 +25,7 @@
             @Html.DisplayFor(model => model.username)
         </dd>
         <dt>
+            @*Test if this a customer or a staff (the display is not the same)*@
             @if (Convert.ToBoolean(ViewBag.isCusto))
             {
                 <text>Created at</text>

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutCreateAnAccount.cshtml";
 }
 
-<h2>Enter your informations</h2>
+<h2>Create your account</h2>
 
 <hr />
 <div class="row">
@@ -15,19 +15,19 @@
             <div class="form-group">
                 @*<label asp-for="full_name" class="control-label"></label>*@
                 <label>Full name</label>
-                <input asp-for="full_name" class="form-control" />
+                <input asp-for="full_name" class="form-control" required/>
                 <span asp-validation-for="full_name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @*<label asp-for="telephone" class="control-label"></label>*@
                 <label>Phone number</label>
-                <input asp-for="telephone" class="form-control"/>
+                <input asp-for="telephone" class="form-control" required/>
                 <span asp-validation-for="telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @*<label asp-for="fk_idCity" class="control-label"></label>*@
                 <label>City code</label>
-                <input asp-for="fk_idCity" class="form-control" />
+                <input asp-for="fk_idCity" class="form-control" placeholder="3960" required/>
                 @*<span asp-validation-for="fk_idCity" class="text-danger"></span>*@
             </div>
             <b style="color:red; font-size:small;">
@@ -35,8 +35,8 @@
                 <p>@ViewBag.ErrorCityCode</p>
             </b>
             <div class="form-group">
-                <input type="button" class="btn btn-info btn-sm active" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");" />
-                <input type="submit" value="Continue" class="btn btn-default" />
+                <input type="submit" value="Continue" style="background-color: #4CAF50; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 100%; opacity: 0.9;"/>
+                <input type="button" value="Cancel" style="background-color:darkcyan; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 100%; opacity: 0.9;" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");" />
             </div>
         </form>
     </div>
