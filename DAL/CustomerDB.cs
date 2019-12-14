@@ -120,6 +120,7 @@ namespace DAL
             }
             catch (Exception e)
             {
+                return null;
                 throw e;
             }
 

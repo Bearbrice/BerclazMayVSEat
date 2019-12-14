@@ -11,10 +11,12 @@ namespace WebApplication.Controllers
     public class CustomerController : Controller
     {
         private ICustomerManager CustomerManager { get; }
+        private ICityManager CityManager { get; }
 
-        public CustomerController(ICustomerManager customerManager)
+        public CustomerController(ICustomerManager customerManager, ICityManager cityManager)
         {
             CustomerManager = customerManager;
+            CityManager = cityManager;
         }
 
         // GET: Customer
@@ -31,8 +33,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: Customer/Create
-        public ActionResult Create()
+        public ActionResult Create(string message)
         {
+            ViewBag.ErrorCityCode = message;
             return View();
         }
 
@@ -41,9 +44,24 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DTO.Customer c)
         {
-            CustomerManager.AddCustomer(c);
+            c.fk_idCity = CityManager.GetIdCity(c.fk_idCity);
 
-            return RedirectToAction("Create", "Login", new { c.idCustomer});
+            if (c.fk_idCity == 0)
+            {
+                return RedirectToAction("Create", "Customer", new { message = "City code invalid or not available" });
+            }
+            else
+            {
+                if (CustomerManager.AddCustomer(c) == null)
+                {
+                    return RedirectToAction("Create", "Customer", new { message = "Enter valid values" });
+                }
+                else
+                {
+                    return RedirectToAction("Create", "Login", new { c.idCustomer});
+                }
+                
+            }
         }
 
         // GET: Customer/Edit/5

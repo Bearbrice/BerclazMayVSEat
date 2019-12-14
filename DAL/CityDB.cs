@@ -94,6 +94,39 @@ namespace DAL
 
         }
 
+        //Get city id by city code
+        public int GetIdCity(int cityCode)
+        {
+            int idCity = 0;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT idCity FROM City WHERE code = @cityCode";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@cityCode", cityCode);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            idCity = (int)dr["idCity"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return idCity;
+
+        }
+
 
     }
 }

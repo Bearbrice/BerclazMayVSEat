@@ -5,18 +5,17 @@
     Layout = "~/Views/Shared/_LayoutStaffView.cshtml";
 }
 
-<h2>GetOrderDetails</h2>
+    <h2>Order details @Html.DisplayFor(model => model.idOrder)</h2>
 
 <div>
-    <h4>OrderDetailForStaff</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.idOrder)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.idOrder)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.status)
         </dt>

@@ -5,47 +5,35 @@
     Layout = "~/Views/Shared/_LayoutCreateAnAccount.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Enter your informations</h2>
 
-<h4>Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="idCustomer" class="control-label"></label>
-                <input asp-for="idCustomer" class="form-control" />
-                <span asp-validation-for="idCustomer" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
-                <label asp-for="full_name" class="control-label"></label>
+                @*<label asp-for="full_name" class="control-label"></label>*@
+                <label>Full name</label>
                 <input asp-for="full_name" class="form-control" />
                 <span asp-validation-for="full_name" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="created_at" class="control-label"></label>
-                <input asp-for="created_at" class="form-control" />
-                <span asp-validation-for="created_at" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
-                <label asp-for="telephone" class="control-label"></label>
-                <input asp-for="telephone" class="form-control" />
+                @*<label asp-for="telephone" class="control-label"></label>*@
+                <label>Phone number</label>
+                <input asp-for="telephone" class="form-control"/>
                 <span asp-validation-for="telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
-
-                <select class="form-control" id="StudentGender" name="City">
-                    <option>Select City</option>
-                    <option>Sierre</option>
-                    <option>Sion</option>
-                    <option>Martigny</option>
-                </select>
-
-                @*<label asp-for="fk_idCity" class="control-label"></label>
+                @*<label asp-for="fk_idCity" class="control-label"></label>*@
+                <label>City code</label>
                 <input asp-for="fk_idCity" class="form-control" />
-                <span asp-validation-for="fk_idCity" class="text-danger"></span>*@
+                @*<span asp-validation-for="fk_idCity" class="text-danger"></span>*@
             </div>
+            <b style="color:red; font-size:small;">
+                @*Error message set in controller if username not entered or password not entered or invalid login*@
+                <p>@ViewBag.ErrorCityCode</p>
+            </b>
             <div class="form-group">
                 <input type="button" class="btn btn-info btn-sm active" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");" />
                 <input type="submit" value="Continue" class="btn btn-default" />
