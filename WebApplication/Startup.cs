@@ -34,8 +34,10 @@ namespace WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //service added to manage session
             services.AddSession();
 
+            //Scoped additions
             services.AddScoped<IRestaurantManager, RestaurantManager>();
             services.AddScoped<IRestaurantDB, RestaurantDB>();
 
@@ -60,8 +62,6 @@ namespace WebApplication
             services.AddScoped<IStaffManager, StaffManager>();
             services.AddScoped<IStaffDB, StaffDB>();
 
-
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -82,7 +82,7 @@ namespace WebApplication
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            //dev
+            //added to manage session
             app.UseSession();
 
             app.UseMvc(routes =>

@@ -8,8 +8,6 @@ namespace BLL
 {
     public interface ICustomerManager
     {
-        //ICustomerManager CustomerDB { get; }
-
         List<Customer> GetCustomers();
 
         Customer GetCustomer(int id);

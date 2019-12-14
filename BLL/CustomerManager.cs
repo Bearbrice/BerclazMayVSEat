@@ -8,14 +8,6 @@ namespace BLL
 {
     public class CustomerManager : ICustomerManager
     {
-
-        //private CustomerDB CustomerDB { get; }
-
-        //public CustomerManager(IConfiguration configuration)
-        //{
-        //    CustomerDB = new CustomerDB(configuration);
-        //}
-
         private ICustomerDB CustomerDbObject { get; }
 
         public CustomerManager(ICustomerDB customerDB)

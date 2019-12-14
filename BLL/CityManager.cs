@@ -8,7 +8,6 @@ namespace BLL
 {
     public class CityManager : ICityManager
     {
-
         private ICityDB CityDBObject { get; }
 
         public CityManager(ICityDB cityDB)

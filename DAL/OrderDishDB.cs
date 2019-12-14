@@ -60,7 +60,6 @@ namespace DAL
         public OrderDish GetOrderDish(int idOrder)
         {
             OrderDish orderDish = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -96,7 +95,6 @@ namespace DAL
 
         public OrderDish AddOrderDish(OrderDish orderDish)
         {
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -120,8 +118,6 @@ namespace DAL
             return orderDish;
         }
 
-        //UPDATE ????
 
-        //DELETE ????
     }
 }

@@ -8,7 +8,6 @@ namespace DAL
 {
     public interface IRestaurantDB
     {
-
         List<Restaurant> GetRestaurants(int id);
 
         Restaurant GetRestaurant(int id);

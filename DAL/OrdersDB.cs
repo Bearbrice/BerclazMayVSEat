@@ -41,10 +41,6 @@ namespace DAL
                         {
                             var scheduled = (DateTime)dr["scheduled_at"];
 
-                            //if (scheduled < DateTime.Now.AddMinutes(30)){
-                            //    DateTime.Now.
-                            //    count++;
-                            //}
                             if (scheduled>hour.AddMinutes(-15) && scheduled < hour.AddMinutes(15))
                             {
                                 count++;
@@ -83,13 +79,6 @@ namespace DAL
                                     "AND @username = L.username " +
                                     "ORDER BY status DESC, scheduled_at, delivered_at";
 
-                    //query = "SELECT idOrder, status, scheduled_at, delivered_at, " +
-                    //        "(SELECT full_name FROM Customer WHERE idCustomer = fk_idCustomer) AS 'Customer' " +
-                    //        "FROM Orders O, Staff S, Login L " +
-                    //        "WHERE O.fk_idStaff = S.idStaff " +
-                    //        "AND L.fk_staffId = S.idStaff " +
-                    //        "AND 'michmich' = L.username " +
-                    //        "ORDER BY status DESC, scheduled_at";
 
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@username", username);
@@ -135,13 +124,6 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {
-                    //string query2 = "SELECT idOrder, status, scheduled_at, delivered_at, fk_idCustomer FROM Orders O, Staff S, Login L " +
-                    //                "WHERE O.fk_idStaff = S.idStaff " +
-                    //                "AND L.fk_staffId = S.idStaff " +
-                    //                "AND @username = L.username " +
-                    //                "ORDER BY status DESC, scheduled_at, delivered_at";
-
-
                     string query = "SELECT idOrder, status, scheduled_at, delivered_at, fk_idStaff FROM Orders O, Customer C, Login L " +
                                     "WHERE O.fk_idCustomer = C.idCustomer " +
                                     "AND L.fk_customerId = C.idCustomer " +
@@ -194,7 +176,6 @@ namespace DAL
         public List<Orders> GetOrders()
         {
             List<Orders> results = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -238,7 +219,6 @@ namespace DAL
         public Orders GetOrder(int id)
         {
             Orders order = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -282,7 +262,6 @@ namespace DAL
         public Orders GetOrderInfo(int id)
         {
             Orders order = null;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -320,7 +299,6 @@ namespace DAL
 
         public Orders AddOrder(Orders order)
         {
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -335,27 +313,10 @@ namespace DAL
                     SqlDateTime myDateTime = order.scheduled_at;
                     cmd.Parameters.AddWithValue("@scheduled_at", myDateTime);
 
-                    //DateTime myDateTime = order.scheduled_at;
-                    //string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-
-
-
-                    //myDateTime = order.delivered_at;
-                    //sqlFormattedDate = order.delivered_at.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                    //myDateTime = order.delivered_at;
-
-                    //sqlFormattedDate = order.delivered_at.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                    //cmd.Parameters.AddWithValue("@delivered_at", myDateTime);
-
-                    //cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
-                    //cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
-
                     cn.Open();
 
                     order.idOrder = Convert.ToInt32(cmd.ExecuteScalar());
 
-
-                    //cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception e)
@@ -396,7 +357,6 @@ namespace DAL
         public int UpdateOrder(Orders order)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {
@@ -428,7 +388,6 @@ namespace DAL
         public int DeleteOrder(int id)
         {
             int result = 0;
-            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             try
             {

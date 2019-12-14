@@ -14,6 +14,7 @@ namespace DTO
         public int fk_customerId { get; set; }
         public int fk_staffId { get; set; }
 
+        //Optional
         public override string ToString()
         {
             return $"{idLogin}|{username}|{password}|{fk_customerId}|{fk_staffId}";

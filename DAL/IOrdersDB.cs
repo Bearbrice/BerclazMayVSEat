@@ -8,7 +8,6 @@ namespace DAL
 {
     public interface IOrdersDB
     {
-        
         List<Orders> GetOrdersRelativeToStaff(string username);
 
         List<Orders> GetOrdersRelativeToCustomer(string username);
