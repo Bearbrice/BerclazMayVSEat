@@ -36,7 +36,7 @@ namespace WebApplication.Controllers
         // Get all orders by customer
         public ActionResult GetOrdersRelativeToCustomer([FromQuery(Name = "username")] string username)
         {
-            var name = HttpContext.Session.GetString("user");
+            ViewBag.username = HttpContext.Session.GetString("user");
 
             List<OrderRelativeToCus> ortcList = new List<OrderRelativeToCus>();
 

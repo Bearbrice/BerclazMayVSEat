@@ -74,8 +74,7 @@ namespace WebApplication.Controllers
         public ActionResult GetDishes(int id)
         {
             //to get the user name session on the top right
-            var name = HttpContext.Session.GetString("user");
-            ViewBag.username = name;
+            ViewBag.username = HttpContext.Session.GetString("user");
 
             //RestaurantManager rMan = new RestaurantManager(Configuration);
             var dishList = DishManager.GetDishes(id);
@@ -115,8 +114,7 @@ namespace WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             //to get the user name session on the top right
-            var name = HttpContext.Session.GetString("user");
-            ViewBag.username = name;
+            ViewBag.username = HttpContext.Session.GetString("user");
 
             var dish = DishManager.GetDish(id);
 

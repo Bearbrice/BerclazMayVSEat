@@ -26,16 +26,14 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IActionResult GetAccountDetailByLogin(string username)
         {
-            var name = HttpContext.Session.GetString("user");
-            ViewBag.username = name;
+            ViewBag.username = HttpContext.Session.GetString("user");
 
             AccountDetails accountDetails = new AccountDetails();
 
             //Test if the connected user is a customer or a staff to display the details of the account
             bool isCustomer = LoginManager.IsItACustomer(username);
             HttpContext.Session.SetString("isCustomer", isCustomer.ToString());
-            var isCusto = HttpContext.Session.GetString("isCustomer");
-            ViewBag.isCusto = isCusto;
+            ViewBag.isCusto = HttpContext.Session.GetString("isCustomer");
 
             if (isCustomer)
             {
@@ -127,10 +125,14 @@ namespace WebApplication.Controllers
                 //If not, this is a staff, so the redirection is on the orders he must manage
                 if (isCustomer)
                 {
+                    HttpContext.Session.SetString("isCustomer", isCustomer.ToString());
+                    ViewBag.isCusto = isCustomer.ToString();
                     return RedirectToAction("GetAllCities", "City", new { username = l.username });
                 }
                 else //Staff connection
                 {
+                    HttpContext.Session.SetString("isCustomer", isCustomer.ToString());
+                    ViewBag.isCusto = isCustomer.ToString();
                     return RedirectToAction("GetOrdersRelativeToStaff", "Orders", new { username = l.username });
                 }
             }

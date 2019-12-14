@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Models;
 
@@ -22,8 +23,9 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult AboutUs(string username)
         {
+            ViewBag.username = HttpContext.Session.GetString("user");
             ViewData["Message"] = "Your contact page.";
 
             return View();

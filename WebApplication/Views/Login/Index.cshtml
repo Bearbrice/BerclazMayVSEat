@@ -9,7 +9,7 @@
         <div class="row" >
             <div class="col-md-4">
                 <img src="~/images//login.png" />
-                <h2 style="font-family:'Courier New'">Login</h2>
+                <h2>Login</h2>
                 <form asp-action="Index">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
@@ -17,25 +17,28 @@
                             @*Error message set in controller if username not entered or password not entered or invalid login*@
                             <p>@ViewBag.ErrorMessage</p>
                         </b>
-                        <label asp-for="username" class="control-label"></label>
-                        <input asp-for="username" class="form-control" type="text" placeholder="your username" required/>
+                        @*<label asp-for="username" class="control-label"></label>*@
+                        <input asp-for="username" class="form-control" type="text" placeholder="enter username" style="text-align:center" required />
                         <span asp-validation-for="username" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="password" class="control-label"></label>
-                        <input asp-for="password" class="form-control" type="password" placeholder="your password" required/>
+                        @*<label asp-for="password" class="control-label"></label>*@
+                        <input asp-for="password" class="form-control" type="password" placeholder="enter password" style="text-align:center" required />
                         <span asp-validation-for="password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Log in" style="background-color: #4CAF50; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 10%; opacity: 0.9;"/>
+                        <input type="submit" value="Log in"
+                               style="font-size:medium;background-color: #4CAF50; color: white; padding: 5px 5px; margin: 8px 0; border: none; cursor: pointer; width: 9.5%; opacity: 0.9;" />
+                    </div>
+                    <div>
+                        <input type="button" class="btn btn-info btn-sm active" value="Create an account"
+                               style="font-size:medium; background-color:darkcyan; color: white; padding: 5px 5px; margin: 8px 0; border: none; cursor: pointer; width: 9.5%; opacity: 0.9;"
+                               onclick="@("window.location.href='" + @Url.Action("Create", "Customer") + "'");" />
+                        @*@Html.ActionLink("Create an account", "Create", "Customer")*@
                     </div>
                 </form>
             </div>
         </div>
-
-        <p>
-            @Html.ActionLink("Create an account", "Create", "Customer")
-        </p>
     </body>
 
 @section Scripts {

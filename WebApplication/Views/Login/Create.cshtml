@@ -5,16 +5,18 @@
     Layout = "~/Views/Shared/_LayoutCreateAnAccount.cshtml";
 }
 
-.registerbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
+<style>
+    .registerbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+</style>
 
 <h2>Create your username and password</h2>
 
@@ -43,7 +45,7 @@
                 <p>@ViewBag.ErrorUsernameTaken</p>
             </b>
             <div class="form-group">
-                <input type="submit" value="Register" style="background-color: #4CAF50; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 100%; opacity: 0.9;"/>
+                <input type="submit" value="Register" class="registerbtn"/>
             </div>
         </form>
     </div>

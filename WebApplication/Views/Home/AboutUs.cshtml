@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "About us";
+}
+<h2 style="text-align:center">@ViewData["Title"]</h2>
+@*<h3>@ViewData["Message"]</h3>*@
+@*<h3>Contact us : </h3>*@
+
+<style>
+    .contactBtn{
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: darkgrey;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+</style>
+
+<table align="center">
+    <tr>
+        <td style="padding:0 15px">
+            <div style="box-shadow: 0 4px 8px 0 rgb(128, 128, 128);
+            max-width: 300px;
+            min-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;">
+                <img src="~/images/brice.jpg" style="width:100%">
+                <h1>Brice Berclaz</h1>
+                <p style="color: grey; font-size: 18px;">HES student</p>
+                <p>HES-SO Sierre</p>
+                <p>
+                    <button onclick="location.href='mailto:brice.berclaz@students.hevs.ch';" class="contactBtn">
+                        Contact
+                    </button>
+                </p>
+            </div>
+        </td>
+
+        <td>
+        </td>
+
+        <td>
+            <div style="box-shadow: 0 4px 8px 0 rgb(128, 128, 128);
+            max-width: 300px;
+            min-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;">
+                <img src="~/images/aurelien.jpg" style="width:100%">
+                <h1>Aurélien May</h1>
+                <p style="color: grey; font-size: 18px;">HES student</p>
+                <p>HES-SO Sierre</p>
+                <p>
+                    <button onclick="location.href='mailto:aurelien.may@students.hevs.ch';" class="contactBtn">
+                        Contact
+                    </button>
+                </p>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<address style="text-align:center">
+    <b>Supported by :</b><br />
+    HES-SO Valais-Wallis<br />
+    Rte de la Plaine 2<br />
+    3960 Sierre<br />
+    <img style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;" src="~/images/HESLOGO.png" alt="ASP.NET" class="img-responsive" onclick="location.href='https://www.hevs.ch/fr/';"/>
+</address>

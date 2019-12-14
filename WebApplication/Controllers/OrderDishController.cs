@@ -42,8 +42,7 @@ namespace WebApplication.Controllers
         //LIST
         public ActionResult GetOrdersInfo(int idOrder, string type)
         {
-            var name = HttpContext.Session.GetString("user");
-            ViewBag.username = name;
+            ViewBag.username = HttpContext.Session.GetString("user");
 
             if (type == "adding")
             {

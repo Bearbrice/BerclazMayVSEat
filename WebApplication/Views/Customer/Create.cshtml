@@ -21,7 +21,7 @@
             <div class="form-group">
                 @*<label asp-for="telephone" class="control-label"></label>*@
                 <label>Phone number</label>
-                <input asp-for="telephone" class="form-control" required/>
+                <input asp-for="telephone" class="form-control" type="tel" required/>
                 <span asp-validation-for="telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,8 +35,8 @@
                 <p>@ViewBag.ErrorCityCode</p>
             </b>
             <div class="form-group">
-                <input type="submit" value="Continue" style="background-color: #4CAF50; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 100%; opacity: 0.9;"/>
-                <input type="button" value="Cancel" style="background-color:darkcyan; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 100%; opacity: 0.9;" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");" />
+                <input type="button" value="Cancel" style="background-color:darkcyan; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 49%; opacity: 0.9;" onclick="@("window.location.href='" + @Url.Action("Index", "Login") + "'");" />
+                <input type="submit" value="Continue" style="background-color: #4CAF50; color: white; padding: 16px 20px; margin: 8px 0; border: none; cursor: pointer; width: 49%; opacity: 0.9;" />
             </div>
         </form>
     </div>
