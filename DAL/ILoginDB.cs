@@ -16,5 +16,7 @@ namespace DAL
         bool IsItACustomer(string username);
 
         bool IsLoginValid(Login login);
+
+        bool IsUsernameTaken(string username);
     }
 }

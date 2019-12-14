@@ -40,6 +40,12 @@ namespace BLL
             return LoginDBObject.IsLoginValid(login);
         }
 
-        
+        public bool IsUsernameTaken(string username)
+        {
+            return LoginDBObject.IsUsernameTaken(username);
+        }
+
+
+
     }
 }

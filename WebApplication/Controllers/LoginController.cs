@@ -68,8 +68,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: Login/Create
-        public ActionResult Create(int idCustomer)
+        public ActionResult Create(int idCustomer, string errorMessage)
         {
+            ViewBag.ErrorUsernameTaken = errorMessage;
             HttpContext.Session.SetString("idCustomer", idCustomer.ToString());
             ViewBag.idCustomer = idCustomer;
             return View();
@@ -83,9 +84,17 @@ namespace WebApplication.Controllers
             Int32.TryParse(HttpContext.Session.GetString("idCustomer"), out int idCustomer);
             l.fk_customerId = idCustomer;
 
-            LoginManager.AddLogin(l);
+            //Manage the exception if the new user enter nothing in username or in password !
 
-            return RedirectToAction("Index", "Login");
+            if (LoginManager.IsUsernameTaken(l.username))
+            {
+                return RedirectToAction("Create", "Login", new { idCustomer, errorMessage = "Username '" + l.username + "' is already taken." });
+            }
+            else
+            {
+                LoginManager.AddLogin(l);
+                return RedirectToAction("Index", "Login");
+            }
         }
 
         [HttpPost]

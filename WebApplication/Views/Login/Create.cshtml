@@ -13,10 +13,10 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<div class="form-group">
-                <label asp-for="idLogin" class="control-label"></label>
-                <input asp-for="idLogin" class="form-control" />
-                <span asp-validation-for="idLogin" class="text-danger"></span>
-            </div>*@
+            <label asp-for="idLogin" class="control-label"></label>
+            <input asp-for="idLogin" class="form-control" />
+            <span asp-validation-for="idLogin" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="username" class="control-label"></label>
                 <input asp-for="username" class="form-control" />
@@ -27,19 +27,13 @@
                 <input asp-for="password" class="form-control" />
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="fk_customerId" class="control-label"></label>
-                <input asp-for="fk_customerId" class="form-control" />
-                <span asp-validation-for="fk_customerId" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-                <label asp-for="fk_staffId" class="control-label"></label>
-                <input asp-for="fk_staffId" class="form-control" />
-                <span asp-validation-for="fk_staffId" class="text-danger"></span>
-            </div>*@
-        <div class="form-group">
-            <input type="submit" value="Continue to connection" class="btn btn-default" />
-        </div>
+            <b style="color:red; font-size:small;">
+                @*Error message set in controller if the username entered is already taken*@
+                <p>@ViewBag.ErrorUsernameTaken</p>
+            </b>
+            <div class="form-group">
+                <input type="submit" value="Continue to connection" class="btn btn-default" />
+            </div>
         </form>
     </div>
 </div>

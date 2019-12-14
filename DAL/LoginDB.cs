@@ -185,5 +185,38 @@ namespace DAL
 
             return false;
         }
+
+        //Method to control if the username entered at the account creation is taken
+        //because username are unique
+        public bool IsUsernameTaken(string username)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    string query = "SELECT username FROM Login";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            if (username.Equals((string)dr["username"]))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return false;
+        }
     }
 }

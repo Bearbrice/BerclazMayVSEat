@@ -33,9 +33,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: Customer/Create
-        public ActionResult Create(string message)
+        public ActionResult Create(string errorMessage)
         {
-            ViewBag.ErrorCityCode = message;
+            ViewBag.ErrorCityCode = errorMessage;
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
 
             if (c.fk_idCity == 0)
             {
-                return RedirectToAction("Create", "Customer", new { message = "City code invalid or not available" });
+                return RedirectToAction("Create", "Customer", new { errorMessage = "City code invalid or not available" });
             }
             else
             {
