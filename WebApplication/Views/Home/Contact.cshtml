@@ -1,5 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Contact";
+    if (!(Convert.ToBoolean(ViewBag.isCusto)))
+    {
+        Layout = "~/Views/Shared/_LayoutStaffView.cshtml";
+    }
 }
 <h2>@ViewData["Title"]</h2>
 @*<h3>@ViewData["Message"]</h3>*@
@@ -7,7 +11,7 @@
 
 
 <contact>
-    <b>Brice Berclaz - Aurelien May</b><br />
+    <b>Brice Berclaz - Aurélien May</b><br />
     HES students<br />
     Business Information Technology Department<br /><br />
 </contact>

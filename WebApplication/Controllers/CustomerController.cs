@@ -52,15 +52,7 @@ namespace WebApplication.Controllers
             }
             else
             {
-                if (CustomerManager.AddCustomer(c) == null)
-                {
-                    return RedirectToAction("Create", "Customer", new { message = "Enter valid values" });
-                }
-                else
-                {
-                    return RedirectToAction("Create", "Login", new { c.idCustomer});
-                }
-                
+                return RedirectToAction("Create", "Login", new { c.idCustomer});
             }
         }
 
