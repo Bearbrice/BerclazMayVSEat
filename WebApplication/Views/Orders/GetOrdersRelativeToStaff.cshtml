@@ -46,6 +46,7 @@
                 @Html.DisplayFor(modelItem => item.scheduled)
             </td>
             <td>
+               
                 @if (item.status.Equals("ongoing"))
                 {
                     DateTime scheduled_at = (DateTime)item.scheduled;
