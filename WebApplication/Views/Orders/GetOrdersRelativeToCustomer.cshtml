@@ -119,8 +119,6 @@
                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                         <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrdersInfo", "OrderDish", new { item.idOrder }) + "'");" />
 
-
-
                         @if (item.status.Equals("ongoing") && item.scheduled >= DateTime.Now.AddHours(3))
                         {
                             <input type="button" class="btn btn-info btn-sm active" value="Cancel order" onclick="@("window.location.href='" + @Url.Action("CancelOrder", "Orders", new { id = item.idOrder, @ViewBag.username }) + "'");" />

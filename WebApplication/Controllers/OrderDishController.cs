@@ -15,7 +15,6 @@ namespace WebApplication.Controllers
         private IDishManager DishManager { get; }
         private IOrdersManager OrderManager { get; }
 
-
         public OrderDishController(IOrderDishManager orderDishManager, IDishManager dishManager, IOrdersManager orderManager)
         {
             OrderDishManager = orderDishManager;
@@ -35,8 +34,6 @@ namespace WebApplication.Controllers
 
             //Clear all elements in the shopping cart
             DishController.currentDishes.Clear();
-
-            //return RedirectToAction("GetOrdersInfo", "OrderDishController", new { @id = idOrder });
         }
 
         //LIST
@@ -50,8 +47,6 @@ namespace WebApplication.Controllers
                 AddOrderDish(idOrder);
             }
 
-            //List<DTO.OrderDish> orderDishes;
-            //orderDishes = OrderDishManager.GetOrderDishes();
             var orderList = OrderDishManager.GetOrderDishes(idOrder);
 
             //List based on a model to show specific data to the customer
@@ -71,92 +66,13 @@ namespace WebApplication.Controllers
                     dishPrice = DishManager.GetDish(orderD.fk_idDish).price,
                     scheduled = scheduled,
                     status = status
-                }) ;
+                });
             }
 
             return View(details);
 
         }
 
-        // GET: OrderDish
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        // GET: OrderDish/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: OrderDish/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrderDish/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderDish/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderDish/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderDish/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderDish/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

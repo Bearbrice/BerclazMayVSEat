@@ -70,7 +70,6 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult GetOrderDetails(int id)
         {
-
             var name = HttpContext.Session.GetString("user");
 
             OrderDetailForStaff odfsOrder = new OrderDetailForStaff();
@@ -100,12 +99,6 @@ namespace WebApplication.Controllers
             return View(odfsOrder);
         }
 
-        // GET: Orders
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // GET : GetOrderRelativeToStaff
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
@@ -133,7 +126,7 @@ namespace WebApplication.Controllers
 
                 return View(oscList);
             }
-            catch(NullReferenceException e)
+            catch
             {
                 return View();
             }
@@ -176,15 +169,12 @@ namespace WebApplication.Controllers
                 {
                     error = true;
                 }
-
-                //string errormessage = "error";
+              
                 if (error == true)
                 {
                     ViewBag.ErrorMessage = "Error with time given, please correct it";
                     return View();
                 }
-
-                
 
                 //assign customer to the order
                 var name = HttpContext.Session.GetString("user");
@@ -198,7 +188,7 @@ namespace WebApplication.Controllers
 
                 //add order to DB
                 order=OrderManager.AddOrder(order);
-                //validate until here
+
 
                 /* ASSIGN STAFF TO AN ORDER */
                 var dish = DishController.currentDishes.ElementAt(0);
@@ -211,11 +201,12 @@ namespace WebApplication.Controllers
 
                 staffs = StaffManager.GetStaffsByCity(y.fk_idCity);
 
-                //FIND A STAFF IN THE SAME CITY AS THE RESTAURANT
+                //Find a staff in the same city as the restaurant
                 foreach (var staff in staffs)
                 {
                     if (staff.fk_idCity == y.fk_idCity)
                     {
+                        //Check if the staff is overbooked
                         if (OrderManager.isStaffOverbooked(staff.idStaff, order.scheduled_at) == false)
                         {
                             order.fk_idStaff = staff.idStaff;
@@ -262,53 +253,6 @@ namespace WebApplication.Controllers
             OrderManager.UpdateOrder(order);
 
             return RedirectToAction("GetOrdersRelativeToCustomer", "Orders", new { username });
-        }
-
-        //// POST: Orders/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult CancelOrder(int id, string username)
-        //{
-        //    try
-        //    {
-        //        username = HttpContext.Session.GetString("user");
-        //        ViewBag.username = username;
-
-        //        var x = OrderManager.GetOrder(id);
-        //        x.status = "cancelled";
-        //        OrderManager.UpdateOrder(x);
-
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("GetOrdersRelativeToCustomer", "Orders", new { username });
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        // GET: Orders/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
