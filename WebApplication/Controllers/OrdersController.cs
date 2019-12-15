@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
             StaffManager = staffManager;
         }
 
-        // GET : GetMyOrders/id
+        
         // Get all orders by customer
         public ActionResult GetOrdersRelativeToCustomer([FromQuery(Name = "username")] string username)
         {
@@ -128,12 +128,6 @@ namespace WebApplication.Controllers
             {
                 return View();
             }
-        }
-
-        // GET: Orders/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: Orders/Create
