@@ -61,7 +61,7 @@ namespace WebApplication.Controllers
 
                 return View(ortcList);
             }
-            catch(NullReferenceException e)
+            catch
             {
                 return View();
             }

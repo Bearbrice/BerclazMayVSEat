@@ -5,15 +5,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\OrderDetail\**" />
+    <Compile Remove="Views\ShoppingCart\**" />
+    <Content Remove="Views\OrderDetail\**" />
+    <Content Remove="Views\ShoppingCart\**" />
+    <EmbeddedResource Remove="Views\OrderDetail\**" />
+    <EmbeddedResource Remove="Views\ShoppingCart\**" />
+    <None Remove="Views\OrderDetail\**" />
+    <None Remove="Views\ShoppingCart\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\OrderDetailController.cs" />
     <Compile Remove="Controllers\StaffController.cs" />
     <Compile Remove="Models\Dish.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\City\Create.cshtml" />
+    <Content Remove="Views\City\GetCities.cshtml" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Index.cshtml" />
     <Content Remove="Views\Home\Privacy.cshtml" />
+    <Content Remove="Views\Orders\Edit.cshtml" />
+    <Content Remove="Views\Restaurant\Details.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,9 +6,6 @@
 
 <h2>Dishes</h2>
 
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
 <table class="table">
     <thead>
         <tr style="background-color:darkcyan; color:white">
@@ -39,8 +36,6 @@
                 </td>
                 <td>
                     @Html.ActionLink("Add to basket", "Edit", new { id = item.idDish })
-                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>
         }

@@ -33,7 +33,6 @@
         @foreach (var item in Model)
         {
             totalPrice += item.price;
-            //index += 1;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.idDish)
@@ -52,19 +51,14 @@
                     @Html.DisplayFor(modelItem => item.fk_idRestaurant)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
                     @Html.ActionLink("Remove", "Delete", new { id = item.idDish })
-                    @*@index*@
 
-                    @*@Html.ActionLink("Show delicious dishes", "GetDishes", "Dish", new { id = item.idRestaurant })*@
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-@*<p style="color:red;">@ViewBag.ErrorBasketEmpty</p>*@
 
 <TotalPrice> Total price : @totalPrice <devise> CHF</devise> </TotalPrice>
 

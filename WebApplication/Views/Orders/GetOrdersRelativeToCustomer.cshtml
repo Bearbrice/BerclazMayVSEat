@@ -7,11 +7,6 @@
 <h2>My orders</h2>
 <h3>List of all my orders</h3>
 
-
-
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
 <table class="table">
     <thead>
         <tr style="background-color:darkcyan; color:white">
@@ -114,9 +109,6 @@
                         @Html.DisplayFor(modelItem => item.staffName)
                     </td>
                     <td>
-                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                         <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrdersInfo", "OrderDish", new { item.idOrder }) + "'");" />
 
                         @if (item.status.Equals("ongoing") && item.scheduled >= DateTime.Now.AddHours(3))
@@ -126,7 +118,6 @@
                         else
                         {
                             <input type="submit" class="btn btn-info btn-sm disabled" value="Cancel order">
-                            @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">*@
                         }
                     </td>
                 </tr>

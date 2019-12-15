@@ -13,25 +13,20 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @*<label asp-for="full_name" class="control-label"></label>*@
                 <label>Full name</label>
                 <input asp-for="full_name" class="form-control" required/>
                 <span asp-validation-for="full_name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="telephone" class="control-label"></label>*@
                 <label>Phone number</label>
                 <input asp-for="telephone" class="form-control" type="tel" required/>
                 <span asp-validation-for="telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="fk_idCity" class="control-label"></label>*@
                 <label>City code</label>
                 <input asp-for="fk_idCity" class="form-control" placeholder="3960" required/>
-                @*<span asp-validation-for="fk_idCity" class="text-danger"></span>*@
             </div>
             <b style="color:red; font-size:small;">
-                @*Error message set in controller if username not entered or password not entered or invalid login*@
                 <p>@ViewBag.ErrorCityCode</p>
             </b>
             <div class="form-group">

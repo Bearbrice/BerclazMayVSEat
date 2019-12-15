@@ -47,7 +47,7 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }

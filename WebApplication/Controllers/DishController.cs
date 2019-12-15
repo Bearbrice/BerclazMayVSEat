@@ -96,7 +96,7 @@ namespace WebApplication.Controllers
 
        
 
-        // GET: Dish/Delete/5
+        // Not a view
         public ActionResult Delete(int id)
         {
             DeleteCurrentDish(id);
@@ -104,7 +104,7 @@ namespace WebApplication.Controllers
             return RedirectToAction(nameof(GetCurrentDishes));
         }
 
-        //POST: Dish/Delete/5
+        //POST, redirect to GetCurrentDishes
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

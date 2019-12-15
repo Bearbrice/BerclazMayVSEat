@@ -12,23 +12,18 @@
         <tr style="background-color:darkcyan; color:white">
             <th>
                 N°
-                @*@Html.DisplayNameFor(model => model.idOrder)*@
             </th>
             <th>
                 Status
-                @*@Html.DisplayNameFor(model => model.status)*@
             </th>
             <th>
                 Scheduled
-                @*@Html.DisplayNameFor(model => model.scheduled)*@
             </th>
             <th>
                 Delivered
-                @*@Html.DisplayNameFor(model => model.delivered)*@
             </th>
             <th>
                 Customer
-                @*@Html.DisplayNameFor(model => model.customerName)*@
             </th>
             <th></th>
         </tr>
@@ -119,10 +114,8 @@
                         else
                         {
                             <input type="button" class="btn btn-info btn-sm active" value="Delivered" onclick="@("window.location.href='" + @Url.Action("Edit", "Orders", new { id = item.idOrder, @ViewBag.username }) + "'");" />
-                            @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">*@
                         }
 
-                        @*CHECK WITH BRICE THE REDIRECTION*@
                         <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrderDetails", "Orders", new { id = item.idOrder }) + "'");" />
                     </td>
                 </tr>

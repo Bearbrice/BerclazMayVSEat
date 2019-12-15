@@ -4,10 +4,8 @@
     ViewData["Title"] = "GetAllCities";
 }
 
-<h2>Restaurant cities</h2>
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+<h2>All cities available</h2>
+
 <table class="table">
     <thead>
         <tr style="background-color:darkcyan; color:white">
@@ -23,9 +21,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.idCity)
-            </td>*@
+            
             <td>
                 @Html.DisplayFor(modelItem => item.code)
             </td>

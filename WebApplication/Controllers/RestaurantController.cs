@@ -29,12 +29,5 @@ namespace WebApplication.Controllers
             return View(restaurantList);
         }
 
-        // GET: Restaurant/Details/5
-        public ActionResult Details(int id)
-        {
-            //RestaurantManager rMan = new RestaurantManager(Configuration);
-            var restaurant = RestaurantManager.GetRestaurant(id);
-            return View(restaurant);
-        }
     }
 }
