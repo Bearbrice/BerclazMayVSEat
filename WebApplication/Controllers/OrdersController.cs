@@ -38,13 +38,13 @@ namespace WebApplication.Controllers
             {
                 ViewBag.username = HttpContext.Session.GetString("user");
 
-                List<OrderRelativeToCus> ortcList = new List<OrderRelativeToCus>();
+                List<OrderRelativeToCustomer> ortcList = new List<OrderRelativeToCustomer>();
 
                 var orderList = OrderManager.GetOrdersRelativeToCustomer(username);
 
                 foreach (var order in orderList)
                 {
-                    ortcList.Add(new OrderRelativeToCus
+                    ortcList.Add(new OrderRelativeToCustomer
                     {
                         idOrder = order.idOrder,
                         status = order.status,

@@ -2,7 +2,7 @@
 
 namespace WebApplication.Models
 {
-    public class OrderRelativeToCus
+    public class OrderRelativeToCustomer
     {
         public int idOrder { get; set; }
 

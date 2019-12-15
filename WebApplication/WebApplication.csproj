@@ -18,7 +18,15 @@
   <ItemGroup>
     <Compile Remove="Controllers\OrderDetailController.cs" />
     <Compile Remove="Controllers\StaffController.cs" />
+    <Compile Remove="Models\City.cs" />
+    <Compile Remove="Models\Customer.cs" />
     <Compile Remove="Models\Dish.cs" />
+    <Compile Remove="Models\IOrderDetail.cs" />
+    <Compile Remove="Models\OrderDetail.cs" />
+    <Compile Remove="Models\OrderDish.cs" />
+    <Compile Remove="Models\Orders.cs" />
+    <Compile Remove="Models\Restaurant.cs" />
+    <Compile Remove="Models\Staff.cs" />
   </ItemGroup>
 
   <ItemGroup>
