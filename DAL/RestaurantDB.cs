@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DTO;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
-using DTO;
 
 namespace DAL
 {
@@ -170,7 +169,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@merchant_name", restaurant.merchant_name);
                     cmd.Parameters.AddWithValue("@created_at", restaurant.created_at);
                     cmd.Parameters.AddWithValue("@fk_idCity", restaurant.fk_idCity);
-                    
+
                     cn.Open();
 
                     result = cmd.ExecuteNonQuery();

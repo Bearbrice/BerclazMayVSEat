@@ -1,9 +1,8 @@
-﻿using System;
+﻿using DTO;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
-using DTO;
-using Microsoft.Extensions.Configuration;
 
 namespace DAL
 {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BLL;
+using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DTO;
-using BLL;
-using Microsoft.Extensions.Configuration;
+using System;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -89,7 +85,8 @@ namespace WebApplication.Controllers
             }
             else
             {
-                if (LoginManager.AddLogin(l) == null) {
+                if (LoginManager.AddLogin(l) == null)
+                {
                     return RedirectToAction("Create", "Login", new { idCustomer, errorMessage = "Enter valid values" });
                 }
                 else
@@ -102,7 +99,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Index(Login l)
         {
-            
+
             bool isCustomer = LoginManager.IsItACustomer(l.username);
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)

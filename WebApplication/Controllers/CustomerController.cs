@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL;
+﻿using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +37,7 @@ namespace WebApplication.Controllers
             {
                 CustomerManager.AddCustomer(c);
                 HttpContext.Session.SetString("idCustomer", c.idCustomer.ToString());
-                return RedirectToAction("Create", "Login", new { c.idCustomer});
+                return RedirectToAction("Create", "Login", new { c.idCustomer });
             }
         }
 

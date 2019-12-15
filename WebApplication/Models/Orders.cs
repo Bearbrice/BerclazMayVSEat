@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 
 namespace WebApplication.Models
 {
@@ -12,6 +10,6 @@ namespace WebApplication.Models
         public DateTime finished_at { get; set; }
         public int fk_idStaff { get; set; }
         public int fk_idCustomer { get; set; }
-       
+
     }
 }

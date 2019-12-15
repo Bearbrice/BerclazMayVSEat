@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 
 namespace DTO
 {
@@ -15,7 +14,7 @@ namespace DTO
         //Optional
         public override string ToString()
         {
-           return $"{idOrder}|{status}|{scheduled_at}|{delivered_at}|{fk_idStaff}|{fk_idCustomer}";
+            return $"{idOrder}|{status}|{scheduled_at}|{delivered_at}|{fk_idStaff}|{fk_idCustomer}";
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BLL;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApplication.Controllers
 {
@@ -34,6 +29,6 @@ namespace WebApplication.Controllers
 
             //var cityList = CityManager.GetCities();
             //return View(cityList);
-        } 
+        }
     }
 }

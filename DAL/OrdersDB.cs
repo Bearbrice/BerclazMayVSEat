@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DTO;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
-using DTO;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
 namespace DAL
@@ -39,7 +39,7 @@ namespace DAL
                         {
                             var scheduled = (DateTime)dr["scheduled_at"];
 
-                            if (scheduled>=hour.AddMinutes(-15) && scheduled <= hour.AddMinutes(15))
+                            if (scheduled >= hour.AddMinutes(-15) && scheduled <= hour.AddMinutes(15))
                             {
                                 count++;
                             }
@@ -95,7 +95,7 @@ namespace DAL
                             if (dr["delivered_at"] != System.DBNull.Value)
                                 order.delivered_at = (DateTime)dr["delivered_at"];
                             if (dr["fk_idCustomer"] != System.DBNull.Value)
-                                 order.fk_idCustomer = (int)dr["fk_idCustomer"];
+                                order.fk_idCustomer = (int)dr["fk_idCustomer"];
 
                             results.Add(order);
                         }
@@ -146,14 +146,14 @@ namespace DAL
                             {
                                 order.delivered_at = (DateTime)dr["delivered_at"];
                             }
-                                
+
 
                             //problem here
                             if (dr["fk_idStaff"] != System.DBNull.Value)
                             {
                                 order.fk_idStaff = (int)dr["fk_idStaff"];
                             }
-                                
+
 
                             results.Add(order);
                         }
@@ -196,7 +196,7 @@ namespace DAL
                             order.delivered_at = (DateTime)dr["delivered_at"];
                             order.fk_idStaff = (int)dr["fk_idStaff"];
                             order.fk_idCustomer = (int)dr["fk_idCustomer"];
-                            
+
 
                             results.Add(order);
                         }
@@ -234,7 +234,8 @@ namespace DAL
                             order.idOrder = (int)dr["idOrder"];
                             order.status = (string)dr["status"];
                             order.scheduled_at = (DateTime)dr["scheduled_at"];
-                            if (!dr["delivered_at"].Equals(System.DBNull.Value)){
+                            if (!dr["delivered_at"].Equals(System.DBNull.Value))
+                            {
                                 order.delivered_at = (DateTime)dr["delivered_at"];
                             }
                             order.fk_idStaff = (int)dr["fk_idStaff"];
@@ -277,7 +278,7 @@ namespace DAL
                             order.idOrder = (int)dr["idOrder"];
                             order.status = (string)dr["status"];
                             order.scheduled_at = (DateTime)dr["scheduled_at"];
-                           
+
 
                         }
                     }
@@ -340,7 +341,7 @@ namespace DAL
                     result = cmd.ExecuteNonQuery();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -362,8 +363,8 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@id", order.idOrder);
                     cmd.Parameters.AddWithValue("@status", order.status);
                     cmd.Parameters.AddWithValue("@scheduled_at", order.scheduled_at);
-                    
-                    
+
+
                     cmd.Parameters.AddWithValue("@fk_idStaff", order.fk_idStaff);
                     cmd.Parameters.AddWithValue("@fk_idCustomer", order.fk_idCustomer);
 

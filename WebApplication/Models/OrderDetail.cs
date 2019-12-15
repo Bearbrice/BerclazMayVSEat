@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DTO;
+﻿using System.Collections.Generic;
 
 namespace WebApplication.Models
 {
     public class OrderDetail : IOrderDetail
     {
-        
+
         private IOrderDetail OrderDetailDBObject { get; set; }
 
         List<DTO.Dish> Dishes { get; set; }
@@ -33,5 +29,5 @@ namespace WebApplication.Models
 
 
     }
-    
+
 }

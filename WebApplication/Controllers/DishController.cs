@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BLL;
-using DTO;
-using WebApplication.Models;
+using System.Collections.Generic;
 
 namespace WebApplication.Controllers
 {
     public class DishController : Controller
     {
-        private IDishManager DishManager { get; } 
+        private IDishManager DishManager { get; }
         private IOrdersManager OrdersManager { get; }
 
         public DishController(IDishManager dishManager, IOrdersManager orderManager)
@@ -47,7 +42,7 @@ namespace WebApplication.Controllers
                 {
                     break;
                 }
-                
+
             };
 
             currentDishes.RemoveAt(count);
@@ -81,20 +76,20 @@ namespace WebApplication.Controllers
         {
             AddCurrentDish(dish);
 
-            return RedirectToAction("GetDishes", "Dish", new { id=dish.fk_idRestaurant });
+            return RedirectToAction("GetDishes", "Dish", new { id = dish.fk_idRestaurant });
         }
 
         // GET: Dish/GetDishes/5
         public ActionResult GetCurrentDishes()
         {
             ViewBag.username = HttpContext.Session.GetString("user");
-            
+
             var dishList = GetAllDishes();
 
             return View(dishList);
         }
 
-       
+
 
         // Not a view
         public ActionResult Delete(int id)
@@ -110,7 +105,7 @@ namespace WebApplication.Controllers
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
-            {               
+            {
                 return RedirectToAction(nameof(GetCurrentDishes));
             }
             catch

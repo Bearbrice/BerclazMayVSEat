@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BLL;
-using Microsoft.Extensions.Configuration;
 
 namespace WebApplication.Controllers
 {
@@ -25,7 +20,7 @@ namespace WebApplication.Controllers
 
             //RestaurantManager rMan = new RestaurantManager(Configuration);
             var restaurantList = RestaurantManager.GetRestaurants(id);
-           
+
             return View(restaurantList);
         }
 

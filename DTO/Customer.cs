@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.ComponentModel.DataAnnotations;
 
 namespace DTO
@@ -17,7 +16,7 @@ namespace DTO
         //Optional
         public override string ToString()
         {
-           return $"{idCustomer}|{full_name}|{created_at}|{telephone}|{fk_idCity}";
+            return $"{idCustomer}|{full_name}|{created_at}|{telephone}|{fk_idCity}";
         }
     }
 }

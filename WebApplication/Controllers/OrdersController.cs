@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BLL;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using WebApplication.Models;
-using DTO;
 
 namespace WebApplication.Controllers
 {
@@ -20,7 +18,7 @@ namespace WebApplication.Controllers
         private ILoginManager LoginManager { get; }
         private IRestaurantManager RestaurantManager { get; }
         private IStaffManager StaffManager { get; }
-        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager,IOrderDishManager orderDishManager, ILoginManager loginManager, IStaffManager staffManager, IRestaurantManager restaurantManager)
+        public OrdersController(IDishManager dishmanager, IOrdersManager orderManager, ICustomerManager customerManager, ICityManager cityManager, IOrderDishManager orderDishManager, ILoginManager loginManager, IStaffManager staffManager, IRestaurantManager restaurantManager)
         {
             OrderManager = orderManager;
             CustomerManager = customerManager;
@@ -169,7 +167,7 @@ namespace WebApplication.Controllers
                 {
                     error = true;
                 }
-              
+
                 if (error == true)
                 {
                     ViewBag.ErrorMessage = "Error with time given, please correct it";
@@ -187,7 +185,7 @@ namespace WebApplication.Controllers
                 order.status = "ongoing";
 
                 //add order to DB
-                order=OrderManager.AddOrder(order);
+                order = OrderManager.AddOrder(order);
 
 
                 /* ASSIGN STAFF TO AN ORDER */
@@ -211,7 +209,7 @@ namespace WebApplication.Controllers
                         {
                             order.fk_idStaff = staff.idStaff;
                             break;
-                        }                        
+                        }
                     }
                 }
 
@@ -219,7 +217,7 @@ namespace WebApplication.Controllers
 
                 string x = "adding";
 
-                return RedirectToAction("GetOrdersInfo", "Orderdish", new {idOrder=order.idOrder, type=x });
+                return RedirectToAction("GetOrdersInfo", "Orderdish", new { idOrder = order.idOrder, type = x });
             }
             catch
             {
@@ -244,7 +242,7 @@ namespace WebApplication.Controllers
 
         //GET: Orders/CancelOrder
         public ActionResult CancelOrder(int id, string username)
-        { 
+        {
             var name = HttpContext.Session.GetString("user");
             ViewBag.username = name;
 

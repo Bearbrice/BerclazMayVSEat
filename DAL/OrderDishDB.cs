@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DTO;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
-using DTO;
 
 namespace DAL
 {
@@ -42,7 +41,7 @@ namespace DAL
 
                             orderDish.fk_idOrder = (int)dr["fk_idOrder"];
                             orderDish.fk_idDish = (int)dr["fk_idDish"];
-                            
+
 
                             results.Add(orderDish);
                         }
@@ -79,7 +78,7 @@ namespace DAL
 
                             orderDish.fk_idOrder = (int)dr["fk_idOrder"];
                             orderDish.fk_idDish = (int)dr["fk_idDish"];
-                            
+
 
                         }
                     }
@@ -104,7 +103,7 @@ namespace DAL
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@fk_idOrder", orderDish.fk_idOrder);
                     cmd.Parameters.AddWithValue("@fk_idDish", orderDish.fk_idDish);
-                   
+
 
                     cn.Open();
                     cmd.ExecuteScalar();

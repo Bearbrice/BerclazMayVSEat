@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
 using System.IO;
-using Microsoft.Extensions.Configuration;
-using BLL;
-using DTO;
 
 namespace BerclazMay_VSEat
 {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebApplication.Models
 {
@@ -13,7 +11,7 @@ namespace WebApplication.Models
         public int dishPrice { get; set; }
 
         public DateTime scheduled { get; set; }
-        
+
         public String status { get; set; }
 
 

@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DTO;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
-using DTO;
 
 namespace DAL
 {
@@ -40,11 +38,11 @@ namespace DAL
 
                     string query = "INSERT INTO Login(idLogin, username, password, fk_customerId) values(@idLogin, @username, @password, @fk_customerId)";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@idLogin", id+1);
+                    cmd.Parameters.AddWithValue("@idLogin", id + 1);
                     cmd.Parameters.AddWithValue("@username", login.username);
                     cmd.Parameters.AddWithValue("@password", login.password);
                     cmd.Parameters.AddWithValue("@fk_customerId", login.fk_customerId);
-                    
+
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -103,7 +101,7 @@ namespace DAL
                     {
                         if (dr.Read())
                         {
-                            id=(int)dr["fk_customerId"];
+                            id = (int)dr["fk_customerId"];
                         }
                     }
                 }

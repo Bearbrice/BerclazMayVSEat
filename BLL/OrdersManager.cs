@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using DAL;
+﻿using DAL;
 using DTO;
+using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
