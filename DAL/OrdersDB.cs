@@ -33,21 +33,16 @@ namespace DAL
 
                     cn.Open();
 
-                    
-
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
                             var scheduled = (DateTime)dr["scheduled_at"];
 
-                            if (scheduled>hour.AddMinutes(-15) && scheduled < hour.AddMinutes(15))
+                            if (scheduled>=hour.AddMinutes(-15) && scheduled <= hour.AddMinutes(15))
                             {
                                 count++;
                             }
-
-
-
                         }
                     }
                 }

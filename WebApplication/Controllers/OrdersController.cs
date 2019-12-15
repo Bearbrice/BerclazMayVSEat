@@ -232,7 +232,7 @@ namespace WebApplication.Controllers
             }
             catch
             {
-                ViewBag.ErrorMessage = "Something went wrong, is the format HH:MM correct ? Try again";
+                ViewBag.ErrorMessage = "Something went wrong, the hour format is not respected HH:MM or no delivery person is available for this time slot. Try again or choose another time.";
                 return View();
             }
         }
