@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
 
             AccountDetails accountDetails = new AccountDetails();
 
-            //Test if the connected user is a customer or a staff to display the details of the account
+            //Test if the connected user is a customer or a staff to display the details of the account relative to it
             bool isCustomer = LoginManager.IsItACustomer(username);
             HttpContext.Session.SetString("isCustomer", isCustomer.ToString());
             ViewBag.isCusto = HttpContext.Session.GetString("isCustomer");
@@ -78,7 +78,7 @@ namespace WebApplication.Controllers
             Int32.TryParse(HttpContext.Session.GetString("idCustomer"), out int idCustomer);
             l.fk_customerId = idCustomer;
 
-            //Manage the exception if the new user enter nothing in username or in password !
+            //Manage the exception if the new user enter a username already taken or valide values !
             if (LoginManager.IsUsernameTaken(l.username))
             {
                 return RedirectToAction("Create", "Login", new { idCustomer, errorMessage = "Username '" + l.username + "' is already taken." });
@@ -99,7 +99,6 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Index(Login l)
         {
-
             bool isCustomer = LoginManager.IsItACustomer(l.username);
             bool isValid = LoginManager.IsLoginValid(l);
             if (isValid)
