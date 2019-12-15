@@ -8,8 +8,6 @@ namespace WebApplication.Models
 {
     public class OrderDetailForStaff
     {
-        internal object dishesNames;
-
         public int idOrder { get; set; }
 
         public String status { get; set; }

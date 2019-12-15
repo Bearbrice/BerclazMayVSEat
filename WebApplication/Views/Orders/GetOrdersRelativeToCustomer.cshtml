@@ -34,104 +34,107 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idOrder)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.scheduled)
-                </td>
-                <td>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idOrder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.scheduled)
+                    </td>
+                    <td>
 
-                    @switch (item.status)
-                    {
-                        case "cancelled":
-                            <span style="color:firebrick;">
-                                <b>
-                                    CANCELLED
-                                </b>
-                            </span>
-
-                            break;
-
-                        case "ongoing":
-                            DateTime scheduled_at = (DateTime)item.scheduled;
-                            DateTime now = DateTime.Now;
-
-                            TimeSpan diff = scheduled_at.Subtract(now);
-
-                            string t = diff.ToString(@"hh");
-                            int te = Int32.Parse(t);
-
-                            if (now < scheduled_at)
-                            {
-                                if (te >= 2)
-                                {
-                                    <span style="color:green;">
-                                        @diff.ToString(@"hh") h @diff.ToString(@"mm") left
-                                    </span>
-                                }
-
-                                if (te < 1)
-                                {
-                                    <span style="color:red;">
-                                        @diff.ToString(@"hh") h @diff.ToString(@"mm") left
-                                    </span>
-                                }
-
-                                if (te < 2 && te >= 1)
-                                {
-                                    <span style="color:orange;">
-                                        @diff.ToString(@"hh") h @diff.ToString(@"mm") left
-                                    </span>
-                                }
-                            }
-                            else
-                            {
-                                <span style="color:red;">
+                        @switch (item.status)
+                        {
+                            case "cancelled":
+                                <span style="color:firebrick;">
                                     <b>
-                                        LATE
+                                        CANCELLED
                                     </b>
                                 </span>
-                            }
+
+                                break;
+
+                            case "ongoing":
+                                DateTime scheduled_at = (DateTime)item.scheduled;
+                                DateTime now = DateTime.Now;
+
+                                TimeSpan diff = scheduled_at.Subtract(now);
+
+                                string t = diff.ToString(@"hh");
+                                int te = Int32.Parse(t);
+
+                                if (now < scheduled_at)
+                                {
+                                    if (te >= 2)
+                                    {
+                                        <span style="color:green;">
+                                            @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                                        </span>
+                                    }
+
+                                    if (te < 1)
+                                    {
+                                        <span style="color:red;">
+                                            @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                                        </span>
+                                    }
+
+                                    if (te < 2 && te >= 1)
+                                    {
+                                        <span style="color:orange;">
+                                            @diff.ToString(@"hh") h @diff.ToString(@"mm") left
+                                        </span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span style="color:red;">
+                                        <b>
+                                            LATE
+                                        </b>
+                                    </span>
+                                }
 
 
-                            break;
+                                break;
 
-                        default:
-                            @Html.DisplayFor(modelItem => item.delivered);
-                            break;
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.staffName)
-                </td>
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                    <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrdersInfo", "OrderDish", new { item.idOrder }) + "'");" />
+                            default:
+                                @Html.DisplayFor(modelItem => item.delivered);
+                                break;
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.staffName)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        <input type="button" class="btn btn-info btn-sm active" value="Details" onclick="@("window.location.href='" + @Url.Action("GetOrdersInfo", "OrderDish", new { item.idOrder }) + "'");" />
 
 
 
-                    @if (item.status.Equals("ongoing") && item.scheduled >= DateTime.Now.AddHours(3))
-                    {
-                        <input type="button" class="btn btn-info btn-sm active" value="Cancel order" onclick="@("window.location.href='" + @Url.Action("CancelOrder", "Orders", new { id = item.idOrder, @ViewBag.username }) + "'");" />
-                    }
-                    else
-                    {
-                        <input type="submit" class="btn btn-info btn-sm disabled" value="Cancel order">
-                        @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">*@
-                    }
-                </td>
-            </tr>
+                        @if (item.status.Equals("ongoing") && item.scheduled >= DateTime.Now.AddHours(3))
+                        {
+                            <input type="button" class="btn btn-info btn-sm active" value="Cancel order" onclick="@("window.location.href='" + @Url.Action("CancelOrder", "Orders", new { id = item.idOrder, @ViewBag.username }) + "'");" />
+                        }
+                        else
+                        {
+                            <input type="submit" class="btn btn-info btn-sm disabled" value="Cancel order">
+                            @*<input type="submit" class="btn btn-info btn-sm active" value="Delivered">*@
+                        }
+                    </td>
+                </tr>
+            }
         }
-    </tbody>
+        </tbody>
 </table>
 
 

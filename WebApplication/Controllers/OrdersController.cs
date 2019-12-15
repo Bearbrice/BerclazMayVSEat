@@ -36,28 +36,35 @@ namespace WebApplication.Controllers
         // Get all orders by customer
         public ActionResult GetOrdersRelativeToCustomer([FromQuery(Name = "username")] string username)
         {
-            ViewBag.username = HttpContext.Session.GetString("user");
-
-            List<OrderRelativeToCus> ortcList = new List<OrderRelativeToCus>();
-
-            var orderList = OrderManager.GetOrdersRelativeToCustomer(username);
-
-            foreach (var order in orderList)
+            try
             {
-                ortcList.Add(new OrderRelativeToCus
+                ViewBag.username = HttpContext.Session.GetString("user");
+
+                List<OrderRelativeToCus> ortcList = new List<OrderRelativeToCus>();
+
+                var orderList = OrderManager.GetOrdersRelativeToCustomer(username);
+
+                foreach (var order in orderList)
                 {
-                    idOrder = order.idOrder,
-                    status = order.status,
-                    scheduled = order.scheduled_at,
-                    delivered = order.delivered_at,
-                    staffName = StaffManager.GetStaff(order.fk_idStaff).full_name
-                });
+                    ortcList.Add(new OrderRelativeToCus
+                    {
+                        idOrder = order.idOrder,
+                        status = order.status,
+                        scheduled = order.scheduled_at,
+                        delivered = order.delivered_at,
+                        staffName = StaffManager.GetStaff(order.fk_idStaff).full_name
+                    });
 
+                }
+
+                ViewBag.username = username;
+
+                return View(ortcList);
             }
-
-            ViewBag.username = username;
-
-            return View(ortcList);
+            catch(NullReferenceException e)
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -85,7 +92,7 @@ namespace WebApplication.Controllers
             foreach (var od in orderDishList)
             {
                 var x = DishManager.GetDish(od.fk_idDish);
-                odfsOrder.dishesName.Add(x.name + " ");
+                odfsOrder.dishesName.Add(x.name);
             }
 
             ViewBag.username = name;
@@ -102,29 +109,34 @@ namespace WebApplication.Controllers
         // GET : GetOrderRelativeToStaff
         public ActionResult GetOrdersRelativeToStaff([FromQuery(Name = "username")] string username)
         {
-            //var id = HttpContext.Session.Id;
-
-            var name = HttpContext.Session.GetString("user");
-
-            List<OrderRelativeToStaffWithCustomer> oscList = new List<OrderRelativeToStaffWithCustomer>();
-
-            var orderList = OrderManager.GetOrdersRelativeToStaff(username);
-
-            foreach (var order in orderList)
+            try
             {
-                oscList.Add(new OrderRelativeToStaffWithCustomer
-                {
-                    idOrder = order.idOrder,
-                    status = order.status,
-                    scheduled = order.scheduled_at,
-                    delivered = order.delivered_at,
-                    customerName = CustomerManager.GetCustomer(order.fk_idCustomer).full_name
-                });
-            }
+                ViewBag.username = HttpContext.Session.GetString("user");
 
-            ViewBag.username = username;
-            
-            return View(oscList);
+                List<OrderRelativeToStaffWithCustomer> oscList = new List<OrderRelativeToStaffWithCustomer>();
+
+                var orderList = OrderManager.GetOrdersRelativeToStaff(username);
+
+                foreach (var order in orderList)
+                {
+                    oscList.Add(new OrderRelativeToStaffWithCustomer
+                    {
+                        idOrder = order.idOrder,
+                        status = order.status,
+                        scheduled = order.scheduled_at,
+                        delivered = order.delivered_at,
+                        customerName = CustomerManager.GetCustomer(order.fk_idCustomer).full_name
+                    });
+                }
+
+                ViewBag.username = username;
+
+                return View(oscList);
+            }
+            catch(NullReferenceException e)
+            {
+                return View();
+            }
         }
 
         // GET: Orders/Details/5

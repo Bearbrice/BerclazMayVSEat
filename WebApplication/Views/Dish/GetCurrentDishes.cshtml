@@ -4,16 +4,13 @@
     ViewData["Title"] = "GetCurrentDishes";
 }
 
-<h2>GetCurrentDishes</h2>
+<h2>Shopping cart</h2>
 
 @{
     decimal totalPrice = new decimal(0.0);
     Boolean isEmpty = true;
 }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr style="background-color:darkcyan; color:white">
@@ -40,7 +37,7 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.idDish)
-                    @if (!(item.idDish == null))
+                    @if (!(item.idDish.Equals(null)))
                     {
                         isEmpty = false;
                     }
@@ -73,7 +70,7 @@
 
 @if (isEmpty)
 {
-    <input type="button" class="btn btn-info btn-sm disabled" value="Choose delivery time" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
+    <input type="button" class="btn btn-info btn-sm disabled" value="Choose delivery time"/>
 }
 else
 {

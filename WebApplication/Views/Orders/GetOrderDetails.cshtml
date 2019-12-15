@@ -26,13 +26,21 @@
             Delivered at
         </dt>
         <dd>
-            @if (Model.delivered.Equals(DateTime.MinValue))
+            @switch (Model.status)
             {
-                <text>not delivered yet</text>
-            }
-            else
-            {
-                @Html.DisplayFor(model => model.delivered)
+                case "ongoing":
+                    <text>not delivered yet</text>
+                    break;
+                case "delivered":
+                    @Html.DisplayFor(model => model.delivered)
+                    break;
+                case "cancelled":
+                    <span style="color:firebrick">
+                        <b>
+                            CANCELLED
+                        </b>
+                    </span>
+                    break;
             }
         </dd>
         <dt>
@@ -54,10 +62,14 @@
             @Html.DisplayFor(model => model.cityName)
         </dd>
         <dt>
-            Dishes
+            Dish(es)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.dishesName);
+            @{ 
+                List<String> s = Model.dishesName;
+                var joinedNames = s.Aggregate((a, b) => a + ", " + b);
+            }
+            @joinedNames
         </dd>
     </dl>
 </div>
